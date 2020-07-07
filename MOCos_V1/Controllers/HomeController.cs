@@ -22,7 +22,7 @@ namespace MOCos_V1.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Aqui va una modifiacion";
 
             return View();
         }
