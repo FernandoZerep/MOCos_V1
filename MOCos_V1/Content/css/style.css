@@ -3569,10 +3569,13 @@ textarea.auto-size {
 /*----------------------------------------*/
 /*  38.  Login Register CSS
 /*----------------------------------------*/
-.login-content, .error-page-area{
-    min-height:100vh;
-    text-align:center;
-    background-color:#00c292;
+.login-content, .error-page-area {
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    background-image: url('../../img/login/backgroundlog.jpg');
+    text-align: center;
 }
 .login-content:before, .error-page-area:before{
     content:'';
@@ -3625,16 +3628,17 @@ textarea.auto-size {
     -webkit-transition-duration:.2s;
     transition-duration:.2s;
 }
-.nk-navigation a{
-    color:#fff;
-    background:rgba(255,255,255,.2);
-    margin:0 1px;
-    width:30px;
-    height:30px;
-    border-radius:20px;
-    white-space:nowrap;
-    text-align:left;
-}
+    .nk-navigation a {
+        color: #fff;
+        background: #691C32;
+        margin: 0 1px;
+        width: 30px;
+        height: 30px;
+        border-radius: 20px;
+        white-space: nowrap;
+        text-align: left;
+    }
+       
 .nk-navigation a i{
     width:30px;
     font-style:normal;
@@ -3656,10 +3660,10 @@ textarea.auto-size {
     width:100%;
 }
 .nk-navigation a[data-ma-block="#l-register"]:hover{
-    width:95px;
+    width:184px;
 }
 .nk-navigation a[data-ma-block="#l-forget-password"]:hover{
-    width:147px;
+    width:200px;
 }
 .nk-navigation a[data-ma-block="#l-login"]:hover{
     width:85px;
@@ -3708,7 +3712,7 @@ textarea.auto-size {
     color:#fff;
 }
 .btn-login.btn-success, .images-cropper-pro .btn, .images-action-pro .btn, .notika-todo-btn .btn, .btn.notika-add-todo, .btn.notika-chat-btn{
-	background-color: #00c292;
+	background-color: #691C32;
     border-color: #00c292;
 	border:0px solid #ccc;
 	outline:none;

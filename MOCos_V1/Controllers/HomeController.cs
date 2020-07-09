@@ -26,6 +26,10 @@ namespace MOCos_V1.Controllers
             return View();
         }
 
+        public ActionResult Login()
+        {
+            return View();
+        }
 
     }
 }

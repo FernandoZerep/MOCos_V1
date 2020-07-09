@@ -362,6 +362,7 @@
     <Content Include="img\favicon.ico" />
     <Content Include="img\green1.png" />
     <Content Include="img\index\Asesorias_en_linea_1.png" />
+    <Content Include="img\login\backgroundlog.jpg" />
     <Content Include="img\logo\favicon.png" />
     <Content Include="img\logo\logo.png" />
     <Content Include="img\perfiles\fer.jpg" />
@@ -558,6 +559,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
