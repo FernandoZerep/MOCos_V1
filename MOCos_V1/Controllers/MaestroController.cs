@@ -21,12 +21,5 @@ namespace MOCos_V1.Controllers
 
             return View();
         }
-
-        public ActionResult Temas()
-        {
-            ViewBag.Message = "Your Materias.";
-
-            return View();
-        }
     }
 }
