@@ -47,48 +47,77 @@
         </div>
     </div>
 
-
-    <div class="container">
-        <div class="jumbotron text-center">
-            <h2 class="text-center">CONTACTENOS <img src="https://www.shock.co/sites/default/files/u38/emojis_que_no_son_lo_que_parecen_carita_al_reves_whatsapp_shock_carita_guino_ojo.jpg" class="img-thumbnail" width="70px" height="70px"> </h2>
-        </div>
-    </div>
-
-
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="invoice-cmp-ds ivc-frm">
-                    <div class="comp-tl">
-                        <H3>NOMBRE</H3>
-                    </div>
-                    <div class="comp-tl">
-                        <h3>CORREO ELECTRÓNICO</h3>
-                    </div>
-                    <div class="comp-tl">
-                        <h3>MENSAJE</h3>
-                    </div>
-
+    <div class="jumbotron jumbotron-sm">
+        <div class="container">
+            <div class="row">
+                     <h2 class="text-center">CONTACTENOS <img src="https://www.shock.co/sites/default/files/u38/emojis_que_no_son_lo_que_parecen_carita_al_reves_whatsapp_shock_carita_guino_ojo.jpg" class="img-thumbnail" width="70px" height="70px"> </h2>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="invoice-cmp-ds ivc-to">
-                    <div class="comp-tl">
-                        <h3><input type="text" class="form-control input-sm" placeholder="ESCRIBIR NOMBRE"></h3>
-                    </div>
-                    <div class="comp-tl">
-                        <h3><input type="text" class="form-control input-sm" placeholder="ESCRIBIR CORREO INSTITUCIONAL"></h3>
-                    </div>
-                    <div class="comp-tl">
-                        <textarea name="comentarios" rows="10" cols="40" placeholder="ESCRIBA SU MENSAJE AQUI"></textarea>
-
-                    </div>
-                    <div class="comp-tl">
-                        <button class="btn btn-success notika-btn-success waves-effect">ENVIAR</button>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
-</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="well well-sm">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Nombre">
+                                        NOMBRE
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-user"></span>
+                                        </span>
+                                        <input type="text" class="form-control" id="Nombre" placeholder="INGRESAR NOMBRE" required="required" />
+                                    </div>                                                                      
+                                </div>
+                                <div class="form-group">
+                                    <label for="Apellidos">
+                                        APELLIDOS
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-user"></span>
+                                        </span>
+                                        <input type="text" class="form-control" id="Apellidos" placeholder="INGRESAR APELLIDOS" required="required" />
+                                    </div>                                    
+                                </div>
+                                <div class="form-group">
+                                    <label for="correo">
+                                        CORREO ELECTRÓNICO
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-envelope"></span>
+                                        </span>
+                                        <input type="email" class="form-control" id="correo" placeholder="INGRESAR CORREO ELECTRONICO" required="required" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Mensaje">
+                                        Mensaje
+                                    </label>
+                                    <textarea name="Mensaje" id="Mensaje" class="form-control" rows="9" cols="25" required="required"
+                                              placeholder="Escribir Mensaje"></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success notika-btn-success waves-effect" id="btn_enviar_mensaje">
+                                            ENVIAR MENSAJE
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            </div>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
