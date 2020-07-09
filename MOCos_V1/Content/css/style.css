@@ -3745,6 +3745,11 @@ textarea.auto-size {
     text-align: center;
     padding: 40px 0px;
 }
+.invoice-img2 {
+    background: #691C32;
+    text-align: center;
+    padding: 20px 0px;
+}
 .ivc-frm{
 	text-align:right;
 }
