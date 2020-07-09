@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/mocOS/wizard.css" rel="stylesheet" />
     <!--ELIMINA LINEAS BLANCAS DE ARRIBA Y ABAJOL-->
     <style>
         body {
@@ -33,7 +34,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="logo-area">
                         <a href="#">   <img src="~/img/logo/logo.png" /></a>
-                     
+
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -115,7 +116,7 @@
                                     </div>
                                     <div class="hd-message-sn  text-center">
                                         <div class="hd-message-img chat-img">
-                                            <img src="~/img/perfiles/fer.jpg" " />
+                                            <img src="~/img/perfiles/fer.jpg" "   />
                                             <div class="chat-avaible"><i class="notika-icon notika-dot"></i></div>
                                         </div>
                                         <div class="hd-mg-ctn">
@@ -152,7 +153,7 @@
                                 <li>
                                     <a data-toggle="collapse" data-target="#democrou" href="#">Alumnos</a>
                                     <ul id="democrou" class="collapse dropdown-header-top">
-                                        <li><a href="animations.html">Agregar</a></li>
+                                        <li><a href="AgregarAlumno">Agregar</a></li>
                                         <li><a href="google-map.html">Eliminar</a></li>
                                         <li><a href="data-map.html">Modificar</a></li>
                                         <li><a href="code-editor.html">Consultar</a></li>
@@ -183,7 +184,7 @@
                                         <li><a href="form-elements.html">Editar</a></li>
                                     </ul>
                                 </li>
-                               
+
                             </ul>
                         </nav>
                     </div>
@@ -234,7 +235,7 @@
                         </div>
                         <div id="Interface" class="tab-pane notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a href="animations.html">Agregar</a></li>
+                                <li><a href="AgregarAlumno">Agregar</a></li>
                                 <li><a href="google-map.html">Eliminar</a></li>
                                 <li><a href="data-map.html">Modificar</a></li>
                                 <li><a href="code-editor.html">Consultar</a></li>
@@ -262,33 +263,79 @@
                                 <li><a href="form-elements.html">Editar</a></li>
                             </ul>
                         </div>
-  
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Main Menu area End-->
-                @RenderBody()
-               
-            <!-- Start Footer area-->
-            <div class="footer-copyright-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="footer-copy-right">
-                                <p>
-                                    Copyright © 2020
-                                    . Todos los derechos reservados. Hecho por <a href="">Equipo 2</a>.
-                                </p>
-                            </div>
-                        </div>
+    @RenderBody()
+
+    <!-- Start Footer area-->
+    <div class="footer-copyright-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="footer-copy-right">
+                        <p>
+                            Copyright © 2020
+                            . Todos los derechos reservados. Hecho por <a href="">Equipo 2</a>.
+                        </p>
                     </div>
                 </div>
             </div>
-            <!-- End Footer area-->
-            @Scripts.Render("~/bundles/jquery")
-            @Scripts.Render("~/bundles/bootstrap")
-            @RenderSection("scripts", required: false)
+        </div>
+    </div>
+    <!-- End Footer area-->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+<script>
+    $(document).ready(function () {
+
+        var navListItems = $('div.setup-panel div a'),
+            allWells = $('.setup-content'),
+            allNextBtn = $('.nextBtn');
+
+        allWells.hide();
+
+        navListItems.click(function (e) {
+            e.preventDefault();
+            var $target = $($(this).attr('href')),
+                $item = $(this);
+
+            if (!$item.hasClass('disabled')) {
+                navListItems.removeClass('btn-primary').addClass('btn-default');
+                $item.addClass('btn-primary');
+                allWells.hide();
+                $target.show();
+                $target.find('input:eq(0)').focus();
+            }
+        });
+
+        allNextBtn.click(function () {
+            var curStep = $(this).closest(".setup-content"),
+                curStepBtn = curStep.attr("id"),
+                nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+                curInputs = curStep.find("input[type='text'],input[type='url']"),
+                isValid = true;
+
+            $(".form-group").removeClass("has-error");
+            for (var i = 0; i < curInputs.length; i++) {
+                if (!curInputs[i].validity.valid) {
+                    isValid = false;
+                    $(curInputs[i]).closest(".form-group").addClass("has-error");
+                }
+            }
+
+            if (isValid)
+                nextStepWizard.removeAttr('disabled').trigger('click');
+        });
+
+        $('div.setup-panel div a.btn-primary').trigger('click');
+    });
+</script>
 </body>
 </html>

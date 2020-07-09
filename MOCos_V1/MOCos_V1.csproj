@@ -340,6 +340,8 @@
     <Content Include="Content\js\wizard\jquery.bootstrap.wizard.min.js" />
     <Content Include="Content\js\wizard\wizard-active.js" />
     <Content Include="Content\js\wow.min.js" />
+    <Content Include="Content\mocOS\wizard.css" />
+    <Content Include="Content\mocOS\wizard.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -560,6 +562,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Administrador\AgregarAlumno.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
