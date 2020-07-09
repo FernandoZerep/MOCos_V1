@@ -563,6 +563,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Administrador\AgregarAlumno.cshtml" />
+    <Content Include="Views\Maestro\InsertarUnidad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

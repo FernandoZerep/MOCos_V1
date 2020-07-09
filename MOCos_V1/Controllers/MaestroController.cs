@@ -21,5 +21,12 @@ namespace MOCos_V1.Controllers
 
             return View();
         }
+
+        public ActionResult InsertarUnidad()
+        {
+            ViewBag.Message = "New Unit";
+
+            return View();
+        }
     }
 }
