@@ -17,7 +17,7 @@ namespace MOCos_V1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Materia()
         {
-            this.Temas = new HashSet<Temas>();
+            this.Unidad = new HashSet<Unidad>();
         }
     
         public int idMateria { get; set; }
@@ -26,6 +26,6 @@ namespace MOCos_V1
     
         public virtual Profesor Profesor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Temas> Temas { get; set; }
+        public virtual ICollection<Unidad> Unidad { get; set; }
     }
 }

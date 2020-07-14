@@ -12,23 +12,20 @@ namespace MOCos_V1
     using System;
     using System.Collections.Generic;
     
-    public partial class Temas
+    public partial class Unidad
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Temas()
+        public Unidad()
         {
-            this.Clase = new HashSet<Clase>();
-            this.HistorialAsesoria = new HashSet<HistorialAsesoria>();
+            this.Temas = new HashSet<Temas>();
         }
     
-        public int idTema { get; set; }
-        public string Nombre { get; set; }
-        public Nullable<int> idUnidad { get; set; }
+        public int idUnidad { get; set; }
+        public string nombre { get; set; }
+        public Nullable<int> idMateria { get; set; }
     
+        public virtual Materia Materia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Clase> Clase { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HistorialAsesoria> HistorialAsesoria { get; set; }
-        public virtual Unidad Unidad { get; set; }
+        public virtual ICollection<Temas> Temas { get; set; }
     }
 }

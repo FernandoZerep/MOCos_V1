@@ -39,5 +39,6 @@ namespace MOCos_V1
         public virtual DbSet<TiposUsuarios> TiposUsuarios { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Documentos> Documentos { get; set; }
+        public virtual DbSet<Unidad> Unidad { get; set; }
     }
 }

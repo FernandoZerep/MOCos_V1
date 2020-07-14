@@ -201,6 +201,9 @@
     <Compile Include="TiposUsuarios.cs">
       <DependentUpon>Model_moCos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Unidad.cs">
+      <DependentUpon>Model_moCos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Usuario.cs">
       <DependentUpon>Model_moCos.tt</DependentUpon>
     </Compile>

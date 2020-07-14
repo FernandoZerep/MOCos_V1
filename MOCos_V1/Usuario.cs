@@ -34,6 +34,7 @@ namespace MOCos_V1
         public byte[] FotoPerfil { get; set; }
         public Nullable<int> idTipoUsuario { get; set; }
         public string Correo { get; set; }
+        public string idToken { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Administrador> Administrador { get; set; }

@@ -30,9 +30,11 @@
         <AssociationConnector Association="mocOS_BDModel.FK_HistorialAsesoria_Temas" ManuallyRouted="false" />
         <AssociationConnector Association="mocOS_BDModel.FK_Portafolio_HistorialAsesoria" ManuallyRouted="false" />
         <AssociationConnector Association="mocOS_BDModel.FK_Materia_Profesor" ManuallyRouted="false" />
-        <AssociationConnector Association="mocOS_BDModel.FK_Temas_Materia" ManuallyRouted="false" />
         <AssociationConnector Association="mocOS_BDModel.FK_Profesor_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="mocOS_BDModel.FK_Usuario_TiposUsuarios" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="mocOS_BDModel.Unidad" Width="1.5" PointX="9.75" PointY="13.625" />
+        <AssociationConnector Association="mocOS_BDModel.FK_Unidad_Materia" />
+        <AssociationConnector Association="mocOS_BDModel.FK_Temas_Unidad" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
