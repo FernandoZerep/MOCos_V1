@@ -41,16 +41,15 @@ namespace MOCos_V1.Controllers
                     return View();
         }
         [HttpPost]
-        public ActionResult InsertarAlumno(Alumnos obj, Usuario obj2)
+        public ActionResult InsertarAlumnoAdmin(Alumnos obj)
         {
             try
             {
                 using (mocOS_BDEntities bd = new mocOS_BDEntities())
                 {
-                    bd.Usuario.Add(obj2);
                     bd.Alumnos.Add(obj);
                     bd.SaveChanges();
-                    return RedirectToAction("ConsultaAlumnos");
+                    return RedirectToAction("ConsultaAlumno");
                 }
             }
             catch (Exception msg)
