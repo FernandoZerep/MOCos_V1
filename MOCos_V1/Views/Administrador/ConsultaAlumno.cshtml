@@ -1,0 +1,47 @@
+﻿@model IEnumerable<MOCos_V1.Alumnos>
+
+@{
+    ViewBag.Title = "ConsultaAlumno";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ConsultaAlumno</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cuatrimestre.Grado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grupo.Grupo1)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Cuatrimestre.Grado)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Grupo.Grupo1)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.idAlumno }) |
+        @Html.ActionLink("Details", "Details", new { id = item.idAlumno }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.idAlumno })
+    </td>
+</tr>
+}
+
+</table>
