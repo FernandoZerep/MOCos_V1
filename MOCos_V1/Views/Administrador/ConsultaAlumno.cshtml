@@ -5,43 +5,82 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ConsultaAlumno</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Usuario.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cuatrimestre.Grado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Grupo.Grupo1)
-        </th>
+    <div class="breadcomb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcomb-list">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="breadcomb-wp">
+                                    <div class="breadcomb-icon">
+                                        <i class="notika-icon notika-windows"></i>
+                                    </div>
+                                    <div class="breadcomb-ctn">
+                                        <h2>Alumnos</h2>
+                                        <p>Alumnos dados de alta en la plataforma <span class="bread-ntd"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <th></th>
-    </tr>
+    <div class="normal-table-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="normal-table-list">
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Usuario.Nombre)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Cuatrimestre.Grado)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Grupo.Grupo1)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.idAlumno }) |
-        @Html.ActionLink("Details", "Details", new { id = item.idAlumno }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.idAlumno })
-    </td>
-</tr>
-}
+                        <div class="bsc-tbl">
+                            <table class="table table-sc-ex">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Usuario.Nombre)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Cuatrimestre.Grado)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Grupo.Grupo1)
+                                        </th>
 
-</table>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Cuatrimestre.Grado)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Grupo.Grupo1)
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink(" ", "EditarAlumnoAdmin", new { id = item.idAlumno }, new { @class = "btn btn-info glyphicon glyphicon-edit" }) &nbsp;
+                                                @Html.ActionLink(" ", "Details", new { id = item.idAlumno }, new { @class = "btn btn-warning glyphicon glyphicon-share" }) &nbsp;
+                                                @Html.ActionLink(" ", "Delete", new { id = item.idAlumno }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

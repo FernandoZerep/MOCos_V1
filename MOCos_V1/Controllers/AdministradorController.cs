@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using MOCos_V1;
 namespace MOCos_V1.Controllers
 {
     public class AdministradorController : Controller
@@ -48,6 +49,50 @@ namespace MOCos_V1.Controllers
                 using (mocOS_BDEntities bd = new mocOS_BDEntities())
                 {
                     bd.Alumnos.Add(obj);
+                    bd.SaveChanges();
+                    return RedirectToAction("ConsultaAlumno");
+                }
+            }
+            catch (Exception msg)
+            {
+                ModelState.AddModelError("Error al insertar a la Alumno", msg);
+                return View();
+            }
+        }
+        [HttpGet]
+        public ActionResult EditarAlumnoAdmin(int id)
+        {
+            try
+            {
+
+                Alumnos obj = bd.Alumnos.Where(i => i.idAlumno == id).FirstOrDefault();
+                ViewBag.idUsuario = new SelectList(bd.Usuario, "idUsuario", "Nombre");
+                ViewBag.selectusuario = obj.idUsuario;
+                ViewBag.idCuatrimestre = new SelectList(bd.Cuatrimestre, "idCuatrimestre", "Grado");
+                ViewBag.selectcuatrimestre = obj.idCuatrimestre;
+                ViewBag.idGrupo = new SelectList(bd.Grupo, "idGrupo", "Grupo1");
+                ViewBag.selectgrupo = obj.idGrupo;
+                return View(obj);
+            }
+            catch (Exception msg)
+            {
+                ModelState.AddModelError("Error al editar a la Alumno", msg);
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditarAlumnoAdmin(Alumnos obj)
+        {
+            try
+            {
+                using (mocOS_BDEntities bd = new mocOS_BDEntities())
+                {
+                    Alumnos existe = bd.Alumnos.Where(i => i.idAlumno == obj.idAlumno).FirstOrDefault();
+                    //mi error xddddddd
+                    existe.idCuatrimestre = obj.idCuatrimestre;
+                    existe.idGrupo = obj.idGrupo;
+
                     bd.SaveChanges();
                     return RedirectToAction("ConsultaAlumno");
                 }
