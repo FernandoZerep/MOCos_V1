@@ -5,11 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using MOCos_V1;
 using System.Data.Entity;
+using MOCos_V1.Filters;
 
 namespace MOCos_V1.Controllers
 {
     public class MaestroController : Controller
     {
+        [AuthorizeUser(idNivel: 4)]
         public ActionResult Perfil()
         {
             ViewBag.Message = "Your perfil.";
@@ -17,6 +19,7 @@ namespace MOCos_V1.Controllers
             return View();
         }
 
+        [AuthorizeUser(idNivel: 4)]
         public ActionResult Modulos()
         {
             ViewBag.Message = "Your Topic.";
@@ -24,12 +27,14 @@ namespace MOCos_V1.Controllers
             return View();
         }
 
+        [AuthorizeUser(idNivel: 4)]
         [HttpGet]
         public ActionResult Insertar_Unidad()
         {
             return View();
         }
 
+        [AuthorizeUser(idNivel: 4)]
         [HttpPost]
         public ActionResult Insertar_Unidad(Unidad obj)
         {

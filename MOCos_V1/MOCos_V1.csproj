@@ -159,6 +159,8 @@
     <Compile Include="Documentos.cs">
       <DependentUpon>Model_moCos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Filters\AuthorizeUser.cs" />
+    <Compile Include="Filters\VerificaSession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
