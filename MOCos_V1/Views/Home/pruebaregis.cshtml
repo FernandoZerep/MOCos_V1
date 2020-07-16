@@ -1,0 +1,207 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <!-- CSS Files -->
+    @Styles.Render("~/Content/Registrar/assets/css/bootstrap.min.css")
+    @Styles.Render("~/Content/Registrar/assets/css/paper-bootstrap-wizard.css")
+
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    @Styles.Render("~/Content/Registrar/assets/css/demo.css")
+
+
+    <!-- Fonts and Icons -->
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet" type="text/css">
+    @Styles.Render("~/Content/Registrar/assets/css/themify-icons.css")
+
+
+
+</head>
+
+<body background="~/img/login/backgroundlog.jpg">
+    <!--   Big container   -->
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-8 col-sm-offset-2">
+
+                <!--      Wizard container        -->
+                <div class="wizard-container">
+                    <div style="background-color: #691C32; text-align: center; padding: 40px 0px;">
+                        <img src="/img/logo/logo.png" width="250">
+                    </div>
+                    <div class="card wizard-card" data-color="green" id="wizardProfile">
+
+
+                        <form action="">
+
+
+                            <div class="wizard-header text-center">
+
+                                <h3 class="wizard-title">Crea tu usuario</h3>
+                                <p class="category">Esta informacion es necesaria para tomar asesorías en el sitio</p>
+                            </div>
+
+                            <div class="wizard-navigation">
+                                <div class="progress-with-circle">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" style="width: 21%;"></div>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="#Personal" data-toggle="tab">
+                                            <div class="icon-circle">
+                                                <i class="ti-user"></i>
+                                            </div>
+                                            Datos Personales
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#Contacto1" data-toggle="tab">
+                                            <div class="icon-circle">
+                                                <i class="ti-agenda"></i>
+                                            </div>
+                                            Contacto
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#Estudio" data-toggle="tab">
+                                            <div class="icon-circle">
+                                                <i class="ti-book"></i>
+                                            </div>
+                                            Académico
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane" id="Personal">
+                                    <div class="row">
+                                        <h5 class="info-text"> Ingrese sus datos</h5>
+                                        <div class="col-sm-4 col-sm-offset-1">
+                                            <div class="picture-container">
+                                                <div class="picture">
+                                                    <img src="~/Content/Registrar/assets/img/default-avatar.jpg" class="picture-src" id="wizardPicturePreview" title="" />
+                                                    <input type="file" id="wizard-picture">
+                                                </div>
+                                                <h6>Elegir foto de perfil</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Nombre(s) <small>(required)</small></label>
+                                                <input name="firstname" type="text" class="form-control" placeholder="Ingrese su nombre">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Apellido <small>(required)</small></label>
+                                                <input name="lastname" type="text" class="form-control" placeholder="Ingrese su apellido.">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Correo Electrónico <small>(required)</small></label>
+                                                <input name="email" type="email" class="form-control" placeholder="Ejemplo.hotmail.com">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Contraseña <small>(required)</small></label>
+                                                <input name="contraseña" type="password" class="form-control" placeholder="contraseña">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Confirmar Contraseña <small>(required)</small></label>
+                                                <input name="contraseña" type="password" class="form-control" placeholder="ConfirmarContraseña">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="Contacto1">
+                                    <h5 class="info-text"> Otra forma de contactarlo </h5>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Otro Correo Electrónico<small>(required)</small></label>
+                                                <input name="Otro_correo" type="email" class="form-control" placeholder="Ingrese otro correo">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Celular <small>(required)</small></label>
+                                                <input name="lastname" type="number" class="form-control" placeholder="Ingrese su apellido.">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Teléfono (casa) <small>(required)</small></label>
+                                                <input name="email" type="number" class="form-control" placeholder="Ejemplo.hotmail.com">
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane" id="Estudio">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h5 class="info-text"> Necesitamos tu información académica </h5>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Carrera</label><br>
+                                                <select name="Carrera" class="form-control">
+                                                    <option value="TSU"> TSU </option>
+                                                    <option value="Ingenieria"> Ingenieria </option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Especialidad</label><br>
+                                                <select name="Especialidad" class="form-control">
+                                                    <option value="Sistemas Informaticos"> Sistemas Informaticos  </option>
+                                                    <option value="Redes"> Redes </option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wizard-footer">
+                                <div class="pull-right">
+                                    <input type='button' class='btn btn-next btn-fill btn-info btn-wd' name='next' value='Next' />
+                                    <input type='button' class='btn btn-finish btn-fill btn-success btn-wd' name='finish' value='Finish' />
+                                </div>
+
+                                <div class="pull-left">
+                                    <input type='button' class='btn btn-previous btn-default btn-wd' name='previous' value='Previous' />
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div> <!-- wizard container -->
+            </div>
+        </div><!-- end row -->
+    </div> <!--  big container -->
+    <!--   Core JS Files   -->
+    @Scripts.Render("~/Content/Registrar/assets/js/jquery-2.2.4.min.js")
+    @Scripts.Render("~/Content/Registrar/assets/js/bootstrap.min.js")
+    @Scripts.Render("~/Content/Registrar/assets/js/jquery.bootstrap.wizard.js")
+
+    <!--  Plugin for the Wizard -->
+    @Scripts.Render("~/Content/Registrar/assets/js/demo.js")
+    @Scripts.Render("~/Content/Registrar/assets/js/paper-bootstrap-wizard.js")
+
+
+    @Scripts.Render("~/Content/Registrar/assets/js/jquery.validate.min.js")
+
+    @Scripts.Render("~/Content/Registrar/assets/js/paper-bootstrap-wizard.js")
+
+
+
+</body>
+
+</html>
