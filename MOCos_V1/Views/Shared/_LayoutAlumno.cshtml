@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--eliminar cache temporal NO BORRAR-->
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <!--FIN CACHE TEMPORAL-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - MOCOS</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/mocOS/wizard.css" rel="stylesheet" />
+    <!--ELIMINA LINEAS BLANCAS DE ARRIBA Y ABAJOL-->
+    <style>
+        body {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+    </style>
+</head>
+<body>
+    <!--[if lt IE 8]>
+               <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+           <![endif]-->
+    <!-- Start Header Top Area -->
+    <div class="header-top-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="logo-area">
+                        <a href="#">   <img src="~/img/logo/logo.png" /></a>
+
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="header-top-menu">
+                        <ul class="nav navbar-nav notika-top-nav">
+                            <li class="nav-item nc-al">
+                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="notika-icon notika-alarm"></i></span></a>
+                                <div role="menu" class="dropdown-menu message-dd notification-dd animated zoomIn">
+                                    <div class="hd-mg-tt">
+                                        <h2>Notification</h2>
+                                    </div>
+                                    <div class="hd-message-info">
+                                        <a href="#">
+                                            <div class="hd-message-sn">
+                                                <div class="hd-message-img">
+                                                    <img src="img/post/1.jpg" alt="" />
+                                                </div>
+                                                <div class="hd-mg-ctn">
+                                                    <h3>David Belle</h3>
+                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="#">
+                                            <div class="hd-message-sn">
+                                                <div class="hd-message-img">
+                                                    <img src="img/post/2.jpg" alt="" />
+                                                </div>
+                                                <div class="hd-mg-ctn">
+                                                    <h3>Jonathan Morris</h3>
+                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="#">
+                                            <div class="hd-message-sn">
+                                                <div class="hd-message-img">
+                                                    <img src="img/post/4.jpg" alt="" />
+                                                </div>
+                                                <div class="hd-mg-ctn">
+                                                    <h3>Fredric Mitchell</h3>
+                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="#">
+                                            <div class="hd-message-sn">
+                                                <div class="hd-message-img">
+                                                    <img src="img/post/1.jpg" alt="" />
+                                                </div>
+                                                <div class="hd-mg-ctn">
+                                                    <h3>David Belle</h3>
+                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="#">
+                                            <div class="hd-message-sn">
+                                                <div class="hd-message-img">
+                                                    <img src="img/post/2.jpg" alt="" />
+                                                </div>
+                                                <div class="hd-mg-ctn">
+                                                    <h3>Glenn Jecobs</h3>
+                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="hd-mg-va">
+                                        <a href="#">View All</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="glyphicon glyphicon-user"></i></span><div class="spinner4 spinner-4"></div><div class="ntd-ctn"><span>2</span></div></a>
+                                <div role="menu" class="dropdown-menu message-dd chat-dd animated zoomIn">
+                                    <div class="hd-mg-tt">
+                                        <h2>Bienvenido</h2>
+                                    </div>
+                                    <div class="hd-message-sn  text-center">
+                                        <div class="hd-message-img chat-img">
+                                            <img src="~/img/perfiles/twich_foto perfil.jpg" />
+                                            <div class="chat-avaible"><i class="notika-icon notika-dot"></i></div>
+                                        </div>
+                                        <div class="hd-mg-ctn">
+                                            <h3>Oscar Calvario López</h3>
+                                            <p>Alumno</p>
+                                        </div>
+                                    </div>
+                                    <div class="hd-mg-va text-center">
+                                        <button class="btn btn-danger btn-icon-notika waves-effect"><i class="notika-icon notika-close"></i> Cerrar sesión</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Header Top Area -->
+    <!-- Mobile Menu start -->
+    <div class="mobile-menu-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="mobile-menu">
+                        <nav id="dropdown">
+                            <ul class="mobile-menu-nav">
+                                <li>
+                                    <a data-toggle="collapse" data-target="#Charts" href="#">Inicio</a>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#demoevent" href="#">Perfil</a>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#democrou" href="#">Alumnos</a>
+                                    <ul id="democrou" class="collapse dropdown-header-top">
+                                        <li><a href="AgregarAlumno">Agregar</a></li>
+                                        <li><a href="google-map.html">Eliminar</a></li>
+                                        <li><a href="data-map.html">Modificar</a></li>
+                                        <li><a href="code-editor.html">Consultar</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#demolibra" href="#">Maestros</a>
+                                    <ul id="demolibra" class="collapse dropdown-header-top">
+                                        <li><a href="flot-charts.html">Agregar</a></li>
+                                        <li><a href="bar-charts.html">Eliminar</a></li>
+                                        <li><a href="line-charts.html">Modificar</a></li>
+                                        <li><a href="area-charts.html">Consultar</a></li>
+                                        <li><a href="area-charts.html">Asignar con materias</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#demodepart" href="#">Materias</a>
+                                    <ul id="demodepart" class="collapse dropdown-header-top">
+                                        <li><a href="flot-charts.html">Agregar</a></li>
+                                        <li><a href="bar-charts.html">Eliminar</a></li>
+                                        <li><a href="line-charts.html">Modificar</a></li>
+                                        <li><a href="area-charts.html">Consultar</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#demo" href="#">Contacto</a>
+                                    <ul id="demo" class="collapse dropdown-header-top">
+                                        <li><a href="form-elements.html">Editar</a></li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Menu end -->
+    <!-- Main Menu area start-->
+    <div class="main-menu-area mg-tb-40">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
+                        <li class="active">
+                            <a data-toggle="tab" href="#INICIO"><i class="notika-icon notika-house"></i> INICIO </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#PERFIL"><i class="glyphicon glyphicon-inbox"></i> PERFIL </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#MATERIAS"><i class="glyphicon glyphicon-inbox"></i> MATERIAS </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#PORTAFOLIO"><i class="glyphicon glyphicon-education"></i>PORTAFOLIO</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#COMUNICACIÓN"><i class="glyphicon glyphicon-briefcase"></i> COMUNICACIÓN</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#ASESORES"><i class="notika-icon notika-edit"></i> ASESOSRES </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#CALIFICACIÓN"><i class="glyphicon glyphicon-book"></i> CALIFICACIÓN</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#CONTACTO"><i class="glyphicon glyphicon-book"></i> CONTACTO</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#MAPA"><i class="glyphicon glyphicon-book"></i> MAPA</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content custom-menu-content">
+                        <div id="COMUNICACIÓN" class="tab-pane notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li>
+                                    <a href="#">CHAT</a>
+                                </li>
+                                <li>
+                                    <a href="#">VIDEOLLAMADA</a>
+                                </li>
+                                <li>
+                                    <a href="#">SALA DE DISCUSIÓN</a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Menu area End-->
+    @RenderBody()
+
+    <!-- Start Footer area-->
+    <div class="footer-copyright-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="footer-copy-right">
+                        <p>
+                            Copyright © 2020
+                            . Todos los derechos reservados. Hecho por <a href="">Equipo 2</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Footer area-->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+<script>
+    $(document).ready(function () {
+
+        var navListItems = $('div.setup-panel div a'),
+            allWells = $('.setup-content'),
+            allNextBtn = $('.nextBtn');
+
+        allWells.hide();
+
+        navListItems.click(function (e) {
+            e.preventDefault();
+            var $target = $($(this).attr('href')),
+                $item = $(this);
+
+            if (!$item.hasClass('disabled')) {
+                navListItems.removeClass('btn-primary').addClass('btn-default');
+                $item.addClass('btn-primary');
+                allWells.hide();
+                $target.show();
+                $target.find('input:eq(0)').focus();
+            }
+        });
+
+        allNextBtn.click(function () {
+            var curStep = $(this).closest(".setup-content"),
+                curStepBtn = curStep.attr("id"),
+                nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+                curInputs = curStep.find("input[type='text'],input[type='url']"),
+                isValid = true;
+
+            $(".form-group").removeClass("has-error");
+            for (var i = 0; i < curInputs.length; i++) {
+                if (!curInputs[i].validity.valid) {
+                    isValid = false;
+                    $(curInputs[i]).closest(".form-group").addClass("has-error");
+                }
+            }
+
+            if (isValid)
+                nextStepWizard.removeAttr('disabled').trigger('click');
+        });
+
+        $('div.setup-panel div a.btn-primary').trigger('click');
+    });
+</script>
+</body>
+</html>

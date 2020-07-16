@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Data.Entity;
 namespace MOCos_V1.Controllers
 {
-    public class HomeController : Controller
+    public class AlumnoController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Inicio()
         {
             return View();
         }
@@ -35,31 +35,39 @@ namespace MOCos_V1.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult InsertarUsuario()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult InsertarUsuario(Usuario obj)
+        public ActionResult ConsultaProfesores()
         {
             try
             {
                 using (mocOS_BDEntities bd = new mocOS_BDEntities())
                 {
-
-                    bd.Usuario.Add(obj);
-                    bd.SaveChanges();
-                    return RedirectToAction("Index");
+                    List<Profesor> lista = bd.Profesor.Include(u => u.Usuario).ToList();
+                    return View(lista);
                 }
             }
             catch (Exception mensaje)
             {
-                ModelState.AddModelError("Error al ingresar al usuario", mensaje);
+                ModelState.AddModelError("Error al consultar a los profesores", mensaje);
                 return View();
             }
         }
 
+        //public ActionResult DetallesProfesor(int id)
+        //{
+        //    try
+        //    {
+        //        using (mocOS_BDEntities bd = new mocOS_BDEntities())
+        //        {
+        //            Profesor existe = bd.Profesor.Find(id);
+
+        //            return View(existe);
+        //        }
+        //    }
+        //    catch (Exception mensaje)
+        //    {
+        //        ModelState.AddModelError("Error al mostrar detalles de la persona", mensaje);
+        //        return View();
+        //    }
+        //}
     }
 }
