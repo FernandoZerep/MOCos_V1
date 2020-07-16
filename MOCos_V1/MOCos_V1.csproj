@@ -565,9 +565,9 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Administrador\AgregarAlumno.cshtml" />
     <Content Include="Views\Maestro\InsertarUnidad.cshtml" />
-    <Content Include="Views\Administrador\ConsultaAlumno.cshtml" />
-    <Content Include="Views\Administrador\InsertarAlumnoAdmin.cshtml" />
+    <Content Include="Views\Maestro\Insertar_Unidad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
