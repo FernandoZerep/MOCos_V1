@@ -5,17 +5,20 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using MOCos_V1;
+using MOCos_V1.Filters;
+
 namespace MOCos_V1.Controllers
 {
     public class AdministradorController : Controller
     {
         mocOS_BDEntities bd = new mocOS_BDEntities();
         // GET: Administrador
+        [AuthorizeUser(idNivel: 1)]
         public ActionResult InicioAdmin()
         {
             return View();
         }
-
+        [AuthorizeUser(idNivel: 1)]
         public ActionResult ConsultaAlumno()
         {
             try
@@ -33,6 +36,7 @@ namespace MOCos_V1.Controllers
                 return View();
             }
         }
+        [AuthorizeUser(idNivel: 1)]
         [HttpGet]
         public ActionResult InsertarAlumnoAdmin()
         {
@@ -41,6 +45,7 @@ namespace MOCos_V1.Controllers
                     ViewBag.idGrupo = new SelectList(bd.Grupo, "idGrupo", "Grupo1");
                     return View();
         }
+        [AuthorizeUser(idNivel: 1)]
         [HttpPost]
         public ActionResult InsertarAlumnoAdmin(Alumnos obj)
         {
@@ -59,6 +64,7 @@ namespace MOCos_V1.Controllers
                 return View();
             }
         }
+        [AuthorizeUser(idNivel: 1)]
         [HttpGet]
         public ActionResult EditarAlumnoAdmin(int id)
         {
@@ -81,6 +87,7 @@ namespace MOCos_V1.Controllers
             }
         }
 
+        [AuthorizeUser(idNivel: 1)]
         [HttpPost]
         public ActionResult EditarAlumnoAdmin(Alumnos obj)
         {
