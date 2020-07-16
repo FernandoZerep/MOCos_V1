@@ -567,6 +567,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Administrador\AgregarAlumno.cshtml" />
     <Content Include="Views\Maestro\InsertarUnidad.cshtml" />
+    <Content Include="Views\Maestro\Insertar_Unidad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
