@@ -621,6 +621,7 @@
     <Content Include="Views\Home\InsertarUsuario.cshtml" />
     <Content Include="Views\Shared\_LayoutAlumno.cshtml" />
     <Content Include="Views\Alumno\ConsultaProfesores.cshtml" />
+    <Content Include="Views\Alumno\Inicio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

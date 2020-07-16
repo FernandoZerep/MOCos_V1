@@ -8,7 +8,7 @@ namespace MOCos_V1.Controllers
 {
     public class AlumnoController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Inicio()
         {
             return View();
         }
