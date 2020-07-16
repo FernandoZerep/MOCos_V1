@@ -150,6 +150,7 @@
       <DependentUpon>Model_moCos.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AdministradorController.cs" />
+    <Compile Include="Controllers\AlumnoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MaestroController.cs" />
     <Compile Include="Cuatrimestre.cs">
@@ -397,6 +398,7 @@
     <Content Include="img\perfiles\fer.jpg" />
     <Content Include="img\perfiles\noregister.png" />
     <Content Include="img\perfiles\rosalba.jpg" />
+    <Content Include="img\perfiles\twich_foto perfil.jpg" />
     <Content Include="img\post\1.jpg" />
     <Content Include="img\post\2.jpg" />
     <Content Include="img\post\4.jpg" />
@@ -617,6 +619,8 @@
     <Content Include="Views\Administrador\InsertarAlumnoAdmin.cshtml" />
     <Content Include="Views\Home\pruebaregis.cshtml" />
     <Content Include="Views\Home\InsertarUsuario.cshtml" />
+    <Content Include="Views\Shared\_LayoutAlumno.cshtml" />
+    <Content Include="Views\Alumno\ConsultaProfesores.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
