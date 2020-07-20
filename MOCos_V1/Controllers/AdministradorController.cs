@@ -79,6 +79,7 @@ namespace MOCos_V1.Controllers
                 ViewBag.idGrupo = new SelectList(bd.Grupo, "idGrupo", "Grupo1");
                 ViewBag.selectgrupo = obj.idGrupo;
                 return View(obj);
+                
             }
             catch (Exception msg)
             {

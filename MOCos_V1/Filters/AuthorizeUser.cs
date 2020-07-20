@@ -33,6 +33,10 @@ namespace MOCos_V1.Filters
                     {
                         filterContext.Result = new RedirectResult("~/Administrador/InicioAdmin");
                     }
+                    if (oUsuario.idTipoUsuario == 3)
+                    {
+                        filterContext.Result = new RedirectResult("~/Alumno/Inicio");
+                    }
                     if (oUsuario.idTipoUsuario == 4)
                     {
                         filterContext.Result = new RedirectResult("~/Maestro/Perfil");
