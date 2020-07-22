@@ -199,14 +199,14 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-                        <li class="active">
-                            <a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> Inicio</a>
+                        <li>
+                            <a data-toggle="tab" href="" onclick="location.href='@Url.Action("InicioAdmin", "Administrador")'"><i class="notika-icon notika-house"></i> Inicio</a>
                         </li>
                         <li>
                             <a data-toggle="tab" href="#mailbox"><i class="glyphicon glyphicon-inbox"></i> Sala de discusión</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#Interface"><i class="glyphicon glyphicon-education"></i> Alumnos</a>
+                            <a data-toggle="tab" href=""  onclick="location.href='@Url.Action("ConsultaAlumno", "Administrador")'"><i class="glyphicon glyphicon-education"></i> Alumnos</a>
                         </li>
                         <li>
                             <a data-toggle="tab" href="#Charts"><i class="glyphicon glyphicon-briefcase"></i> Maestros</a>
@@ -219,13 +219,7 @@
                         </li>
                     </ul>
                     <div class="tab-content custom-menu-content">
-                        <div id="Home" class="tab-pane in active notika-tab-menu-bg animated flipInX">
-                            <ul class="notika-main-menu-dropdown">
-                                <li>
-                                    <a href="index.html">Introducción</a>
-                                </li>
-                            </ul>
-                        </div>
+                       
                         <div id="mailbox" class="tab-pane notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li>
