@@ -625,6 +625,7 @@
     <Content Include="Views\Home\InsertarUsuario.cshtml" />
     <Content Include="Views\Home\pruebaregis.cshtml" />
     <Content Include="Views\Shared\_LayoutAlumno.cshtml" />
+    <Content Include="Views\Maestro\MostrarModulos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

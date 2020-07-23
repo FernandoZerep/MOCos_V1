@@ -95,7 +95,9 @@ namespace MOCos_V1.Controllers
                         action = "Perfil";
                     }
                 }
+                ViewBag.Sesion = Session["User"];
                 return RedirectToAction(action, controlador);
+                
                 
             }
             catch(Exception ex)

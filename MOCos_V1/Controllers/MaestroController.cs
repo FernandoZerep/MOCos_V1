@@ -28,10 +28,31 @@ namespace MOCos_V1.Controllers
         }
 
         [AuthorizeUser(idNivel: 4)]
-        [HttpGet]
-        public ActionResult Insertar_Unidad()
+        [HttpPost]
+        public ActionResult MostrarModulos()
         {
-            return View();
+            try
+            {
+                Usuario obj = new Usuario();
+                using (mocOS_BDEntities bd = new mocOS_BDEntities())
+                {
+                    obj = (Usuario)Session["User"];
+                    var idProf = (from d in bd.Profesor
+                                 where d.idUsuario == obj.idUsuario
+                                 select d).FirstOrDefault();
+                    var Materia = (from d in bd.Materia
+                                   where d.idCoordinador == idProf.idProfesor
+                                   select d).FirstOrDefault();
+                    Session["UserMateria"] = Materia;
+                    List<Unidad> Uni = bd.Unidad.Include(n => n.nombre).ToList();
+                    return View(Uni);
+                }
+            }
+            catch (Exception mensaje)
+            {
+                ModelState.AddModelError("Error al mostrar la Unidad", mensaje);
+                return View();
+            }
         }
 
         [AuthorizeUser(idNivel: 4)]
