@@ -1,8 +1,7 @@
 ﻿@model IEnumerable<MOCos_V1.Unidad>
 
-
 @{
-    ViewBag.Title = "Materia";
+    ViewBag.Title = "MostrarModulos";
     Layout = "~/Views/Shared/_LayoutMaestro.cshtml";
 }
 
@@ -18,7 +17,7 @@
                             </div>
                             <div class="breadcomb-ctn">
                                 <h2>Materia</h2>
-                                <p>@Html.DisplayNameFor(model => model.Materia.NombreMateria)</p>
+                                <p>Programación</p>
                             </div>
                         </div>
                     </div>
@@ -66,7 +65,7 @@
                                 <div class="panel-heading" role="tab">
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#accordionGreen" href="#accordionGreen-one" aria-expanded="true">
-                                            Unidadades
+                                            Unidad 1
                                         </a>
                                     </h4>
                                 </div>
@@ -83,21 +82,21 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach (var item in Model)
-                                                     {
+                                                    {
                                                         <tr class="active">
                                                             <td>
-                                                                @Html.DisplayFor(modelItem => item.Materia.idMateria)
+                                                                @Html.DisplayFor(modelItem => item.idUnidad)
                                                             </td>
                                                             <td>
-                                                                @Html.DisplayFor(modelItem => item.Materia.NombreMateria)
+                                                                @Html.DisplayFor(modelItem => item.nombre)
                                                             </td>
                                                             <td>
-                                                                @Html.ActionLink("Editar", "EditarUnidad", new { id = item.idUnidad }) |
-                                                                @Html.ActionLink("Detalles", "DetallesUnidad", new { id = item.idUnidad }) |
-                                                                @Html.ActionLink("Eliminar", "EliminarUnidad", new { id = item.idUnidad })
+                                                                @Html.ActionLink("Edit", "Edit", new { id = item.idUnidad }) |
+                                                                @Html.ActionLink("Details", "Details", new { id = item.idUnidad }) |
+                                                                @Html.ActionLink("Delete", "Delete", new { id = item.idUnidad })
                                                             </td>
                                                         </tr>
-                                                     }
+                                                    }
                                                 </tbody>
                                             </table>
                                         </div>
@@ -112,3 +111,4 @@
     </div>
 </div>
 <!-- Inbox area End-->
+
