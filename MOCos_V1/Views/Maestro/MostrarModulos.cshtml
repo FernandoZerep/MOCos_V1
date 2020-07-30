@@ -17,7 +17,7 @@
                             </div>
                             <div class="breadcomb-ctn">
                                 <h2>Materia</h2>
-                                <p>Programación</p>
+                                <p>@Html.ViewBag.Materia</p>
                             </div>
                         </div>
                     </div>
@@ -28,36 +28,9 @@
 </div>
 <br />
 <!-- Inbox area Start-->
-<div class="inbox-area">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <div class="inbox-left-sd">
-                    <div class="compose-ml">
-                        <a class="btn waves-effect" href="#">Unidades</a>
-                    </div>
-                    <div class="inbox-status">
-                        <ul class="inbox-st-nav inbox-ft">
-                            <li><a href="Insertar_Unidad"><i class="notika-icon notika-sent"></i> Crear</a></li>
-                            <li><a href="#"><i class="notika-icon notika-draft"></i> Modificar</a></li>
-                            <li><a href="#"><i class="notika-icon notika-trash"></i> Eliminar</a></li>
-                        </ul>
-                    </div>
-                    <hr />
-                    <div class="compose-ml">
-                        <a class="btn waves-effect" href="#">Temas</a>
-                    </div>
-                    <div class="inbox-status">
-                        <ul class="inbox-st-nav inbox-ft">
-                            <li><a href="#"><i class="notika-icon notika-sent"></i> Crear</a></li>
-                            <li><a href="#"><i class="notika-icon notika-draft"></i> Modificar</a></li>
-                            <li><a href="#"><i class="notika-icon notika-trash"></i> Eliminar</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="inbox-text-list sm-res-mg-t-30">
                     <div class="accordion-stn">
                         <div class="panel-group" data-collapse-color="nk-green" id="accordionGreen" role="tablist" aria-multiselectable="true">
@@ -65,25 +38,35 @@
                                 <div class="panel-heading" role="tab">
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#accordionGreen" href="#accordionGreen-one" aria-expanded="true">
-                                            Unidad 1
+                                            Unidades
                                         </a>
                                     </h4>
                                 </div>
                                 <div id="accordionGreen-one" class="collapse in" role="tabpanel">
                                     <div class="panel-body">
-                                        <div class="bsc-tbl-cls">
-                                            <table class="table table-cl">
+
+                                        <div class="bsc-tbl">
+                                            <table class="table table-sc-ex">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
-                                                        <th>Unidad</th>
-                                                        <th>Acciones</th>
+                                                        <th>
+                                                            ID
+                                                        </th>
+                                                        <th>
+                                                            Nombre
+                                                        </th>
+                                                        <th>
+                                                            Operaciones
+                                                        </th>
+
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+
                                                     @foreach (var item in Model)
                                                     {
-                                                        <tr class="active">
+                                                        <tr>
                                                             <td>
                                                                 @Html.DisplayFor(modelItem => item.idUnidad)
                                                             </td>
@@ -91,15 +74,16 @@
                                                                 @Html.DisplayFor(modelItem => item.nombre)
                                                             </td>
                                                             <td>
-                                                                @Html.ActionLink("Edit", "Edit", new { id = item.idUnidad }) |
-                                                                @Html.ActionLink("Details", "Details", new { id = item.idUnidad }) |
-                                                                @Html.ActionLink("Delete", "Delete", new { id = item.idUnidad })
+                                                                @Html.ActionLink("Editar", "EditarUnidad", new { id = item.idUnidad }, new { @class = "btn btn-info glyphicon glyphicon-edit" }) &nbsp;
+                                                                @Html.ActionLink("Detalles", "DetallesUnidad", new { id = item.idUnidad }, new { @class = "btn btn-warning glyphicon glyphicon-share" }) &nbsp;
+                                                                @Html.ActionLink("Eliminar", "EliminarUnidad", new { id = item.idUnidad }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
                                                             </td>
                                                         </tr>
                                                     }
                                                 </tbody>
                                             </table>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -109,6 +93,3 @@
             </div>
         </div>
     </div>
-</div>
-<!-- Inbox area End-->
-

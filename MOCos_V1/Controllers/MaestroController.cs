@@ -11,6 +11,7 @@ namespace MOCos_V1.Controllers
 {
     public class MaestroController : Controller
     {
+        mocOS_BDEntities bd = new mocOS_BDEntities();
         [AuthorizeUser(idNivel: 4)]
         public ActionResult Perfil()
         {
@@ -28,23 +29,24 @@ namespace MOCos_V1.Controllers
         }
 
         [AuthorizeUser(idNivel: 4)]
-        [HttpPost]
         public ActionResult MostrarModulos()
         {
             try
             {
-                Usuario obj = new Usuario();
+                
                 using (mocOS_BDEntities bd = new mocOS_BDEntities())
                 {
+                    Usuario obj = new Usuario();
                     obj = (Usuario)Session["User"];
-                    var idProf = (from d in bd.Profesor
+                    var prof = (from d in bd.Profesor
                                  where d.idUsuario == obj.idUsuario
                                  select d).FirstOrDefault();
-                    var Materia = (from d in bd.Materia
-                                   where d.idCoordinador == idProf.idProfesor
+                    var mat = (from d in bd.Materia
+                                   where d.idCoordinador == prof.idProfesor
                                    select d).FirstOrDefault();
-                    Session["UserMateria"] = Materia;
-                    List<Unidad> Uni = bd.Unidad.Include(n => n.nombre).ToList();
+                    Session["UserMateria"] = mat;
+                    ViewBag.Materia = mat.NombreMateria;
+                    List<Unidad> Uni = bd.Unidad.Where(x => x.idMateria == mat.idMateria).ToList();
                     return View(Uni);
                 }
             }
@@ -63,7 +65,7 @@ namespace MOCos_V1.Controllers
             {
                 using (mocOS_BDEntities bd = new mocOS_BDEntities())
                 {
-                    obj.idMateria = 5;
+                    obj.idMateria = (int)Session["UserMateria"];
                     bd.Unidad.Add(obj);
                     bd.SaveChanges();
                     return RedirectToAction("Modulos");
