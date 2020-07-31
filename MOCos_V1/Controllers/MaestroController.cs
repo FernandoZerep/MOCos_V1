@@ -97,6 +97,62 @@ namespace MOCos_V1.Controllers
                 return View();
             }
         }
-        
+
+
+        [AuthorizeUser(idNivel: 4)]
+        [HttpGet]
+        public ActionResult EditarUnidad(int id)
+        {
+            try
+            {
+                Unidad Unimod = new Unidad();
+                var Uni = (from d in bd.Unidad
+                            where d.idUnidad == id
+                            select d).FirstOrDefault();
+                Unimod = Uni;
+                return View(Unimod);
+            }
+            catch(Exception msg)
+            {
+                ModelState.AddModelError("Error al editar a la Alumno", msg);
+                return View();
+            }
+            
+        }
+
+        [AuthorizeUser(idNivel: 4)]
+        [HttpPost]
+        public ActionResult EditarUnidad(Unidad obj)
+        {
+            try
+            {
+                if (obj.nombre != null)
+                {
+                    using (mocOS_BDEntities bd = new mocOS_BDEntities())
+                    {
+                        Materia mat = (Materia)Session["UserMateria"];
+                        ViewBag.Materia = mat.NombreMateria;
+                        obj.idMateria = mat.idMateria;
+                        Unidad existe = bd.Unidad.Find(obj.idUnidad);
+                        existe.nombre = obj.nombre;
+                        bd.SaveChanges();
+                        return RedirectToAction("MostrarModulos");
+                    }
+                }
+                else
+                {
+                    Materia mat = (Materia)Session["UserMateria"];
+                    ViewBag.Materia = mat.NombreMateria;
+                    return View();
+                }
+            }
+            catch (Exception mensaje)
+            {
+                ModelState.AddModelError("Error al insertar la Unidad", mensaje);
+                return View();
+            }
+        }
+
+
     }
 }
