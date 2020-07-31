@@ -4,93 +4,69 @@
     Layout = "~/Views/Shared/_LayoutMaestro.cshtml";
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="breadcomb-list">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div class="breadcomb-wp">
-                            <div class="breadcomb-icon">
-                                <i class="notika-icon notika-support"></i>
-                            </div>
-                            <div class="breadcomb-ctn">
-                                <h2>Materia</h2>
-                                <p>Programación</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<br />
-<!-- Inbox area Start-->
-<div class="inbox-area">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <div class="inbox-left-sd">
-                    <div class="compose-ml">
-                        <a class="btn waves-effect" href="#">Unidades</a>
-                    </div>
-                    <div class="inbox-status">
-                        <ul class="inbox-st-nav inbox-ft">
-                            <li><a href="#"><i class="notika-icon notika-sent"></i> Crear</a></li>
-                            <li><a href="#"><i class="notika-icon notika-draft"></i> Modificar</a></li>
-                            <li><a href="#"><i class="notika-icon notika-trash"></i> Eliminar</a></li>
-                        </ul>
-                    </div>
-                    <hr />
-                    <div class="compose-ml">
-                        <a class="btn waves-effect" href="#">Temas</a>
-                    </div>
-                    <div class="inbox-status">
-                        <ul class="inbox-st-nav inbox-ft">
-                            <li><a href="#"><i class="notika-icon notika-sent"></i> Crear</a></li>
-                            <li><a href="#"><i class="notika-icon notika-draft"></i> Modificar</a></li>
-                            <li><a href="#"><i class="notika-icon notika-trash"></i> Eliminar</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                <div class="inbox-text-list sm-res-mg-t-30">
-                    <!--Pa que vaya junto al editar-->
-                    <div class="form-element-list">
-                        <div class="basic-tb-hd">
-                            <h2>Insertar nueva unidad</h2>
-                            <p>Llene los campos para insertar una nueva unidad</p>
-                        </div>
-                        <form data-toggle="validator" role="form">
-                            <div class="form-group">
-                                <label for="inputName" class="control-label">Unidad</label>
-                                <input type="text" class="form-control" id="inputName" placeholder="Nombre" required>
-                            </div>
-                            <br />
-                            <div class="form-group">
-                                <label for="inputPassword" class="control-label">Contraseña</label>
-                                <div class="form-inline row">
-                                    <div class="form-group col-sm-6">
-                                        <input type="password" data-minlength="5" class="form-control" id="inputPassword" placeholder="Contraseña" required>
-                                        <div class="help-block">Inserta tu contraseña</div>
-                                    </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-support"></i>
+                                </div>
+                                <div class="breadcomb-ctn">
+                                    <h2>Materia</h2>
+                                    <p>@Html.ViewBag.Materia</p>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Crear</button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
-                    <!--Final Pa que vaya junto al editar xd-->
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Inbox area End-->
+    <br />
+    <!-- Inbox area Start-->
+    <div class="inbox-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="inbox-text-list sm-res-mg-t-30">
+                        <!--Pa que vaya junto al editar-->
+                        <div class="form-element-list">
+                            <div class="basic-tb-hd">
+                                <h2>Insertar nueva unidad</h2>
+                                <p>Llene los campos para insertar una nueva unidad</p>
+                            </div>
+                            <form data-toggle="validator" role="form">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.nombre, "Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", placeholder = "Unidad # : Descripcion" } })
+                                        @Html.ValidationMessageFor(model => model.nombre, "Campo requerido")
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <input type="submit" value="Agregar" class="btn btn-default" />
+                                    <br />
+                                    <br />
+                                    <div>
+                                        @Html.ActionLink("Regresar", "MostrarModulos")
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!--Final Pa que vaya junto al editar xd-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
