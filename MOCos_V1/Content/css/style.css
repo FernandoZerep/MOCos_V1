@@ -326,7 +326,8 @@ body {}
 	border-radius:50%;
 }
 .hd-message-img.chat-img {
-    width: 50px;
+    width: auto;
+    height: 50px;
     margin-right: 15px;
 }
 .search-people{

@@ -116,11 +116,17 @@
                                     </div>
                                     <div class="hd-message-sn  text-center">
                                         <div class="hd-message-img chat-img">
-                                            <img src="~/img/perfiles/twich_foto perfil.jpg" />
+                                            @{
+                                                Byte[] bytes = (Byte[])Session["profile"];
+                                                var base64 = Convert.ToBase64String(bytes);
+                                                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                            }
+
+                                            <img class="hd-message-img chat-img" src="@imgSrc" />
                                             <div class="chat-avaible"><i class="notika-icon notika-dot"></i></div>
                                         </div>
                                         <div class="hd-mg-ctn">
-                                            <h3>Oscar Calvario López</h3>
+                                            <h3>@Session["name"].ToString()</h3>
                                             <p>Alumno</p>
                                         </div>
                                     </div>
