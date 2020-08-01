@@ -19,6 +19,14 @@ namespace MOCos_V1.Controllers
 
             return View();
         }
+        [AuthorizeUser(idNivel: 4)]
+        public ActionResult Cerrar()
+        {
+            Session["User"] = null;
+            Session["name"] = null;
+            Session["profile"] = null;
+            return RedirectToAction("Index", "Home");
+        }
 
         [AuthorizeUser(idNivel: 4)]
         public ActionResult Modulos()

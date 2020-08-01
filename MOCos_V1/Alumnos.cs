@@ -24,6 +24,7 @@ namespace MOCos_V1
         public Nullable<int> idUsuario { get; set; }
         public Nullable<int> idCuatrimestre { get; set; }
         public Nullable<int> idGrupo { get; set; }
+        public string Matricula { get; set; }
     
         public virtual Cuatrimestre Cuatrimestre { get; set; }
         public virtual Grupo Grupo { get; set; }

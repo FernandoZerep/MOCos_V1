@@ -46,7 +46,16 @@
                                 <thead>
                                     <tr>
                                         <th>
+                                            @Html.DisplayNameFor(model => model.Matricula)
+                                        </th>
+                                        <th>
                                             @Html.DisplayNameFor(model => model.Usuario.Nombre)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Usuario.ApellidoPaterno)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Usuario.ApellidoMaterno)
                                         </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.Cuatrimestre.Grado)
@@ -62,22 +71,32 @@
 
                                     @foreach (var item in Model)
                                     {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Usuario.Nombre)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Cuatrimestre.Grado)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Grupo.Grupo1)
-                                            </td>
-                                            <td>
-                                                @Html.ActionLink(" ", "EditarAlumnoAdmin", new { id = item.idAlumno }, new { @class = "btn btn-info glyphicon glyphicon-edit" }) &nbsp;
-                                                @Html.ActionLink(" ", "Details", new { id = item.idAlumno }, new { @class = "btn btn-warning glyphicon glyphicon-share" }) &nbsp;
-                                                @Html.ActionLink(" ", "Delete", new { id = item.idAlumno }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Matricula)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Usuario.ApellidoPaterno)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Usuario.ApellidoMaterno)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Cuatrimestre.Grado)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Grupo.Grupo1)
+                                        </td>
+
+                                        <td>
+                                            @Html.ActionLink(" ", "EditarAlumnoAdmin", new { id = item.idAlumno }, new { @class = "btn btn-info glyphicon glyphicon-edit" }) &nbsp;
+                                            @Html.ActionLink(" ", "Details", new { id = item.idAlumno }, new { @class = "btn btn-warning glyphicon glyphicon-share" }) &nbsp;
+                                            @Html.ActionLink(" ", "Delete", new { id = item.idAlumno }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+                                        </td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>

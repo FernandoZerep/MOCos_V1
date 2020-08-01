@@ -20,6 +20,14 @@ namespace MOCos_V1.Controllers
             return View();
         }
         [AuthorizeUser(idNivel: 1)]
+        public ActionResult Cerrar()
+        {
+            Session["User"] = null;
+            Session["name"] = null;
+            Session["profile"] = null;
+            return RedirectToAction("Index", "Home");
+        }
+        [AuthorizeUser(idNivel: 1)]
         public ActionResult ConsultaAlumno()
         {
             try

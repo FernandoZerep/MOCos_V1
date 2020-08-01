@@ -21,6 +21,7 @@
           <Property Name="idUsuario" Type="int" />
           <Property Name="idCuatrimestre" Type="int" />
           <Property Name="idGrupo" Type="int" />
+          <Property Name="Matricula" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Clase">
           <Key>
@@ -429,6 +430,7 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
           <NavigationProperty Name="Grupo" Relationship="Self.FK_Alumnos_Grupo" FromRole="Alumnos" ToRole="Grupo" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Alumnos_Usuario" FromRole="Alumnos" ToRole="Usuario" />
           <NavigationProperty Name="HistorialAsesoria" Relationship="Self.FK_HistorialAsesoria_Alumnos" FromRole="Alumnos" ToRole="HistorialAsesoria" />
+          <Property Name="Matricula" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Clase">
           <Key>
@@ -847,6 +849,7 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
           <EntitySetMapping Name="Alumnos">
             <EntityTypeMapping TypeName="mocOS_BDModel.Alumnos">
               <MappingFragment StoreEntitySet="Alumnos">
+                <ScalarProperty Name="Matricula" ColumnName="Matricula" />
                 <ScalarProperty Name="idAlumno" ColumnName="idAlumno" />
                 <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
                 <ScalarProperty Name="idCuatrimestre" ColumnName="idCuatrimestre" />
