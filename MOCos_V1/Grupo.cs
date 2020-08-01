@@ -11,7 +11,7 @@ namespace MOCos_V1
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
+    
     public partial class Grupo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +21,6 @@ namespace MOCos_V1
         }
     
         public int idGrupo { get; set; }
-        [DisplayName("Grupo")]
         public string Grupo1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

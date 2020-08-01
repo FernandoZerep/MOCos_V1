@@ -19,6 +19,14 @@ namespace MOCos_V1.Controllers
             return View();
         }
         [AuthorizeUser(idNivel: 3)]
+        public ActionResult Cerrar()
+        {
+            Session["User"] = null;
+            Session["name"] = null;
+            Session["profile"] = null;
+            return RedirectToAction("Index", "Home");
+        }
+        [AuthorizeUser(idNivel: 3)]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

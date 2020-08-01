@@ -11,7 +11,7 @@ namespace MOCos_V1
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
+    
     public partial class Usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +21,8 @@ namespace MOCos_V1
             this.Alumnos = new HashSet<Alumnos>();
             this.Profesor = new HashSet<Profesor>();
         }
-        [DisplayName("ID del Usuario")]
+    
         public int idUsuario { get; set; }
-        [DisplayName("Nombre")]
         public string Nombre { get; set; }
         public string Contrasena { get; set; }
         public string ApellidoMaterno { get; set; }

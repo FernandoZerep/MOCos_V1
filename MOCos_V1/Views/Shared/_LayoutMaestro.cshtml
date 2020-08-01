@@ -59,11 +59,11 @@
                                         <a href="#">
                                             <div class="hd-message-sn">
                                                 <div class="hd-message-img">
-                                                    <img src="img/post/2.jpg" alt="" />
+                                                 
+                                                    <div class="chat-avaible"><i class="notika-icon notika-dot"></i></div>
                                                 </div>
                                                 <div class="hd-mg-ctn">
-                                                    <h3>@Session["name"].ToString()</h3>
-                                                    <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
+                                           
                                                 </div>
                                             </div>
                                         </a>
@@ -114,16 +114,30 @@
                                     </div>
                                     <div class="hd-message-sn  text-center">
                                         <div class="hd-message-img chat-img">
-                                            <img src="~/img/perfiles/rosalba.jpg" />
+                                            @{
+                                                Byte[] bytes = (Byte[])Session["profile"];
+                                                var imgSrc = "";
+                                                if (bytes != null)
+                                                {
+                                                    var base64 = Convert.ToBase64String(bytes);
+                                                    imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                                }
+                                                else
+                                                {
+                                                    imgSrc = "/img/perfiles/noregister.png";
+                                                }
+                                            }
+
+                                            <img src="@imgSrc" />
                                             <div class="chat-avaible"><i class="notika-icon notika-dot"></i></div>
                                         </div>
                                         <div class="hd-mg-ctn">
-                                            <h3>Rosalba Bolaños Ortega</h3>
+                                            <h3>@Session["name"].ToString()</h3>
                                             <p>Docente</p>
                                         </div>
                                     </div>
                                     <div class="hd-mg-va text-center">
-                                        <button class="btn btn-danger btn-icon-notika waves-effect"><i class="notika-icon notika-close"></i> Cerrar sesión</button>
+                                        <button class="btn btn-danger btn-icon-notika waves-effect" onclick="location.href='@Url.Action("Cerrar", "Maestro")'"><i class="notika-icon notika-close"></i> Cerrar sesión</button>
                                     </div>
                                 </div>
                             </li>
