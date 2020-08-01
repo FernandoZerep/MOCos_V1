@@ -55,6 +55,17 @@ namespace MOCos_V1.Controllers
                     Session["UserMateria"] = mat;
                     ViewBag.Materia = mat.NombreMateria;
                     List<Unidad> Uni = bd.Unidad.Where(x => x.idMateria == mat.idMateria).ToList();
+                    //Obteniendo los temas
+                    List<Temas> MostrarTemas = new List<Temas>();
+                    foreach(var c in Uni)
+                    {
+                        List<Temas> Encontrados = bd.Temas.Where(x => x.idUnidad == c.idUnidad).ToList();
+                        foreach(var i in Encontrados)
+                        {
+                            MostrarTemas.Add(i);
+                        }
+                    }
+                    ViewBag.Temas = MostrarTemas;
                     return View(Uni);
                 }
             }
@@ -258,6 +269,8 @@ namespace MOCos_V1.Controllers
             }
 
         }
+
+
 
     }
 }
