@@ -1,0 +1,258 @@
+﻿@model MOCos_V1.Alumnos
+
+@{
+    ViewBag.Title = "Registrarse";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width" />
+    <!-- CSS Files -->
+    @Styles.Render("~/Content/Registrar/assets/css/bootstrap.min.css")
+    @Styles.Render("~/Content/Registrar/assets/css/paper-bootstrap-wizard.css")
+
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    @Styles.Render("~/Content/Registrar/assets/css/demo.css")
+
+
+    <!-- Fonts and Icons -->
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet" type="text/css">
+    @Styles.Render("~/Content/Registrar/assets/css/themify-icons.css")
+
+
+</head>
+<body background="~/img/login/backgroundlog.jpg">
+    <!--   Big container   -->
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-8 col-sm-offset-2">
+
+                <!--      Wizard container        -->
+                <div class="wizard-container">
+                    <div style="background-color: #691C32; text-align: center; padding: 40px 0px;">
+                        <img src="/img/logo/logo.png" width="250">
+                    </div>
+                    <div class="card wizard-card" data-color="green" id="wizardProfile">
+
+
+
+                        @using (Html.BeginForm("Insertar_Alumno", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                                <div class="wizard-header text-center">
+
+                                    <h3 class="wizard-title">Crea tu usuario</h3>
+                                    <p class="category">Esta informacion es necesaria para tomar asesorías en el sitio</p>
+                                </div>
+
+                                <div class="wizard-navigation">
+                                    <div class="progress-with-circle">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" style="width: 21%;"></div>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <a href="#Personal" data-toggle="tab">
+                                                <div class="icon-circle">
+                                                    <i class="ti-user"></i>
+                                                </div>
+                                                Datos Personales
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#Contacto1" data-toggle="tab">
+                                                <div class="icon-circle">
+                                                    <i class="ti-agenda"></i>
+                                                </div>
+                                                Contacto
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#Estudio" data-toggle="tab">
+                                                <div class="icon-circle">
+                                                    <i class="ti-book"></i>
+                                                </div>
+                                                Académico
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane" id="Personal">
+                                        <div class="row">
+                                            <h5 class="info-text"> Ingrese sus datos</h5>
+                                            <div class="col-sm-4 col-sm-offset-1">
+                                                <div class="picture-container" style="text-align:center">
+                                                    <div class="picture">
+                                                        <img src="~/Content/Registrar/assets/img/default-avatar.jpg" class="picture-src" id="wizardPicturePreview" title="" />
+                                                        <input type="file" id="wizard-picture" name="imageload" />
+                                                        @Html.ValidationMessage("imageload", "", new { @class = "text-danger" })
+                                                    </div>
+                                                    @Html.LabelFor(model => model.Usuario.FotoPerfil, "Elige tu foto de perfil", htmlAttributes: new { @class = "control-label" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6" style="text-align:center">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Usuario.Nombre, htmlAttributes: new { @class = "control-label " })<br />
+                                                    <div class="col-md-12">
+                                                        @Html.Editor("Nombre", new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.Usuario.Nombre, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Usuario.ApellidoPaterno, htmlAttributes: new { @class = "control-label " })<br />
+                                                    <div class="col-md-12">
+                                                        @Html.Editor("ApellidoP", new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.Usuario.ApellidoPaterno, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Usuario.ApellidoMaterno, htmlAttributes: new { @class = "control-label " })<br />
+                                                    <div class="col-md-12">
+                                                        @Html.Editor("ApellidoM", new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.Usuario.ApellidoMaterno, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Usuario.Correo, htmlAttributes: new { @class = "control-label " })<br />
+                                                    <div class="col-md-12">
+                                                        @Html.Editor("Correo", new { htmlAttributes = new { @class = "form-control", @Type = "email" } } )
+                                                        @Html.ValidationMessageFor(model => model.Usuario.Correo, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Usuario.Contrasena, htmlAttributes: new { @class = "control-label" })<br />
+                                                    <div class="col-md-12">
+                                                        @Html.Editor("Contrasena", new { htmlAttributes = new { @class = "form-control", @Type = "password" } })
+                                                        @Html.ValidationMessageFor(model => model.Usuario.Contrasena, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="Contacto1">
+                                        <h5 class="info-text"> Otra forma de contactarlo </h5>
+                                        <div class="row">
+                                            <div class="col-sm-2"></div>
+                                            <div class="col-sm-8" style="text-align:center">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Usuario.Dirección, htmlAttributes: new { @class = "control-label" })<br />
+                                                    <div class="col-md-12">
+                                                        @Html.Editor("Direccion", new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.Usuario.Dirección, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Usuario.Telefono, htmlAttributes: new { @class = "control-label" })<br />
+                                                    <div class="col-md-12">
+                                                        @Html.Editor("Celular", new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.Usuario.Telefono, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Usuario.FechaDeNacimiento, htmlAttributes: new { @class = "control-label" })<br />
+                                                    <div class="col-md-12">
+                                                       @Html.Editor("Fecha", new { htmlAttributes = new { @class = "form-control", @Type = "Date" } })
+                                                       @Html.ValidationMessageFor(model => model.Usuario.FechaDeNacimiento, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Usuario.Genero, htmlAttributes: new { @class = "control-label" })<br />
+                                                    <div class="col-md-12">
+                                                         @Html.DropDownList("genero", null,"Seleccione su genero", htmlAttributes: new { @class = "form-control" })
+                                                       
+                                                         @Html.ValidationMessageFor(model => model.Usuario.Genero, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2"></div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane" id="Estudio">
+                                        <h5 class="info-text"> Necesitamos tu información académica </h5>
+
+                                        <div class="row">
+
+                                            <div class="col-sm-2"></div>
+                                            <div class="col-sm-8">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.idCuatrimestre, htmlAttributes: new { @class = "control-label" })<br />
+                                                    <div class="col-md-12">
+                                                        @Html.DropDownList("idCuatrimestre", null,"Seleccione su cuatrimestre", htmlAttributes: new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.idCuatrimestre, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.idGrupo, htmlAttributes: new { @class = "control-label" })<br />
+                                                    <div class="col-md-12">
+                                                        @Html.DropDownList("idGrupo", null,"Seleccione su grupo", htmlAttributes: new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.idGrupo, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2"></div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wizard-footer">
+                                    <div class="pull-right">
+                                        <input type="button" class="btn btn-next btn-fill btn-info btn-wd" name="next" value="Siguiente" />
+                                        <input type="submit" class="btn btn-finish btn-fill btn-success btn-wd" name="finish" value="Registrarme" />
+                                    </div>
+
+                                    <div class="pull-left">
+                                        <input type="button" class="btn btn-previous btn-default btn-wd" name="previous" value="Anterior" />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                            </div>
+
+                        }
+                    </div>
+                </div> <!-- wizard container -->
+            </div>
+        </div><!-- end row -->
+    </div> <!--  big container -->
+    <!--   Core JS Files   -->
+    @Scripts.Render("~/Content/Registrar/assets/js/jquery-2.2.4.min.js")
+    @Scripts.Render("~/Content/Registrar/assets/js/bootstrap.min.js")
+    @Scripts.Render("~/Content/Registrar/assets/js/jquery.bootstrap.wizard.js")
+
+    <!--  Plugin for the Wizard -->
+    @Scripts.Render("~/Content/Registrar/assets/js/demo.js")
+    @Scripts.Render("~/Content/Registrar/assets/js/paper-bootstrap-wizard.js")
+
+
+    @Scripts.Render("~/Content/Registrar/assets/js/jquery.validate.min.js")
+
+    @Scripts.Render("~/Content/Registrar/assets/js/paper-bootstrap-wizard.js")
+
+
+
+</body>
+
+</html>
+
+

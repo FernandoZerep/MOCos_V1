@@ -71,7 +71,7 @@ namespace MOCos_V1.Controllers
             }
             catch (Exception mensaje)
             {
-                ModelState.AddModelError("Error al mostrar la Unidad", mensaje);
+                ModelState.AddModelError("Error al mostrar las Unidades", mensaje);
                 return View();
             }
         }
@@ -133,7 +133,7 @@ namespace MOCos_V1.Controllers
             }
             catch(Exception msg)
             {
-                ModelState.AddModelError("Error al editar a la Alumno", msg);
+                ModelState.AddModelError("Error al editar la Unidad", msg);
                 return View();
             }
             
@@ -167,7 +167,7 @@ namespace MOCos_V1.Controllers
             }
             catch (Exception mensaje)
             {
-                ModelState.AddModelError("Error al insertar la Unidad", mensaje);
+                ModelState.AddModelError("Error al editar la Unidad", mensaje);
                 return View();
             }
         }
@@ -264,12 +264,127 @@ namespace MOCos_V1.Controllers
             }
             catch (Exception msg)
             {
-                ModelState.AddModelError("Error al editar a la Alumno", msg);
+                ModelState.AddModelError("Error al borrar la Unidad", msg);
                 return View();
             }
 
         }
 
+
+        [AuthorizeUser(idNivel: 4)]
+        [HttpGet]
+        public ActionResult InsertarTema(int id)
+        {
+            try
+            {
+                if (id > 0)
+                {
+                    using (mocOS_BDEntities bd = new mocOS_BDEntities())
+                    {
+                        Session["LaUnidad"] = bd.Unidad.Find(id);
+                        Unidad Obtenido = (Unidad)Session["LaUnidad"];
+                        ViewBag.LaUnidad = Obtenido.nombre;
+                        return View();
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("MostrarModulos");
+                }
+            }
+            catch (Exception mensaje)
+            {
+                ModelState.AddModelError("Error al insertar el Tema", mensaje);
+                return RedirectToAction("MostrarModulos");
+            }
+           
+        }
+
+        [AuthorizeUser(idNivel: 4)]
+        [HttpPost]
+        public ActionResult InsertarTema(Temas obj)
+        {
+            try
+            {
+                if (obj.Nombre != null)
+                {
+                    using (mocOS_BDEntities bd = new mocOS_BDEntities())
+                    {
+                        Unidad Obtenido = (Unidad)Session["LaUnidad"];
+                        ViewBag.LaUnidad = Obtenido.nombre;
+                        obj.idUnidad = Obtenido.idUnidad;
+                        bd.Temas.Add(obj);
+                        bd.SaveChanges();
+                        return RedirectToAction("MostrarModulos");
+                    }
+                }
+                else
+                {
+                    Unidad Obtenido = (Unidad)Session["LaUnidad"];
+                    ViewBag.LaUnidad = Obtenido.nombre;
+                    return View();
+                }
+            }
+            catch (Exception mensaje)
+            {
+                ModelState.AddModelError("Error al insertar el Tema", mensaje);
+                return RedirectToAction("MostrarModulos");
+            }
+        }
+
+        [AuthorizeUser(idNivel: 4)]
+        [HttpGet]
+        public ActionResult EditarTema(int id)
+        {
+            try
+            {
+                Temas Temamod = new Temas();
+                var Eltema = (from d in bd.Temas
+                           where d.idTema == id
+                           select d).FirstOrDefault();
+                Temamod = Eltema;
+                return View(Temamod);
+            }
+            catch (Exception msg)
+            {
+                ModelState.AddModelError("Error al editar el Tema", msg);
+                return View();
+            }
+
+        }
+
+        [AuthorizeUser(idNivel: 4)]
+        [HttpPost]
+        public ActionResult EditarTema(Unidad obj)
+        {
+            try
+            {
+                if (obj.nombre != null)
+                {
+                    using (mocOS_BDEntities bd = new mocOS_BDEntities())
+                    {
+                        Materia mat = (Materia)Session["UserMateria"];
+                        ViewBag.Materia = mat.NombreMateria;
+                        obj.idMateria = mat.idMateria;
+                        Unidad existe = bd.Unidad.Find(obj.idUnidad);
+                        existe.nombre = obj.nombre;
+                        bd.SaveChanges();
+                        return RedirectToAction("MostrarModulos");
+                    }
+                }
+                else
+                {
+                    Materia mat = (Materia)Session["UserMateria"];
+                    ViewBag.Materia = mat.NombreMateria;
+                    return View();
+                }
+            }
+            catch (Exception mensaje)
+            {
+                ModelState.AddModelError("Error al insertar la Unidad", mensaje);
+                return View();
+            }
+        }
 
 
     }
