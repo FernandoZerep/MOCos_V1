@@ -48,6 +48,7 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
           <Property Name="idClase" Type="int" Nullable="false" />
           <Property Name="Documento" Type="varbinary(max)" />
           <Property Name="Link" Type="varchar(max)" />
+          <Property Name="realName" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Grupo">
           <Key>
@@ -341,7 +342,8 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
             <DefiningQuery>SELECT 
     [Documentos].[idClase] AS [idClase], 
     [Documentos].[Documento] AS [Documento], 
-    [Documentos].[Link] AS [Link]
+    [Documentos].[Link] AS [Link], 
+    [Documentos].[realName] AS [realName]
     FROM [dbo].[Documentos] AS [Documentos]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Administrador_Usuario" Association="Self.FK_Administrador_Usuario">
@@ -563,6 +565,7 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
           <Property Name="Documento" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Clase" Relationship="Self.FK_Documentos_Clase" FromRole="Documentos" ToRole="Clase" />
+          <Property Name="realName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Administrador_Usuario">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
@@ -972,6 +975,7 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
           <EntitySetMapping Name="Documentos">
             <EntityTypeMapping TypeName="mocOS_BDModel.Documentos">
               <MappingFragment StoreEntitySet="Documentos">
+                <ScalarProperty Name="realName" ColumnName="realName" />
                 <ScalarProperty Name="idClase" ColumnName="idClase" />
                 <ScalarProperty Name="Documento" ColumnName="Documento" />
                 <ScalarProperty Name="Link" ColumnName="Link" />
