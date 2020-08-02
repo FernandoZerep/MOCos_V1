@@ -2,10 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Data;
 using System.Data.Entity;
 using MOCos_V1;
 using MOCos_V1.Filters;
+using Microsoft.Ajax.Utilities;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Net;
+using System.Web.WebPages;
 
 namespace MOCos_V1.Controllers
 {
@@ -120,5 +128,78 @@ namespace MOCos_V1.Controllers
                 return View();
             }
         }
+        [AuthorizeUser(idNivel: 1)]
+        [HttpGet]
+        public ActionResult Insertar_Alumno_Administrador()
+        {
+            var genero = new SelectList(new[] { "Masculino", "Femenino" });
+            ViewBag.genero = genero;
+            ViewBag.idCuatrimestre = new SelectList(bd.Cuatrimestre, "idCuatrimestre", "Grado");
+            ViewBag.idGrupo = new SelectList(bd.Grupo, "idGrupo", "Grupo1");
+            return View();
+
+        }
+
+        [AuthorizeUser(idNivel: 1)]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Insertar_Alumno_Administrador(Alumnos Alu, string Nombre, string ApellidoP, string ApellidoM, string Correo, string Contrasena, string Direccion, string celular, string genero, string Fecha)
+        {
+            WebImage iagen;
+            HttpPostedFileBase FileBase = Request.Files[0];
+            if (FileBase.InputStream.Length != 0)
+            {
+
+                iagen = new WebImage(FileBase.InputStream);
+            }
+            else
+            {
+                iagen = new WebImage("~/Content/Registrar/assets/img/default-avatar.jpg");
+            }
+            Usuario user = bd.Usuario.Create();
+
+            if (genero == "Masculino")
+                user.Genero = "M";
+            else
+                user.Genero = "F";
+
+            user.Nombre = Nombre;
+            user.ApellidoPaterno = ApellidoP;
+            user.ApellidoMaterno = ApellidoM;
+            user.Contrasena = Contrasena;
+            user.Correo = Correo;
+            user.Dirección = Direccion;
+            user.Telefono = celular;
+            user.FechaDeNacimiento = Convert.ToDateTime(Fecha); ;
+            user.idTipoUsuario = 3;
+            bd.Usuario.Add(user);
+            bd.Alumnos.Add(Alu);
+            bd.SaveChanges();
+            insertar(iagen.GetBytes(), Alu);
+
+            return RedirectToAction("Login");
+
+
+        }
+        [AuthorizeUser(idNivel: 1)]
+        public void insertar(byte[] imagen, Alumnos alu)
+        {
+
+            Usuario user = bd.Usuario.OrderByDescending(x => x.idUsuario).First();
+            user.FotoPerfil = imagen;
+            alu.idUsuario = user.idUsuario;
+            bd.SaveChanges();
+
+        }
+        [AuthorizeUser(idNivel: 1)]
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                bd.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
     }
 }

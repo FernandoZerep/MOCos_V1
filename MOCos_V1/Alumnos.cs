@@ -22,7 +22,9 @@ namespace MOCos_V1
     
         public int idAlumno { get; set; }
         public Nullable<int> idUsuario { get; set; }
+        [DisplayName("Cuatrimestre")]
         public Nullable<int> idCuatrimestre { get; set; }
+        [DisplayName("Grupo")]
         public Nullable<int> idGrupo { get; set; }
         public string Matricula { get; set; }
     

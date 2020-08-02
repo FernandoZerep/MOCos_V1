@@ -43,18 +43,46 @@ transparent = true;
 
             // Code for the Validator
             var $validator = $('.wizard-card form').validate({
-        		  rules: {
-        		    firstname: {
-        		      required: true,
-        		      minlength: 3
-        		    },
-        		    lastname: {
-        		      required: true,
-        		      minlength: 3
-        		    },
-        		    email: {
-        		      required: true
-        		    }
+                rules: {
+                    Nombre: {
+                        required: true,
+                        minlength: 4
+                    },
+                   
+                    ApellidoP: {
+                        required: true,
+                        minlength: 4
+                    },
+                    ApellidoM: {
+                        required: true,
+                        minlength: 4
+                    },
+                    Correo: {
+                        required: true,
+                        minlength: 4
+                    },
+                    Contrasena: {
+                        required: true,
+                        minlength: 5
+                    },
+                    Direccion: {
+                        required: true,
+                        minlength: 10
+                    },
+                    Celular: {
+                        required: true,
+                        minlength: 10,
+                        maxlength:10
+                    },
+                    genero: {
+                        required: true,
+                    },
+                    idCuatrimestre: {
+                        required: true,
+                    },
+                    idGrupo: {
+                        required: true,
+                    }
                 },
         	});
 
