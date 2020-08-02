@@ -338,6 +338,12 @@ namespace MOCos_V1.Controllers
         {
             try
             {
+                var LaUni = (from d in bd.Temas
+                             where d.idTema == id
+                             select d.idUnidad).FirstOrDefault();
+                Session["LaUnidad"] = bd.Unidad.Find(LaUni);
+                Unidad Obtenido = (Unidad)Session["LaUnidad"];
+                ViewBag.LaUnidad = Obtenido.nombre;
                 Temas Temamod = new Temas();
                 var Eltema = (from d in bd.Temas
                            where d.idTema == id
@@ -355,33 +361,33 @@ namespace MOCos_V1.Controllers
 
         [AuthorizeUser(idNivel: 4)]
         [HttpPost]
-        public ActionResult EditarTema(Unidad obj)
+        public ActionResult EditarTema(Temas obj)
         {
             try
             {
-                if (obj.nombre != null)
+                if (obj.Nombre != null)
                 {
                     using (mocOS_BDEntities bd = new mocOS_BDEntities())
                     {
-                        Materia mat = (Materia)Session["UserMateria"];
-                        ViewBag.Materia = mat.NombreMateria;
-                        obj.idMateria = mat.idMateria;
-                        Unidad existe = bd.Unidad.Find(obj.idUnidad);
-                        existe.nombre = obj.nombre;
+                        Unidad Obtenido = (Unidad)Session["LaUnidad"];
+                        ViewBag.LaUnidad = Obtenido.nombre;
+                        obj.idUnidad = Obtenido.idUnidad;
+                        Temas existe = bd.Temas.Find(obj.idTema);
+                        existe.Nombre = obj.Nombre;
                         bd.SaveChanges();
                         return RedirectToAction("MostrarModulos");
                     }
                 }
                 else
                 {
-                    Materia mat = (Materia)Session["UserMateria"];
-                    ViewBag.Materia = mat.NombreMateria;
+                    Unidad Obtenido = (Unidad)Session["LaUnidad"];
+                    ViewBag.LaUnidad = Obtenido.nombre;
                     return View();
                 }
             }
             catch (Exception mensaje)
             {
-                ModelState.AddModelError("Error al insertar la Unidad", mensaje);
+                ModelState.AddModelError("Error al editar el tema", mensaje);
                 return View();
             }
         }
