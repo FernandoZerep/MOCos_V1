@@ -23,6 +23,9 @@
     </style>
 </head>
 <body>
+    @{
+    Administrador Usuario = (Administrador)Session["Activo"];
+    }
     <!--[if lt IE 8]>
                <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
            <![endif]-->
@@ -129,21 +132,80 @@
                                                 }
                                             }
 
-                                            <img src="@imgSrc" />
+                                            <a href="#aboutModal" data-toggle="modal" data-target="#myModal">
+                                                <img src="@imgSrc" />
+                                            </a>
                                             <div class="chat-avaible"><i class="notika-icon notika-dot"></i></div>
                                         </div>
                                         <div class="hd-mg-ctn">
-                                            <h3>@Session["name"].ToString()</h3>
-                                            <p>Administrador</p>
+                                            <a href="#aboutModal" data-toggle="modal" data-target="#myModal">
+                                                <h3>@Session["name"].ToString()</h3>
+                                                <p>Administrador</p>
+                                                </a>
                                         </div>
                                     </div>
                                     <div class="hd-mg-va text-center">
-                                        <button class="btn btn-danger btn-icon-notika waves-effect"  onclick="location.href='@Url.Action("Cerrar", "Administrador")'"><i class="notika-icon notika-close"></i> Cerrar sesión</button>
+                                        <button class="btn btn-danger btn-icon-notika waves-effect" onclick="location.href='@Url.Action("Cerrar", "Administrador")'"><i class="notika-icon notika-close"></i> Cerrar sesión</button>
                                     </div>
                                 </div>
                             </li>
                         </ul>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel">Información del @Usuario.Usuario.TiposUsuarios.Nombre</h4>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <img src="@imgSrc" name="Acerca de" width="140" height="140" border="0" class="img-circle"></a>
+                        <h3 class="media-heading">@Session["name"].ToString() <small>MX</small></h3>
+                        <span><strong>Correo institucional: </strong></span>
+                        <span>@Usuario.Usuario.Correo</span>
+                    </center>
+                    <hr>
+                    <center>
+                        <div class="widget-tabs-list tab-pt-mg">
+                            <ul class="nav nav-tabs tab-nav-center">
+                                <li class="active"><a data-toggle="tab" href="#home3">Datos</a></li>
+                            </ul>
+                            <div class="tab-content tab-custom-st">
+                                <div id="home3" class="tab-pane in active animated zoomInLeft">
+                                    <div class="tab-ctn">
+                                        <span><strong>Fecha de nacimiento: </strong></span>
+                                        <span>@Usuario.Usuario.FechaDeNacimiento.Value.ToShortDateString()</span><br />
+                                        <span><strong>Genero: </strong></span>
+                                        @if (Usuario.Usuario.Genero == "M")
+                                        {
+                                            <span>Masculino</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Femenino</span>
+                                        }
+                                        <br>
+                                        <span><strong>Dirección: </strong></span>
+                                        <span>@Usuario.Usuario.Dirección</span><br />
+                                        <span><strong>Telefono: </strong></span>
+                                        <span>@Usuario.Usuario.Telefono</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                </div>
+                <div class="modal-footer">
+                    <center>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-info" >Editar</button>
+                    </center>
                 </div>
             </div>
         </div>
@@ -219,7 +281,7 @@
                             <a data-toggle="tab" href="#mailbox"><i class="glyphicon glyphicon-inbox"></i> Sala de discusión</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href=""  onclick="location.href='@Url.Action("ConsultaAlumno", "Administrador")'"><i class="glyphicon glyphicon-education"></i> Alumnos</a>
+                            <a data-toggle="tab" href="" onclick="location.href='@Url.Action("ConsultaAlumno", "Administrador")'"><i class="glyphicon glyphicon-education"></i> Alumnos</a>
                         </li>
                         <li>
                             <a data-toggle="tab" href="#Charts"><i class="glyphicon glyphicon-briefcase"></i> Maestros</a>
@@ -232,7 +294,7 @@
                         </li>
                     </ul>
                     <div class="tab-content custom-menu-content">
-                       
+
                         <div id="mailbox" class="tab-pane notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li>
@@ -294,6 +356,8 @@
             </div>
         </div>
     </div>
+
+
     <!-- End Footer area-->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

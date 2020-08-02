@@ -12,7 +12,6 @@ namespace MOCos_V1
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-
     public partial class Alumnos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
