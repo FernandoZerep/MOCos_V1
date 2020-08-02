@@ -130,16 +130,18 @@
                                                 }
                                             }
 
-                                            <img src="@imgSrc" />
+                                            <a href="#aboutModal" data-toggle="modal" data-target="#myModal">
+                                                <img src="@imgSrc" />
+                                            </a>
                                             <div class="chat-avaible"><i class="notika-icon notika-dot"></i></div>
                                         </div>
                                         <div class="hd-mg-ctn">
-                                            <h3>@Session["name"].ToString()</h3>
-                                            <p>Alumno</p>
+                                            <a href="#aboutModal" data-toggle="modal" data-target="#myModal">
+                                                <h3>@Session["name"].ToString()</h3>
+                                                <p>Alumno</p>
+                                            </a>
+                                            <button class="btn btn-danger btn-icon-notika waves-effect" onclick="location.href='@Url.Action("Cerrar", "Alumno")'"><i class="notika-icon notika-close"></i> Cerrar sesión</button>
                                         </div>
-                                    </div>
-                                    <div class="hd-mg-va text-center">
-                                        <button class="btn btn-danger btn-icon-notika waves-effect" onclick="location.href='@Url.Action("Cerrar", "Alumno")'"><i class="notika-icon notika-close"></i> Cerrar sesión</button>
                                     </div>
                                 </div>
                             </li>
@@ -148,9 +150,77 @@
                 </div>
             </div>
         </div>
-      
+
     </div>
- 
+    @{
+        Alumnos Usuario = (Alumnos)Session["Activo"];
+    }
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel">Información del @Usuario.Usuario.TiposUsuarios.Nombre</h4>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <img src="@imgSrc" name="Acerca de" width="140" height="140" border="0" class="img-circle"></a>
+                        <h3 class="media-heading">@Session["name"].ToString() <small>MX</small></h3>
+                        <span><strong>Matricula: </strong></span>
+                        <span>@Usuario.Matricula</span>
+                    </center>
+                    <hr>
+                    <center>
+                        <div class="widget-tabs-list tab-pt-mg">
+                            <ul class="nav nav-tabs tab-nav-center">
+                                <li class="active"><a data-toggle="tab" href="#home3">Datos</a></li>
+                            </ul>
+                            <div class="tab-content tab-custom-st">
+                                <div id="home3" class="tab-pane in active animated zoomInLeft">
+                                    <div class="tab-ctn">
+                                        <span><strong>Correo institucional: </strong></span>
+                                        <span>@Usuario.Usuario.Correo</span><br />
+                                        <span><strong>Grado: </strong></span>
+                                        <span>@Usuario.Cuatrimestre.Grado</span> &nbsp;
+                                        <span><strong>Grupo: </strong></span>
+                                        <span>@Usuario.Grupo.Grupo1</span><br />
+                                        <span><strong>Carrera: </strong></span>
+                                        <span>@Usuario.Cuatrimestre.Carrera</span><br />
+                                        <span><strong>Especialidad: </strong></span>
+                                        <span>@Usuario.Cuatrimestre.Especialidad</span><br />
+                                        <span><strong>Fecha de nacimiento: </strong></span>
+                                        <span>@Usuario.Usuario.FechaDeNacimiento.Value.ToShortDateString()</span><br />
+                                        <span><strong>Genero: </strong></span>
+                                        @if (Usuario.Usuario.Genero == "M")
+                                        {
+                                            <span>Masculino</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Femenino</span>
+                                        }
+                                        <br>
+                                        <span><strong>Dirección: </strong></span>
+                                        <span>@Usuario.Usuario.Dirección</span><br />
+                                        <span><strong>Telefono: </strong></span>
+                                        <span>@Usuario.Usuario.Telefono</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                </div>
+                <div class="modal-footer">
+                    <center>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-info">Editar</button>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- End Header Top Area -->
     <!-- Mobile Menu start -->
     <div class="mobile-menu-area">
