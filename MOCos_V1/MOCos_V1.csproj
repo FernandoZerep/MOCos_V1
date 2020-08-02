@@ -626,6 +626,7 @@
     <Content Include="Views\Alumno\EditarProfesor.cshtml" />
     <Content Include="Views\Maestro\MostrarModulos.cshtml" />
     <Content Include="Views\Maestro\EditarUnidad.cshtml" />
+    <Content Include="Views\Maestro\InsertarTema.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
