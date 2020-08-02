@@ -24,6 +24,9 @@ namespace MOCos_V1
         }
     
         public int idUsuario { get; set; }
+
+        [Required(ErrorMessage = "{0} es requerido")]
+        [MinLength(6, ErrorMessage = "{0} Debe terner una logitud mayor o igual a 6 caracteres")]
         [DisplayName("Nombre")]
         public string Nombre { get; set; }
 
