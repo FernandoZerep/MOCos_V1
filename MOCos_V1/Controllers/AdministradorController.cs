@@ -28,6 +28,11 @@ namespace MOCos_V1.Controllers
             return RedirectToAction("Index", "Home");
         }
         [AuthorizeUser(idNivel: 1)]
+        public ActionResult PerfilAdmin()
+        {
+            return View();
+        }
+        [AuthorizeUser(idNivel: 1)]
         public ActionResult ConsultaAlumno()
         {
             try

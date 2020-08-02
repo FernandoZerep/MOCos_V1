@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
+using MOCos_V1;
+using MOCos_V1.Filters;
+
 
 namespace MOCos_V1.Controllers
 {
@@ -69,6 +73,7 @@ namespace MOCos_V1.Controllers
         {
             try
             {
+             
                 int? nivel = 0;
                 string controlador = "";
                 string action = "";
@@ -88,16 +93,21 @@ namespace MOCos_V1.Controllers
                     Session["profile"] = oUser.FotoPerfil;
                     if (nivel == 1)
                     {
+                        Session["Activo"] = db.Administrador.Include(a => a.Usuario).Include(b => b.Usuario.TiposUsuarios).Where(x => x.idUsuario == oUser.idUsuario).FirstOrDefault();
                         controlador = "Administrador";
                         action = "InicioAdmin";
                     }
                     if (nivel == 3)
                     {
+                        Session["Activo"] = db.Alumnos.Include(a => a.Cuatrimestre).Include(g => g.Grupo)
+                       .Include(u => u.Usuario).Include(t => t.Usuario.TiposUsuarios).Where(i => i.idUsuario == oUser.idUsuario).FirstOrDefault();
                         controlador = "Alumno";
                         action = "Inicio";
                     }
                     if (nivel == 4)
                     {
+                        Session["Activo"] = db.Profesor.Include(u => u.Usuario).Include(t => t.Usuario.TiposUsuarios).Where(x => x.idUsuario == oUser.idUsuario).FirstOrDefault();
+
                         controlador = "Maestro";
                         action = "Perfil";
                     }
