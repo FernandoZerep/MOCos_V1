@@ -23,7 +23,9 @@ namespace MOCos_V1
         public int idAlumno { get; set; }
         [DisplayName("Nombre")]
         public Nullable<int> idUsuario { get; set; }
+        [DisplayName("Cuatrimestre")]
         public Nullable<int> idCuatrimestre { get; set; }
+        [DisplayName("Grupo")]
         public Nullable<int> idGrupo { get; set; }
     
         public virtual Cuatrimestre Cuatrimestre { get; set; }
