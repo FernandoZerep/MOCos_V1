@@ -628,6 +628,9 @@
     <Content Include="Views\Maestro\MostrarModulos.cshtml" />
     <Content Include="Views\Maestro\EditarUnidad.cshtml" />
     <Content Include="Views\Maestro\InsertarTema.cshtml" />
+    <Content Include="Views\Administrador\Insertar_Alumno_Administrador.cshtml" />
+    <Content Include="Views\Home\Insertar_Alumno.cshtml" />
+    <Content Include="Views\Administrador\PerfilAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
