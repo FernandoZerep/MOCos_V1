@@ -14,7 +14,6 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/mocOS/wizard.css" rel="stylesheet" />
     <!--ELIMINA LINEAS BLANCAS DE ARRIBA Y ABAJOL-->
     <style>
         body {
@@ -116,16 +115,30 @@
                                     </div>
                                     <div class="hd-message-sn  text-center">
                                         <div class="hd-message-img chat-img">
-                                            <img src="~/img/perfiles/fer.jpg" "   />
+                                            @{
+                                                Byte[] bytes = (Byte[])Session["profile"];
+                                                var imgSrc = "";
+                                                if (bytes != null)
+                                                {
+                                                    var base64 = Convert.ToBase64String(bytes);
+                                                    imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                                }
+                                                else
+                                                {
+                                                    imgSrc = "/img/perfiles/noregister.png";
+                                                }
+                                            }
+
+                                            <img src="@imgSrc" />
                                             <div class="chat-avaible"><i class="notika-icon notika-dot"></i></div>
                                         </div>
                                         <div class="hd-mg-ctn">
-                                            <h3>Fernando Pérez Pérez</h3>
+                                            <h3>@Session["name"].ToString()</h3>
                                             <p>Administrador</p>
                                         </div>
                                     </div>
                                     <div class="hd-mg-va text-center">
-                                        <button class="btn btn-danger btn-icon-notika waves-effect"><i class="notika-icon notika-close"></i> Cerrar sesión</button>
+                                        <button class="btn btn-danger btn-icon-notika waves-effect"  onclick="location.href='@Url.Action("Cerrar", "Administrador")'"><i class="notika-icon notika-close"></i> Cerrar sesión</button>
                                     </div>
                                 </div>
                             </li>
@@ -286,50 +299,3 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
-<script>
-    $(document).ready(function () {
-
-        var navListItems = $('div.setup-panel div a'),
-            allWells = $('.setup-content'),
-            allNextBtn = $('.nextBtn');
-
-        allWells.hide();
-
-        navListItems.click(function (e) {
-            e.preventDefault();
-            var $target = $($(this).attr('href')),
-                $item = $(this);
-
-            if (!$item.hasClass('disabled')) {
-                navListItems.removeClass('btn-primary').addClass('btn-default');
-                $item.addClass('btn-primary');
-                allWells.hide();
-                $target.show();
-                $target.find('input:eq(0)').focus();
-            }
-        });
-
-        allNextBtn.click(function () {
-            var curStep = $(this).closest(".setup-content"),
-                curStepBtn = curStep.attr("id"),
-                nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-                curInputs = curStep.find("input[type='text'],input[type='url']"),
-                isValid = true;
-
-            $(".form-group").removeClass("has-error");
-            for (var i = 0; i < curInputs.length; i++) {
-                if (!curInputs[i].validity.valid) {
-                    isValid = false;
-                    $(curInputs[i]).closest(".form-group").addClass("has-error");
-                }
-            }
-
-            if (isValid)
-                nextStepWizard.removeAttr('disabled').trigger('click');
-        });
-
-        $('div.setup-panel div a.btn-primary').trigger('click');
-    });
-</script>
-</body>
-</html>

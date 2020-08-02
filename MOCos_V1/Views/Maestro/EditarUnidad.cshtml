@@ -1,12 +1,13 @@
 ﻿@model MOCos_V1.Unidad
 
 @{
-    ViewBag.Title = "InsertarUnidad";
+    ViewBag.Title = "EditarUnidad";
     Layout = "~/Views/Shared/_LayoutMaestro.cshtml";
 }
 
+
 @using (Html.BeginForm())
-{
+ {
     @Html.AntiForgeryToken()
 
     <div class="container">
@@ -40,27 +41,35 @@
                         <!--Pa que vaya junto al editar-->
                         <div class="form-element-list">
                             <div class="basic-tb-hd">
-                                <h2>Insertar nueva unidad</h2>
-                                <p>Llene los campos para insertar una nueva unidad</p>
+                                <h2>Modificar unidad</h2>
+                                <p>Llene los campos para modificar el nombre de la unidad</p>
                             </div>
-                            <form data-toggle="validator" role="form">
+                            <div class="form-horizontal">
+                                <h4>Unidad</h4>
+                                <hr />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.idUnidad)
+
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.nombre, "Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.nombre,"Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", placeholder = "Unidad # : Descripcion" } })
-                                        @Html.ValidationMessageFor(model => model.nombre, "Campo requerido")
+                                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <br />
+                                <br />
                                 <div class="form-group">
-                                    <input type="submit" value="Agregar" class="btn btn-default" />
-                                    <br />
-                                    <br />
-                                    <div>
-                                        @Html.ActionLink("Regresar", "MostrarModulos")
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Guardar" class="btn btn-default" />
                                     </div>
                                 </div>
-                            </form>
+                                <br />
+                                <br />
+                                <div>
+                                    @Html.ActionLink("Regresar", "MostrarModulos")
+                                </div>
+                            </div>
                         </div>
                         <!--Final Pa que vaya junto al editar xd-->
                     </div>
@@ -68,8 +77,8 @@
             </div>
         </div>
     </div>
+ }
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }
-
-
-
-

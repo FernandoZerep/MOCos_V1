@@ -1,4 +1,4 @@
-/*-----------------------------------------------------------------------------------
+F/*-----------------------------------------------------------------------------------
 
     Template Name: Notika - Notika Admin Template 
     Template URI: 
@@ -323,11 +323,12 @@ body {}
 	left:-250px;
 }
 .hd-message-img img{
-	border-radius:50%;
+	border-radius:10%;
 }
 .hd-message-img.chat-img {
-    width: 50px;
-    margin-right: 15px;
+    width: 100px;
+    margin-left: 15px;
+    margin-right: 0px;
 }
 .search-people{
 	position: relative;

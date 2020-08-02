@@ -95,10 +95,17 @@ namespace MOCos_V1.Controllers
                     }
                     nivel = oUser.idTipoUsuario;
                     Session["User"] = oUser;
-                    if(nivel == 1)
+                    Session["name"] = oUser.Nombre + " " + oUser.ApellidoPaterno + " " + oUser.ApellidoMaterno;
+                    Session["profile"] = oUser.FotoPerfil;
+                    if (nivel == 1)
                     {
                         controlador = "Administrador";
                         action = "InicioAdmin";
+                    }
+                    if (nivel == 3)
+                    {
+                        controlador = "Alumno";
+                        action = "Inicio";
                     }
                     if (nivel == 4)
                     {

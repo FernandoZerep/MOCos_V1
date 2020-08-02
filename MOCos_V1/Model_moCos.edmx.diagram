@@ -7,18 +7,18 @@
       <Diagram DiagramId="ea501ae69e8349db9546c9cd42ca11c9" Name="Diagram1">
         <EntityTypeShape EntityType="mocOS_BDModel.Administrador" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="mocOS_BDModel.Alumnos" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="mocOS_BDModel.Clase" Width="1.5" PointX="12" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mocOS_BDModel.Clase" Width="1.5" PointX="15" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="mocOS_BDModel.Cuatrimestre" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="mocOS_BDModel.Grupo" Width="1.5" PointX="6" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mocOS_BDModel.HistorialAsesoria" Width="1.5" PointX="12" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mocOS_BDModel.HistorialAsesoria" Width="1.5" PointX="11.875" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="mocOS_BDModel.Materia" Width="1.5" PointX="7.5" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mocOS_BDModel.Portafolio" Width="1.5" PointX="14.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mocOS_BDModel.Portafolio" Width="1.5" PointX="16.25" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="mocOS_BDModel.Profesor" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="mocOS_BDModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="mocOS_BDModel.Temas" Width="1.5" PointX="9.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mocOS_BDModel.Temas" Width="1.5" PointX="12.75" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="mocOS_BDModel.TiposUsuarios" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="mocOS_BDModel.Usuario" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="mocOS_BDModel.Documentos" Width="1.5" PointX="14.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mocOS_BDModel.Documentos" Width="1.5" PointX="17.375" PointY="9.625" IsExpanded="true" />
         <AssociationConnector Association="mocOS_BDModel.FK_Administrador_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="mocOS_BDModel.FK_Alumnos_Cuatrimestre" ManuallyRouted="false" />
         <AssociationConnector Association="mocOS_BDModel.FK_Alumnos_Grupo" ManuallyRouted="false" />
@@ -32,7 +32,7 @@
         <AssociationConnector Association="mocOS_BDModel.FK_Materia_Profesor" ManuallyRouted="false" />
         <AssociationConnector Association="mocOS_BDModel.FK_Profesor_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="mocOS_BDModel.FK_Usuario_TiposUsuarios" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="mocOS_BDModel.Unidad" Width="1.5" PointX="9.75" PointY="13.625" />
+        <EntityTypeShape EntityType="mocOS_BDModel.Unidad" Width="1.5" PointX="10.375" PointY="9.75" />
         <AssociationConnector Association="mocOS_BDModel.FK_Unidad_Materia" />
         <AssociationConnector Association="mocOS_BDModel.FK_Temas_Unidad" />
       </Diagram>

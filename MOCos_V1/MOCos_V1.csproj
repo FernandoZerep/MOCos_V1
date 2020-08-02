@@ -501,7 +501,6 @@
     <Content Include="Content\Registrar\assets\scss\paper-bootstrap-wizard\mixins\_labels.scss" />
     <Content Include="Content\Registrar\assets\scss\paper-bootstrap-wizard\mixins\_transparency.scss" />
     <Content Include="Content\Registrar\assets\scss\paper-bootstrap-wizard\mixins\_vendor-prefixes.scss" />
-    <Content Include="Content\js\wave\waves.min.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -626,8 +625,7 @@
     <Content Include="Views\Shared\_LayoutAlumno.cshtml" />
     <Content Include="Views\Alumno\EditarProfesor.cshtml" />
     <Content Include="Views\Maestro\MostrarModulos.cshtml" />
-    <Content Include="Views\Home\Insertar_Alumno.cshtml" />
-    <Content Include="Views\Administrador\Insertar_Alumno_Administrador.cshtml" />
+    <Content Include="Views\Maestro\EditarUnidad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
