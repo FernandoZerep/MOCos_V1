@@ -393,43 +393,82 @@ namespace MOCos_V1.Controllers
             }
         }
 
-
-        public ActionResult Imagenes()
-        {
-            ViewBag.Message = "Your perfil.";
-
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult FileUpload(HttpPostedFileBase file)
+        [AuthorizeUser(idNivel: 4)]
+        public ActionResult EliminarTema(int id)
         {
             try
             {
-                var memStream = new MemoryStream();
-                file.InputStream.CopyTo(memStream);
-
-                byte[] fileData = memStream.ToArray();
-
-                //save file to database using fictitious repository
-                //bd.Documentos.Find();
-                //var repo = new  sd();
-                //repo.SaveFile(file.FileName, fileData);
-            }
-            catch (Exception exception)
-            {
-                return Json(new
+                using (mocOS_BDEntities bd = new mocOS_BDEntities())
                 {
-                    success = false,
-                    response = exception.Message
-                });
+
+                    //Obteniendo las clases
+                    List<Clase> LasClases = bd.Clase.Where(x => x.idTemas == id).ToList();
+
+                    //Obteniendo los historiales
+                    List<HistorialAsesoria> LosHistoriales = bd.HistorialAsesoria.Where(x => x.idTema == id).ToList();
+
+                    //Obteniendo los portafolios
+                    List<Portafolio> LosPortafolios = new List<Portafolio>();
+                    foreach (var c in LosHistoriales)
+                    {
+                        Portafolio ElPortafolio = bd.Portafolio.Where(x => x.idHistorial == c.idHistorial).FirstOrDefault();
+                        LosPortafolios.Add(ElPortafolio);
+                    }
+
+                    //Eliminando todo
+
+                    //Eliminando Documentos con id de clases
+                    foreach (var i in LasClases)
+                    {
+                        if (bd.Documentos.Find(i.idClase) != null)
+                        {
+                            bd.Documentos.Remove(bd.Documentos.Find(i.idClase));
+                            bd.SaveChanges();
+                        }
+                    }
+                    //Eliminando Clases 
+                    foreach (var i in LasClases)
+                    {
+                        if (bd.Clase.Find(i.idClase) != null)
+                        {
+                            bd.Clase.Remove(bd.Clase.Find(i.idClase));
+                            bd.SaveChanges();
+                        }
+                    }
+                    //Eliminado Portafolio
+                    foreach (var i in LosPortafolios)
+                    {
+                        if (bd.Portafolio.Find(i.idPortafolio) != null)
+                        {
+                            bd.Portafolio.Remove(bd.Portafolio.Find(i.idPortafolio));
+                            bd.SaveChanges();
+                        }
+                    }
+
+                    //Eliminando historiales
+                    foreach (var c in LosHistoriales)
+                    {
+                        if (bd.HistorialAsesoria.Find(c.idHistorial) != null)
+                        {
+                            bd.HistorialAsesoria.Remove(bd.HistorialAsesoria.Find(c.idHistorial));
+                            bd.SaveChanges();
+                        }
+                    }
+
+                    //Eliminando Tema
+
+                    Temas ElTema = bd.Temas.Find(id);
+                    bd.Temas.Remove(ElTema);
+                    bd.SaveChanges();
+                    return RedirectToAction("MostrarModulos");
+                }
+            }
+            catch (Exception msg)
+            {
+                ModelState.AddModelError("Error al borrar el tema", msg);
+                return View();
             }
 
-            return Json(new
-            {
-                success = true,
-                response = "File uploaded."
-            });
         }
 
     }
