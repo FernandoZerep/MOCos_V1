@@ -9,12 +9,28 @@
     <!--FIN CACHE TEMPORAL-->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - MOCOS</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <!--ELIMINA LINEAS BLANCAS DE ARRIBA Y ABAJOL-->
+    <!-- CSS Files -->
+    @*@Styles.Render("~/Content/Registrar/assets/css/bootstrap.min.css")*@
+    @Styles.Render("~/Content/Registrar/assets/css/paper-bootstrap-wizard.css")
+
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    @Styles.Render("~/Content/Registrar/assets/css/demo.css")
+
+
+    <!-- Fonts and Icons -->
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet" type="text/css">
+    @Styles.Render("~/Content/Registrar/assets/css/themify-icons.css")
+
     <style>
         body {
             padding-top: 0 !important;
@@ -24,7 +40,7 @@
 </head>
 <body>
     @{
-    Administrador Usuario = (Administrador)Session["Activo"];
+        Administrador Usuario = (Administrador)Session["Activo"];
     }
     <!--[if lt IE 8]>
                <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -141,7 +157,7 @@
                                             <a href="#aboutModal" data-toggle="modal" data-target="#myModal">
                                                 <h3>@Session["name"].ToString()</h3>
                                                 <p>Administrador</p>
-                                                </a>
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="hd-mg-va text-center">
@@ -204,7 +220,7 @@
                 <div class="modal-footer">
                     <center>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-info" >Editar</button>
+                        <button type="button" class="btn btn-info">Editar</button>
                     </center>
                 </div>
             </div>
@@ -362,4 +378,17 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+       @*Core JS Files*@   
+   @Scripts.Render("~/Content/Registrar/assets/js/jquery.bootstrap.wizard.js")
+
+      @*Plugin for the Wizard*@ 
+    @Scripts.Render("~/Content/Registrar/assets/js/demo.js")
+    @Scripts.Render("~/Content/Registrar/assets/js/paper-bootstrap-wizard.js")
+
+
+    @Scripts.Render("~/Content/Registrar/assets/js/jquery.validate.min.js")
+
+    @Scripts.Render("~/Content/Registrar/assets/js/paper-bootstrap-wizard.js")
+</body>
+</html>
 
