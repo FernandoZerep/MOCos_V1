@@ -36,6 +36,7 @@
         <AssociationConnector Association="mocOS_BDModel.FK_Unidad_Materia" />
         <AssociationConnector Association="mocOS_BDModel.FK_Temas_Unidad" />
         <AssociationConnector Association="mocOS_BDModel.FK_Profesor_Materia" />
+        <AssociationConnector Association="mocOS_BDModel.FK_Materia_Cuatrimestre" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

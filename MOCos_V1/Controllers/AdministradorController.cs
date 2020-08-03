@@ -205,6 +205,41 @@ namespace MOCos_V1.Controllers
             }
             base.Dispose(disposing);
         }
-
+        //CRUD PARA PROFESORES
+        [AuthorizeUser(idNivel: 1)]
+        public ActionResult ConsultaDocente()
+        {
+            try
+            {
+                using (mocOS_BDEntities bd = new mocOS_BDEntities())
+                {
+                    List<Profesor> lista = bd.Profesor.Include(u => u.Usuario).Include(m => m.Materia1).ToList();
+                    return View(lista);
+                }
+            }
+            catch (Exception msg)
+            {
+                ModelState.AddModelError("Error al consultar a los alumnos", msg);
+                return View();
+            }
+        }
+        //CRUD PARA MATERIAS
+        [AuthorizeUser(idNivel: 1)]
+        public ActionResult ConsultaMaterias ()
+        {
+            try
+            {
+                using (mocOS_BDEntities bd = new mocOS_BDEntities())
+                {
+                    List<Materia> lista = bd.Materia.Include(c => c.Cuatrimestre).Include(o => o.Profesor).Include(u=>u.Profesor.Usuario).ToList();
+                    return View(lista);
+                }
+            }
+            catch (Exception msg)
+            {
+                ModelState.AddModelError("Error al consultar a los alumnos", msg);
+                return View();
+            }
+        }
     }
 }

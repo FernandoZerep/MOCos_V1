@@ -2697,7 +2697,7 @@ hr {
     font-family: 'notika-icon';
     position: absolute;
     font-size: 14px;
-    right: 0px;
+    right: 6px;
     top: 8px;
 }
 .dataTables_wrapper .dataTables_filter input {
@@ -4596,6 +4596,7 @@ body.box-layout {
 .breadcomb-ctn h2{
 	font-size:20px;
 	color:#333;
+    margin-top:auto;
 }
 .breadcomb-ctn p{
 	font-size:14px;

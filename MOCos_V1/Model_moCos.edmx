@@ -74,6 +74,7 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
           <Property Name="idMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idCoordinador" Type="int" />
           <Property Name="NombreMateria" Type="varchar" MaxLength="80" />
+          <Property Name="idCuatrimestre" Type="int" />
         </EntityType>
         <EntityType Name="Portafolio">
           <Key>
@@ -252,6 +253,18 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Materia_Cuatrimestre">
+          <End Role="Cuatrimestre" Type="Self.Cuatrimestre" Multiplicity="0..1" />
+          <End Role="Materia" Type="Self.Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuatrimestre">
+              <PropertyRef Name="idCuatrimestre" />
+            </Principal>
+            <Dependent Role="Materia">
+              <PropertyRef Name="idCuatrimestre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Materia_Profesor">
           <End Role="Profesor" Type="Self.Profesor" Multiplicity="0..1" />
           <End Role="Materia" Type="Self.Materia" Multiplicity="*" />
@@ -395,6 +408,10 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
             <End Role="Temas" EntitySet="Temas" />
             <End Role="HistorialAsesoria" EntitySet="HistorialAsesoria" />
           </AssociationSet>
+          <AssociationSet Name="FK_Materia_Cuatrimestre" Association="Self.FK_Materia_Cuatrimestre">
+            <End Role="Cuatrimestre" EntitySet="Cuatrimestre" />
+            <End Role="Materia" EntitySet="Materia" />
+          </AssociationSet>
           <AssociationSet Name="FK_Materia_Profesor" Association="Self.FK_Materia_Profesor">
             <End Role="Profesor" EntitySet="Profesor" />
             <End Role="Materia" EntitySet="Materia" />
@@ -469,6 +486,7 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
           <Property Name="Carrera" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Especialidad" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Alumnos" Relationship="Self.FK_Alumnos_Cuatrimestre" FromRole="Cuatrimestre" ToRole="Alumnos" />
+          <NavigationProperty Name="Materia" Relationship="mocOS_BDModel.FK_Materia_Cuatrimestre" FromRole="Cuatrimestre" ToRole="Materia" />
         </EntityType>
         <EntityType Name="Grupo">
           <Key>
@@ -502,6 +520,8 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
           <NavigationProperty Name="Profesor" Relationship="Self.FK_Materia_Profesor" FromRole="Materia" ToRole="Profesor" />
           <NavigationProperty Name="Unidad" Relationship="mocOS_BDModel.FK_Unidad_Materia" FromRole="Materia" ToRole="Unidad" />
           <NavigationProperty Name="Profesor1" Relationship="mocOS_BDModel.FK_Profesor_Materia" FromRole="Materia" ToRole="Profesor" />
+          <Property Name="idCuatrimestre" Type="Int32" />
+          <NavigationProperty Name="Cuatrimestre" Relationship="mocOS_BDModel.FK_Materia_Cuatrimestre" FromRole="Materia" ToRole="Cuatrimestre" />
         </EntityType>
         <EntityType Name="Portafolio">
           <Key>
@@ -823,6 +843,10 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
             <End Role="Materia" EntitySet="Materia" />
             <End Role="Profesor" EntitySet="Profesor" />
           </AssociationSet>
+          <AssociationSet Name="FK_Materia_Cuatrimestre" Association="mocOS_BDModel.FK_Materia_Cuatrimestre">
+            <End Role="Cuatrimestre" EntitySet="Cuatrimestre" />
+            <End Role="Materia" EntitySet="Materia" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Unidad">
           <Key>
@@ -867,6 +891,18 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
             </Principal>
             <Dependent Role="Profesor">
               <PropertyRef Name="idMateriaEnseña" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materia_Cuatrimestre">
+          <End Type="mocOS_BDModel.Cuatrimestre" Role="Cuatrimestre" Multiplicity="0..1" />
+          <End Type="mocOS_BDModel.Materia" Role="Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuatrimestre">
+              <PropertyRef Name="idCuatrimestre" />
+            </Principal>
+            <Dependent Role="Materia">
+              <PropertyRef Name="idCuatrimestre" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -936,6 +972,7 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
           <EntitySetMapping Name="Materia">
             <EntityTypeMapping TypeName="mocOS_BDModel.Materia">
               <MappingFragment StoreEntitySet="Materia">
+                <ScalarProperty Name="idCuatrimestre" ColumnName="idCuatrimestre" />
                 <ScalarProperty Name="idMateria" ColumnName="idMateria" />
                 <ScalarProperty Name="idCoordinador" ColumnName="idCoordinador" />
                 <ScalarProperty Name="NombreMateria" ColumnName="NombreMateria" />
