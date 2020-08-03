@@ -113,7 +113,7 @@ namespace MOCos_V1.Controllers
                     }
                     if (nivel == 4)
                     {
-                        Session["Activo"] = db.Profesor.Include(u => u.Usuario).Include(t => t.Usuario.TiposUsuarios).Where(x => x.idUsuario == oUser.idUsuario).FirstOrDefault();
+                        Session["Activo"] = db.Profesor.Include(u => u.Usuario).Include(t => t.Usuario.TiposUsuarios).Include(m=>m.Materia1).Where(x => x.idUsuario == oUser.idUsuario).FirstOrDefault();
 
                         controlador = "Maestro";
                         action = "Perfil";

@@ -24,11 +24,13 @@ namespace MOCos_V1
         public int idProfesor { get; set; }
         public Nullable<int> idUsuario { get; set; }
         public string Cubo { get; set; }
+        public Nullable<int> idMateriaEnseña { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistorialAsesoria> HistorialAsesoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Materia> Materia { get; set; }
         public virtual Usuario Usuario { get; set; }
+        public virtual Materia Materia1 { get; set; }
     }
 }
