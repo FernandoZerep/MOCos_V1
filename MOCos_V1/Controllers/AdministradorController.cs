@@ -245,7 +245,7 @@ namespace MOCos_V1.Controllers
             bd.SaveChanges();
             insertar_imagen_profesor(iagen.GetBytes(),pro,Cubo);
 
-            return RedirectToAction("InicioAdmin");
+            return RedirectToAction("ConsultaDocente");
 
 
         }
