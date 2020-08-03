@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using MOCos_V1;
 using System.Data.Entity;
 using MOCos_V1.Filters;
+using System.IO;
 
 namespace MOCos_V1.Controllers
 {
@@ -392,6 +393,44 @@ namespace MOCos_V1.Controllers
             }
         }
 
+
+        public ActionResult Imagenes()
+        {
+            ViewBag.Message = "Your perfil.";
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult FileUpload(HttpPostedFileBase file)
+        {
+            try
+            {
+                var memStream = new MemoryStream();
+                file.InputStream.CopyTo(memStream);
+
+                byte[] fileData = memStream.ToArray();
+
+                //save file to database using fictitious repository
+                //bd.Documentos.Find();
+                //var repo = new  sd();
+                //repo.SaveFile(file.FileName, fileData);
+            }
+            catch (Exception exception)
+            {
+                return Json(new
+                {
+                    success = false,
+                    response = exception.Message
+                });
+            }
+
+            return Json(new
+            {
+                success = true,
+                response = "File uploaded."
+            });
+        }
 
     }
 }

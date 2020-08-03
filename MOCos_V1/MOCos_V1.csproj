@@ -631,6 +631,7 @@
     <Content Include="Views\Administrador\Insertar_Alumno_Administrador.cshtml" />
     <Content Include="Views\Home\Insertar_Alumno.cshtml" />
     <Content Include="Views\Administrador\PerfilAdmin.cshtml" />
+    <Content Include="Views\Maestro\Imagenes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
