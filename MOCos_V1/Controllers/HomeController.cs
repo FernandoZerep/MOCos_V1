@@ -155,7 +155,7 @@ namespace MOCos_V1.Controllers
             }
             else
             {
-                iagen = new WebImage("~/Content/Registrar/assets/img/default-avatar.jpg");
+                iagen = new WebImage("~/img/perfiles/noregister.png");
             }
             Usuario user = bd.Usuario.Create();
 
@@ -200,55 +200,6 @@ namespace MOCos_V1.Controllers
             }
             base.Dispose(disposing);
         }
-        [HttpGet]
-        public ActionResult Insertar_Alumno1()
-        {
-            var genero = new SelectList(new[] { "Masculino", "Femenino" });
-            ViewBag.genero = genero;
-            ViewBag.idCuatrimestre = new SelectList(bd.Cuatrimestre, "idCuatrimestre", "Grado");
-            ViewBag.idGrupo = new SelectList(bd.Grupo, "idGrupo", "Grupo1");
-            return View();
 
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Insertar_Alumno1(Alumnos Alu, string Nombre, string ApellidoP, string ApellidoM, string Correo, string Contrasena, string Direccion, string celular, string genero, string Fecha)
-        {
-            WebImage iagen;
-            HttpPostedFileBase FileBase = Request.Files[0];
-            if (FileBase.InputStream.Length != 0)
-            {
-
-                iagen = new WebImage(FileBase.InputStream);
-            }
-            else
-            {
-                iagen = new WebImage("~/Content/Registrar/assets/img/default-avatar.jpg");
-            }
-            Usuario user = bd.Usuario.Create();
-
-            if (genero == "Masculino")
-                user.Genero = "M";
-            else
-                user.Genero = "F";
-
-            user.Nombre = Nombre;
-            user.ApellidoPaterno = ApellidoP;
-            user.ApellidoMaterno = ApellidoM;
-            user.Contrasena = Contrasena;
-            user.Correo = Correo;
-            user.Dirección = Direccion;
-            user.Telefono = celular;
-            user.FechaDeNacimiento = Convert.ToDateTime(Fecha);
-            user.idTipoUsuario = 3;
-            bd.Usuario.Add(user);
-            bd.Alumnos.Add(Alu);
-            bd.SaveChanges();
-            insertar(iagen.GetBytes(), Alu);
-
-            return RedirectToAction("Login");
-
-
-        }
     }
 }

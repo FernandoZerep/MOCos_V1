@@ -74,6 +74,9 @@ transparent = true;
                         minlength: 10,
                         maxlength:10
                     },
+                    Fecha: {
+                        required: true
+                    },
                     genero: {
                         required: true,
                     },

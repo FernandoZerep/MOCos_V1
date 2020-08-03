@@ -159,7 +159,7 @@ namespace MOCos_V1.Controllers
             }
             else
             {
-                iagen = new WebImage("~/Content/Registrar/assets/img/default-avatar.jpg");
+                iagen = new WebImage("~/img/perfiles/noregister.png");
             }
             Usuario user = bd.Usuario.Create();
 

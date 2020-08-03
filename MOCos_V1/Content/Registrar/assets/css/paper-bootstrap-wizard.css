@@ -1240,7 +1240,7 @@ input[type="button"]:focus {
   border-color: #2ca8ff;
 }
 .wizard-card .picture-src {
-  width: 100%;
+  height: 100%;
 }
 .wizard-card[data-color="azure"] .picture:hover {
   border-color: #7A9E9F;
