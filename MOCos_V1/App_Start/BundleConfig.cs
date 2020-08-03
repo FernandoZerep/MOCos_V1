@@ -69,6 +69,12 @@ namespace MOCos_V1
                                      "~/Content/css/main.css",
                                       "~/Content/css/style.css",
                                          "~/Content/css/responsive.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/dropzone")
+            .Include("~/Content/js/dropzone/dropzone.js"));
+
+            bundles.Add(new StyleBundle("~/Content/dropzone-css")
+                        .Include("~/Content/dropzone.css"));
         }
     }
 }
