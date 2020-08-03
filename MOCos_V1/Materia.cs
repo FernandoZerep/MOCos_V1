@@ -18,6 +18,7 @@ namespace MOCos_V1
         public Materia()
         {
             this.Unidad = new HashSet<Unidad>();
+            this.Profesor1 = new HashSet<Profesor>();
         }
     
         public int idMateria { get; set; }
@@ -27,5 +28,7 @@ namespace MOCos_V1
         public virtual Profesor Profesor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Unidad> Unidad { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Profesor> Profesor1 { get; set; }
     }
 }

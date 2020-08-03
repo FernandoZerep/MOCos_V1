@@ -17,6 +17,7 @@ namespace MOCos_V1
         public int idClase { get; set; }
         public byte[] Documento { get; set; }
         public string Link { get; set; }
+        public string realName { get; set; }
     
         public virtual Clase Clase { get; set; }
     }
