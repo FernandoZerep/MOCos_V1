@@ -1,7 +1,7 @@
 ﻿@model MOCos_V1.Alumnos
 
 @{
-    ViewBag.Title = "Registrarse";
+    ViewBag.Title = "Registro";
     Layout = null;
 }
 
@@ -74,19 +74,21 @@
                                             </a>
                                         </li>
                                         <li>
+                                            <a href="#Estudio" data-toggle="tab">
+                                                <div class="icon-circle">
+                                                    <i class="ti-book"></i>
+
+                                                </div>
+                                                Académico
+                                               
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="#Contacto1" data-toggle="tab">
                                                 <div class="icon-circle">
                                                     <i class="ti-agenda"></i>
                                                 </div>
                                                 Contacto
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#Estudio" data-toggle="tab">
-                                                <div class="icon-circle">
-                                                    <i class="ti-book"></i>
-                                                </div>
-                                                Académico
                                             </a>
                                         </li>
                                     </ul>
@@ -146,9 +148,45 @@
 
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="Contacto1">
-                                        <h5 class="info-text"> Otra forma de contactarlo </h5>
+                                    <div class="tab-pane" id="Estudio">
+                                        <h5 class="info-text"> Necesitamos tu información académica </h5>
                                         <div class="row">
+                                            <div class="col-sm-2"></div>
+                                            <div class="col-sm-8" style="text-align:center">
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.idCuatrimestre, htmlAttributes: new { @class = "control-label" })<br />
+                                                    <div class="col-md-12">
+                                                        @Html.DropDownList("idCuatrimestre", null, "Seleccione su cuatrimestre", htmlAttributes: new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.idCuatrimestre, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.idGrupo, htmlAttributes: new { @class = "control-label" })<br />
+                                                    <div class="col-md-12">
+                                                        @Html.DropDownList("idGrupo", null, "Seleccione su grupo", htmlAttributes: new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.idGrupo, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.Matricula, htmlAttributes: new { @class = "control-label" })<br />
+                                                    <div class="col-md-12">
+                                                        @Html.Editor("Matricula", new { htmlAttributes = new { @class = "form-control"} })
+                                                        @Html.ValidationMessageFor(model => model.Matricula, "", new { @class = "text-danger" })
+                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2"></div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane" id="Contacto1">
+                                        <h5 class="info-text">  Otra forma de contactarlo </h5>
+
+                                        <div class="row">
+
                                             <div class="col-sm-2"></div>
                                             <div class="col-sm-8" style="text-align:center">
                                                 <div class="form-group">
@@ -168,44 +206,16 @@
                                                 <div class="form-group">
                                                     @Html.LabelFor(model => model.Usuario.FechaDeNacimiento, htmlAttributes: new { @class = "control-label" })<br />
                                                     <div class="col-md-12">
-                                                       @Html.Editor("Fecha", new { htmlAttributes = new { @class = "form-control", @Type = "Date" } })
-                                                       @Html.ValidationMessageFor(model => model.Usuario.FechaDeNacimiento, "", new { @class = "text-danger" })
+                                                        @Html.Editor("Fecha", new { htmlAttributes = new { @class = "form-control", @Type = "Date" } })
+                                                        @Html.ValidationMessageFor(model => model.Usuario.FechaDeNacimiento, "", new { @class = "text-danger" })
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     @Html.LabelFor(model => model.Usuario.Genero, htmlAttributes: new { @class = "control-label" })<br />
                                                     <div class="col-md-12">
-                                                         @Html.DropDownList("genero", null,"Seleccione su genero", htmlAttributes: new { @class = "form-control" })
-                                                       
-                                                         @Html.ValidationMessageFor(model => model.Usuario.Genero, "", new { @class = "text-danger" })
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-2"></div>
+                                                        @Html.DropDownList("genero", null, "Seleccione su genero", htmlAttributes: new { @class = "form-control" })
 
-                                        </div>
-                                    </div>
-
-                                    <div class="tab-pane" id="Estudio">
-                                        <h5 class="info-text"> Necesitamos tu información académica </h5>
-
-                                        <div class="row">
-
-                                            <div class="col-sm-2"></div>
-                                            <div class="col-sm-8">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(model => model.idCuatrimestre, htmlAttributes: new { @class = "control-label" })<br />
-                                                    <div class="col-md-12">
-                                                        @Html.DropDownList("idCuatrimestre", null,"Seleccione su cuatrimestre", htmlAttributes: new { @class = "form-control" })
-                                                        @Html.ValidationMessageFor(model => model.idCuatrimestre, "", new { @class = "text-danger" })
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    @Html.LabelFor(model => model.idGrupo, htmlAttributes: new { @class = "control-label" })<br />
-                                                    <div class="col-md-12">
-                                                        @Html.DropDownList("idGrupo", null,"Seleccione su grupo", htmlAttributes: new { @class = "form-control" })
-                                                        @Html.ValidationMessageFor(model => model.idGrupo, "", new { @class = "text-danger" })
+                                                        @Html.ValidationMessageFor(model => model.Usuario.Genero, "", new { @class = "text-danger" })
                                                     </div>
                                                 </div>
                                             </div>

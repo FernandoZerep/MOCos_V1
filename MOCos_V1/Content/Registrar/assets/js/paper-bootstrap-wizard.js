@@ -85,6 +85,13 @@ transparent = true;
                     },
                     idGrupo: {
                         required: true,
+                    },
+                    Matricula: {
+                        required: true,
+                        minlength: 10,
+                    },
+                    Cubo: {
+                        required: true,
                     }
                 },
         	});
