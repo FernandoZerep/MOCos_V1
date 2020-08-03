@@ -141,11 +141,10 @@
                                             <a href="#aboutModal" data-toggle="modal" data-target="#myModal">
                                                 <h3>@Session["name"].ToString()</h3>
                                                 <p>Administrador</p>
-                                                </a>
+                                            </a>
+                                            <button class="btn btn-danger btn-icon-notika waves-effect" onclick="location.href='@Url.Action("Cerrar", "Administrador")'"><i class="notika-icon notika-close"></i> Cerrar sesión</button>
+
                                         </div>
-                                    </div>
-                                    <div class="hd-mg-va text-center">
-                                        <button class="btn btn-danger btn-icon-notika waves-effect" onclick="location.href='@Url.Action("Cerrar", "Administrador")'"><i class="notika-icon notika-close"></i> Cerrar sesión</button>
                                     </div>
                                 </div>
                             </li>
@@ -342,6 +341,7 @@
     @RenderBody()
 
     <!-- Start Footer area-->
+<footer>
     <div class="footer-copyright-area">
         <div class="container">
             <div class="row">
@@ -356,6 +356,7 @@
             </div>
         </div>
     </div>
+</footer>
 
 
     <!-- End Footer area-->
