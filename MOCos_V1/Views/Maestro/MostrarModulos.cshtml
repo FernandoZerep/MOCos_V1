@@ -6,6 +6,18 @@
     Layout = "~/Views/Shared/_LayoutMaestro.cshtml";
 }
 
+@Styles.Render("~/Content/Registrar/assets/css/paper-bootstrap-wizard.css")
+
+
+<!-- CSS Just for demo purpose, don't include it in your project -->
+@Styles.Render("~/Content/Registrar/assets/css/demo.css")
+
+
+<!-- Fonts and Icons -->
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet" type="text/css">
+@Styles.Render("~/Content/Registrar/assets/css/themify-icons.css")
+
 <div class="container">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -35,123 +47,124 @@
 </div>
 <br />
 <!-- Inbox area Start-->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="inbox-text-list sm-res-mg-t-30">
-                    <div class="accordion-stn">
-                        <div class="panel-group" data-collapse-color="nk-green" id="accordionGreen" role="tablist" aria-multiselectable="false">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="inbox-text-list sm-res-mg-t-30">
+                <div class="accordion-stn">
+                    <div class="panel-group" data-collapse-color="nk-green" id="accordionGreen" role="tablist" aria-multiselectable="false">
 
-                            <!--Foreach para mostrar unidad y temas juntos-->
-                            @foreach (var c in Model)
-                            {
-                                <div class="panel panel-collapse notika-accrodion-cus">
-                                    <div class="panel-heading" role="tab" style="width:100%;" >
-                                        <table class="table table-condensed" style="width:100%; padding-top:0px;">
-                                            <tr>
-                                                <th style="text-align:left;">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordionGreen" href="#@c.idUnidad" aria-expanded="false">
-                                                            @Html.DisplayFor(modelItem => c.nombre)
-                                                        </a>
-                                                    </h4>
-                                                </th>
-                                                <th style="text-align:right;">
-                                                        <button type="button" onclick="location.href='@Url.Action("EditarTema","Maestro",new { id = c.idUnidad})'" class="btn btn-info glyphicon glyphicon-edit"> Editar </button> &nbsp;
-                                                        <button type="button" class="btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#alert-@c.idUnidad">Eliminar</button>
-                                                        <div class="modal fade" id="alert-@c.idUnidad" role="dialog">
-                                                            <div class="modal-dialog modals-default">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                    </div>
-                                                                    <div class="modal-body" style="text-align:left;">
-                                                                        <h2>Eliminar</h2>
-                                                                        <p>¿Seguro que desea eliminar <b>@c.nombre</b>?</p>
-                                                                        <p>Esta accion eliminara permanentemente todos los documentos, temas y registros de alumnos que hayan tomado dicha asesoria</p>
-                                                                        <p>Esta accion no se puede restablecer ;v</p>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        @Html.ActionLink("Eliminar", "EliminarUnidad", new { id = c.idUnidad }, new { @class = "btn btn-danger" })
-                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                                                    </div>
-                                                                </div>
+                        <!--Foreach para mostrar unidad y temas juntos-->
+                        @foreach (var c in Model)
+                        {
+                            <div class="panel panel-collapse notika-accrodion-cus">
+                                <div class="panel-heading" role="tab" style="width:100%;">
+                                    <table class="table table-condensed" style="width:100%; padding-top:0px;">
+                                        <tr>
+                                            <th style="text-align:left;">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordionGreen" href="#@c.idUnidad" aria-expanded="false">
+                                                        @Html.DisplayFor(modelItem => c.nombre)
+                                                    </a>
+                                                </h4>
+                                            </th>
+                                            <th style="text-align:right;">
+                                                @Html.ActionLink(" ", "EditarUnidad", new { id = c.idUnidad }, new { @class = "btn btn-info glyphicon glyphicon-edit" }) &nbsp;
+                                                <button type="button" class="btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#alert-@c.idUnidad"></button>
+                                                <div class="modal fade" id="alert-@c.idUnidad" role="dialog">
+                                                    <div class="modal-dialog modals-default">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body" style="text-align:left;">
+                                                                <h2>Eliminar</h2>
+                                                                <p>¿Seguro que desea eliminar <b>@c.nombre</b>?</p>
+                                                                <p>Esta accion eliminara permanentemente todos los documentos, temas y registros de alumnos que hayan tomado dicha asesoria</p>
+                                                                <p>Esta accion no se puede restablecer ;v</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                @Html.ActionLink(" ", "EliminarUnidad", new { id = c.idUnidad }, new { @class = "btn btn-danger" })
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                                             </div>
                                                         </div>
-</th>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div id="@c.idUnidad" class="collapse" role="tabpanel">
-                                        <div class="panel-body">
-                                            <div class="bsc-tbl">
-                                                    <div class="row">
-                                                        <div class="breadcomb-report">
-                                                            <button onclick="location.href='@Url.Action("InsertarTema","Maestro",new { id = c.idUnidad})'" data-toggle="tooltip" data-placement="left" title="Agregar Tema" class="btn"><i class="glyphicon glyphicon-plus"></i></button>
-                                                        </div>
                                                     </div>
-                                                <table class="table table-sc-ex">
-                                                    <thead>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div id="@c.idUnidad" class="collapse" role="tabpanel">
+                                    <div class="panel-body">
+                                        <div class="bsc-tbl">
+                                            <div class="row">
+                                                <div class="breadcomb-report">
+                                                    <button onclick="location.href='@Url.Action("InsertarTema","Maestro",new { id = c.idUnidad})'" data-toggle="tooltip" data-placement="left" title="Agregar Tema" class="btn"><i class="glyphicon glyphicon-plus"></i></button>
+                                                </div>
+                                            </div>
+                                            <table class="table table-sc-ex">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            ID
+                                                        </th>
+                                                        <th>
+                                                            Tema
+                                                        </th>
+                                                        <th>
+                                                            Operaciones
+                                                        </th>
+
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    @foreach (var item in LosTemas.Where(x => x.idUnidad == c.idUnidad))
+                                                    {
                                                         <tr>
-                                                            <th>
-                                                                ID
-                                                            </th>
-                                                            <th>
-                                                                Tema
-                                                            </th>
-                                                            <th>
-                                                                Operaciones
-                                                            </th>
-
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-
-                                                        @foreach (var item in LosTemas.Where(x => x.idUnidad == c.idUnidad))
-                                                        {
-                                                            <tr>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.idTema)
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.Nombre)
-                                                                </td>
-                                                                <td>
-                                                                    @Html.ActionLink("Editar", "EditarTema", new { id = item.idTema }, new { @class = "btn btn-info glyphicon glyphicon-edit" }) &nbsp;
-                                                                    <button type="button" class="btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#otroalert-@item.idTema">Eliminar</button>
-                                                                    <div class="modal fade" id="otroalert-@item.idTema" role="dialog">
-                                                                        <div class="modal-dialog modals-default">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-header">
-                                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                                </div>
-                                                                                <div class="modal-body">
-                                                                                    <h2>Eliminar</h2>
-                                                                                    <p>¿Seguro que desea eliminar <b>@item.Nombre</b>  de la Unidad?</p>
-                                                                                    <p>Esta accion eliminara permanentemente el tema seleccionado</p>
-                                                                                </div>
-                                                                                <div class="modal-footer">
-                                                                                    @Html.ActionLink("Eliminar", "EliminarUnidad", new { id = item.idTema }, new { @class = "btn btn-danger" })
-                                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                                                                </div>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.idTema)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Nombre)
+                                                            </td>
+                                                            <td>
+                                                                @Html.ActionLink(" ", "EditarTema", new { id = item.idTema }, new { @class = "btn btn-info glyphicon glyphicon-edit" }) &nbsp;
+                                                                @Html.ActionLink(" ", "", new { id = item.idTema }, new { @class = "btn btn-warning glyphicon glyphicon-share" }) &nbsp;
+                                                                <button type="button" class="btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#otroalert-@item.idTema"></button>
+                                                                <div class="modal fade" id="otroalert-@item.idTema" role="dialog">
+                                                                    <div class="modal-dialog modals-default">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <h2>Eliminar</h2>
+                                                                                <p>¿Seguro que desea eliminar <b>@item.Nombre</b>  de la Unidad?</p>
+                                                                                <p>Esta accion eliminara permanentemente el tema seleccionado</p>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                @Html.ActionLink(" ", "EliminarTema", new { id = item.idTema }, new { @class = "btn btn-danger" })
+                                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </td>
-                                                            </tr>
-                                                        }
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
-
                                 </div>
-                             }
-                        </div>
+
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
