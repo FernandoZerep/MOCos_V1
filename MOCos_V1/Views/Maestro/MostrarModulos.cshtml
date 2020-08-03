@@ -69,8 +69,8 @@
                                                 </h4>
                                             </th>
                                             <th style="text-align:right;">
-                                                <button type="button" onclick="location.href='@Url.Action("EditarTema","Maestro",new { id = c.idUnidad})'" class="btn btn-info glyphicon glyphicon-edit"> Editar </button> &nbsp;
-                                                <button type="button" class="btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#alert-@c.idUnidad">Eliminar</button>
+                                                @Html.ActionLink(" ", "EditarUnidad", new { id = c.idUnidad }, new { @class = "btn btn-info glyphicon glyphicon-edit" }) &nbsp;
+                                                <button type="button" class="btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#alert-@c.idUnidad"></button>
                                                 <div class="modal fade" id="alert-@c.idUnidad" role="dialog">
                                                     <div class="modal-dialog modals-default">
                                                         <div class="modal-content">
@@ -84,7 +84,7 @@
                                                                 <p>Esta accion no se puede restablecer ;v</p>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                @Html.ActionLink("Eliminar", "EliminarUnidad", new { id = c.idUnidad }, new { @class = "btn btn-danger" })
+                                                                @Html.ActionLink(" ", "EliminarUnidad", new { id = c.idUnidad }, new { @class = "btn btn-danger" })
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                                             </div>
                                                         </div>
@@ -130,9 +130,9 @@
                                                                 @Html.DisplayFor(modelItem => item.Nombre)
                                                             </td>
                                                             <td>
-                                                                @Html.ActionLink("Editar", "EditarTema", new { id = item.idTema }, new { @class = "btn btn-info glyphicon glyphicon-edit" }) &nbsp;
-                                                                @Html.ActionLink("Detalles", "", new { id = item.idTema }, new { @class = "btn btn-warning glyphicon glyphicon-share" }) &nbsp;
-                                                                <button type="button" class="btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#otroalert-@item.idTema">Eliminar</button>
+                                                                @Html.ActionLink(" ", "EditarTema", new { id = item.idTema }, new { @class = "btn btn-info glyphicon glyphicon-edit" }) &nbsp;
+                                                                @Html.ActionLink(" ", "", new { id = item.idTema }, new { @class = "btn btn-warning glyphicon glyphicon-share" }) &nbsp;
+                                                                <button type="button" class="btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#otroalert-@item.idTema"></button>
                                                                 <div class="modal fade" id="otroalert-@item.idTema" role="dialog">
                                                                     <div class="modal-dialog modals-default">
                                                                         <div class="modal-content">
@@ -145,7 +145,7 @@
                                                                                 <p>Esta accion eliminara permanentemente el tema seleccionado</p>
                                                                             </div>
                                                                             <div class="modal-footer">
-                                                                                @Html.ActionLink("Eliminar", "EliminarTema", new { id = item.idTema }, new { @class = "btn btn-danger" })
+                                                                                @Html.ActionLink(" ", "EliminarTema", new { id = item.idTema }, new { @class = "btn btn-danger" })
                                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                                                             </div>
                                                                         </div>
