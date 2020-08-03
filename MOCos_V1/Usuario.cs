@@ -37,12 +37,12 @@ namespace MOCos_V1
         public string Contrasena { get; set; }
 
         [Required(ErrorMessage = "{0} es requerido")]
-        [MinLength(5, ErrorMessage = "{0} Debe terner una logitud mayor o igual a 5 caracteres")]
+        [MinLength(4, ErrorMessage = "{0} Debe terner una logitud mayor o igual a 4 caracteres")]
         [DisplayName("Apellidos Materno")]
         public string ApellidoMaterno { get; set; }
 
         [Required(ErrorMessage = "{0} es requerido")]
-        [MinLength(5, ErrorMessage = "{0} Debe terner una logitud mayor o igual a 5 caracteres")]
+        [MinLength(4, ErrorMessage = "{0} Debe terner una logitud mayor o igual a 4 caracteres")]
         [DisplayName("Apellido Paterno")]
         public string ApellidoPaterno { get; set; }
 
