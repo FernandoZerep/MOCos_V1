@@ -38,7 +38,7 @@
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <div class="header-top-menu">
                         <ul class="nav navbar-nav notika-top-nav">
-                          
+
                             <li class="nav-item">
                                 <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span><i class="glyphicon glyphicon-user"></i></span></a>
                                 <div role="menu" class="dropdown-menu message-dd chat-dd animated zoomIn">
@@ -57,7 +57,7 @@
                                             <button class="btn btn-success btn-icon-notika waves-effect" onclick="location.href='@Url.Action("Login", "Home")'"><i class="notika-icon notika-checked"></i> Inicia Sesión</button>
 
                                         </div>
-                                    </div>  
+                                    </div>
                                 </div>
                             </li>
                         </ul>
@@ -77,20 +77,20 @@
                             <ul class="mobile-menu-nav">
                                 <li>
                                     <a data-toggle="collapse" data-target="#Charts" href="#">Inicio</a>
-                 
+
                                 </li>
                                 <li>
                                     <a data-toggle="collapse" data-target="#demoevent" href="#">Contacto</a>
-                                   
-                                        
-                                   
+
+
+
                                 </li>
                                 <li>
                                     <a data-toggle="collapse" data-target="#democrou" href="#">Mapa</a>
-                                   
+
                                 </li>
-           
-                               
+
+
                             </ul>
                         </nav>
                     </div>
@@ -104,24 +104,24 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-                        <li class="active">
-                            <a data-toggle="tab" href="#Index"><i class="notika-icon notika-house"></i> Inicio</a>
-                        </li>
-                        <li>
-                            <a data-toggle="tab" href="#Contact"><i class="notika-icon notika-mail"></i> Contacto</a>
-                        </li>
-                        <li>
-                            <a data-toggle="tab" href="#About"><i class="glyphicon glyphicon-map-marker"></i> Mapa</a>
-                        </li>
-                        
-                    </ul>
-                   
-                     
-                   </div>
-                </div>
+                    
+                        <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
+                            <li>
+                                <a data-toggle="tab" href="#Index" onclick="location.href='@Url.Action("Index", "Home")'"><i class="notika-icon notika-house"></i> Inicio</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#Contact" onclick="location.href='@Url.Action("Contact", "Home")'"><i class="notika-icon notika-mail"></i> Contacto</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#Mapa" onclick="location.href='@Url.Action("Mapa", "Home")'"><i class="glyphicon glyphicon-map-marker"></i> Mapa</a>
+                            </li>
+
+                        </ul>
+                       
+</div>
             </div>
-       </div>
+        </div>
+    </div>
     <!-- Main Menu area End-->
     @RenderBody()
 
@@ -144,5 +144,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+   
 </body>
 </html>

@@ -596,7 +596,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Mapa.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Maestro\Perfil.cshtml" />
     <Content Include="Views\Maestro\Modulos.cshtml" />
@@ -635,6 +635,8 @@
     <Content Include="Views\Administrador\ConsultaDocente.cshtml" />
     <Content Include="Views\Administrador\ConsultaMaterias.cshtml" />
     <Content Include="Views\Administrador\Insertar_Profesor_Administrador.cshtml" />
+    <Content Include="Views\Alumno\Mapa.cshtml" />
+    <Content Include="Views\Alumno\Contacto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
