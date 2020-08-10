@@ -28,6 +28,18 @@ namespace MOCos_V1.Controllers
             return View();
         }
         [AuthorizeUser(idNivel: 1)]
+        public ActionResult ContactoAdmin()
+        {
+
+            return View();
+        }
+        [AuthorizeUser(idNivel: 1)]
+        public ActionResult MapaAdmin()
+        {
+
+            return View();
+        }
+        [AuthorizeUser(idNivel: 1)]
         public ActionResult Cerrar()
         {
             Session["User"] = null;
@@ -153,6 +165,11 @@ namespace MOCos_V1.Controllers
                     }
                     else
                     {
+                        Administrador nuevo = bd.Administrador.Include(a => a.Usuario).Include(b => b.Usuario.TiposUsuarios).Where(x => x.idUsuario == obj.idUsuario).FirstOrDefault();
+                        Session["User"] = nuevo.Usuario;
+                        Session["name"] = nuevo.Usuario.Nombre + " " + nuevo.Usuario.ApellidoPaterno + " " + nuevo.Usuario.ApellidoMaterno;
+                        Session["profile"] = nuevo.Usuario.FotoPerfil;
+                        Session["Activo"] = nuevo;
                         return RedirectToAction("InicioAdmin");
                     }
                     

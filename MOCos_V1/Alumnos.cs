@@ -13,6 +13,8 @@ namespace MOCos_V1
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel;
+    using System.Web.Mvc;
+
     public partial class Alumnos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,13 +25,17 @@ namespace MOCos_V1
     
         public int idAlumno { get; set; }
         [DisplayName("Nombre(s)")]
+
         public Nullable<int> idUsuario { get; set; }
+        public IEnumerable<SelectListItem> UserList { get; set; }
 
         [DisplayName( "Cuatrimestre")]
         public Nullable<int> idCuatrimestre { get; set; }
+        public IEnumerable<SelectListItem> UserCuatri { get; set; }
 
         [DisplayName ( "Grupo")]
         public Nullable<int> idGrupo { get; set; }
+        public IEnumerable<SelectListItem> UserGrupo { get; set; }
 
         [Required(ErrorMessage = "{0} es requerido")]
         [MinLength(4, ErrorMessage = "{0} Debe terner una logitud mayor o igual a 4 caracteres")]

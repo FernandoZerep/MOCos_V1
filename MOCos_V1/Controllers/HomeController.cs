@@ -25,10 +25,13 @@ namespace MOCos_V1.Controllers
             return View();
         }
 
-        public ActionResult About()
+        //public ActionResult About()
+        //{
+           
+        //    return View();
+        //}
+        public ActionResult Mapa()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
