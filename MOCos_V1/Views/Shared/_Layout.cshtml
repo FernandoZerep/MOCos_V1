@@ -220,7 +220,7 @@
                 <div class="modal-footer">
                     <center>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-info">Editar</button>
+                        @Html.ActionLink("Editar", "EditarAdminAdmin", new { id = Usuario.idUsuario }, new { @class = "btn btn-info" })
                     </center>
                 </div>
             </div>

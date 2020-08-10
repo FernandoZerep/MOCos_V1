@@ -13,6 +13,8 @@ namespace MOCos_V1
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
     public partial class Usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -60,12 +62,16 @@ namespace MOCos_V1
         [DisplayName("Género")]
 
         public string Genero { get; set; }
+        public IEnumerable<SelectListItem> UserGenList { get; set; }
         [Required(ErrorMessage = "{0} es requerido")]
         [DataType(DataType.Date)]
         [DisplayName("Fecha de nacimiento")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
         public Nullable<System.DateTime> FechaDeNacimiento { get; set; }
         public byte[] FotoPerfil { get; set; }
         public Nullable<int> idTipoUsuario { get; set; }
+        public IEnumerable<SelectListItem> UserTipoList { get; set; }
 
         [Required(ErrorMessage = "{0} es requerido")]
         [DataType(DataType.EmailAddress)]
