@@ -161,7 +161,7 @@ namespace MOCos_V1.Controllers
                         Session["User"] = null;
                         Session["name"] = null;
                         Session["profile"] = null;
-                        return RedirectToAction("Index", "Login");
+                        return RedirectToAction("Login", "Home");
                     }
                     else
                     {
