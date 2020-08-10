@@ -256,6 +256,7 @@
     <Content Include="Content\css\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\css\fonts\notika-icon.svg" />
+    <Content Include="Content\dropzone.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fonts\notika-icon.svg" />
@@ -639,6 +640,10 @@
     <Content Include="Views\Administrador\ConsultaDocente.cshtml" />
     <Content Include="Views\Administrador\ConsultaMaterias.cshtml" />
     <Content Include="Views\Administrador\Insertar_Profesor_Administrador.cshtml" />
+    <Content Include="Views\Administrador\EditarAdminAdmin.cshtml" />
+    <Content Include="Views\Administrador\EditarOnlyUser.cshtml" />
+    <Content Include="Views\Maestro\MostrarDocumentos.cshtml" />
+    <Content Include="Views\Maestro\EditarTema.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -40,6 +40,134 @@ namespace MOCos_V1.Controllers
         {
             return View();
         }
+
+        //EDITPROFILE
+        [AuthorizeUser(idNivel: 1)]
+        [HttpGet]
+        public ActionResult EditarAdminAdmin(int id)
+        {
+            try
+            {
+
+                Administrador obj = bd.Administrador.Include(u=>u.Usuario).Include(t=>t.Usuario.TiposUsuarios).Where(i => i.idUsuario == id).FirstOrDefault();
+                //el primer userlist no es necesario pero que se quede mientras
+                obj.UserList = new SelectList(bd.Usuario, "idUsuario", "Nombre");
+                obj.Usuario.UserTipoList = new SelectList(bd.TiposUsuarios, "idTipo", "Nombre");
+                var gene = new[] {
+                                  new Person { Id = "F", Name = "Femenino" },
+                                  new Person { Id = "M", Name = "Masculino" }
+                                  };
+                obj.Usuario.UserGenList = new SelectList(gene, "Id", "Name");
+                //ViewBag.idUsuario = new SelectList(bd.Usuario, "idUsuario", "Nombre");
+                //ViewBag.selectusuario = obj.idUsuario;
+                //ViewBag.idCuatrimestre = new SelectList(bd.Cuatrimestre, "idCuatrimestre", "Grado");
+                //ViewBag.selectcuatrimestre = obj.idCuatrimestre;
+                //ViewBag.idGrupo = new SelectList(bd.Grupo, "idGrupo", "Grupo1");
+                //ViewBag.selectgrupo = obj.idGrupo;
+                return View(obj);
+
+            }
+            catch (Exception msg)
+            {
+                ModelState.AddModelError("Error al editar a la Alumno", msg);
+                return View();
+            }
+        }
+
+        public class Person
+        {
+            public string Id { get; set; }
+            public string Name { get; set; }
+        }
+        //EDITPROFILE
+        [AuthorizeUser(idNivel: 1)]
+        [HttpGet]
+        public ActionResult EditarOnlyUser(int id)
+        {
+            try
+            {
+
+                Usuario obj = bd.Usuario.Include(u => u.Administrador).Include(t => t.TiposUsuarios).Where(i => i.idUsuario == id).FirstOrDefault();
+                obj.UserTipoList = new SelectList(bd.TiposUsuarios, "idTipo", "Nombre");
+                var gene = new[] {
+                                  new Person { Id = "F", Name = "Femenino" },
+                                  new Person { Id = "M", Name = "Masculino" }
+                                  };
+                obj.UserGenList = new SelectList(gene, "Id", "Name");
+                //ViewBag.idUsuario = new SelectList(bd.Usuario, "idUsuario", "Nombre");
+                //ViewBag.selectusuario = obj.idUsuario;
+                //ViewBag.idCuatrimestre = new SelectList(bd.Cuatrimestre, "idCuatrimestre", "Grado");
+                //ViewBag.selectcuatrimestre = obj.idCuatrimestre;
+                //ViewBag.idGrupo = new SelectList(bd.Grupo, "idGrupo", "Grupo1");
+                //ViewBag.selectgrupo = obj.idGrupo;
+                return View(obj);
+
+            }
+            catch (Exception msg)
+            {
+                ModelState.AddModelError("Error al editar a la Alumno", msg);
+                return View();
+            }
+        }
+        [AuthorizeUser(idNivel: 1)]
+        [HttpPost]
+        public ActionResult EditarAdminAdmin(Administrador obj)
+        {
+            try
+            {
+                using (mocOS_BDEntities bd = new mocOS_BDEntities())
+                {
+                    Administrador existe = bd.Administrador.Include(u => u.Usuario).Include(t => t.Usuario.TiposUsuarios).Where(x => x.idUsuario == obj.idUsuario).SingleOrDefault();
+                    WebImage iagen;
+                    HttpPostedFileBase FileBase = Request.Files[0];
+
+
+                    existe.Usuario.Nombre = obj.Usuario.Nombre;
+                    //if (obj.Usuario.Contrasena == "")
+                    //    return View(obj);
+                    //else
+                        existe.Usuario.Contrasena = obj.Usuario.Contrasena;
+                    existe.Usuario.ApellidoMaterno = obj.Usuario.ApellidoMaterno;
+                    existe.Usuario.ApellidoPaterno = obj.Usuario.ApellidoPaterno;
+                    existe.Usuario.Dirección = obj.Usuario.Dirección;
+                    existe.Usuario.Telefono = obj.Usuario.Telefono;
+                    existe.Usuario.Genero = obj.Usuario.Genero;
+                    existe.Usuario.FechaDeNacimiento = obj.Usuario.FechaDeNacimiento;
+                    existe.Usuario.Correo = obj.Usuario.Correo;
+                    existe.Tipo = obj.Tipo;
+
+                    bd.SaveChanges();
+                    if (FileBase.InputStream.Length != 0)
+                    {
+
+                        iagen = new WebImage(FileBase.InputStream);
+                        insertar_imagen_admin(iagen.GetBytes(), existe);
+                    }
+                    return RedirectToAction("InicioAdmin");
+                }
+            }
+            catch (Exception msg)
+            {
+                ModelState.AddModelError("Error al insertar a la Alumno", msg);
+                obj.UserList = new SelectList(bd.Usuario, "idUsuario", "Nombre");
+                obj.Usuario.UserTipoList = new SelectList(bd.TiposUsuarios, "idTipo", "Nombre");
+                var gene = new[] {
+                                  new Person { Id = "F", Name = "Femenino" },
+                                  new Person { Id = "M", Name = "Masculino" }
+                                  };
+                obj.Usuario.UserGenList = new SelectList(gene, "Id", "Name");
+                return View(obj);
+            }
+        }
+        [AuthorizeUser(idNivel: 1)]
+        public void insertar_imagen_admin(byte[] imagen, Administrador admi)
+        {
+
+            Usuario user = bd.Usuario.Where(x=>x.idUsuario == admi.idUsuario).FirstOrDefault();
+            user.FotoPerfil = imagen;
+            bd.SaveChanges();
+        }
+        //fin edit profile
         [AuthorizeUser(idNivel: 1)]
         public ActionResult ConsultaAlumno()
         {
@@ -133,6 +261,7 @@ namespace MOCos_V1.Controllers
                 return View();
             }
         }
+
         [AuthorizeUser(idNivel: 1)]
         [HttpGet]
         public ActionResult Insertar_Alumno_Administrador()

@@ -1,0 +1,297 @@
+﻿@model MOCos_V1.Administrador
+
+@{
+    ViewBag.Title = "EditarAdminAdmin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="notika-icon notika-windows"></i>
+                                </div>
+                                <div class="breadcomb-ctn">
+                                    <h2>EDITAR PERFIL</h2>
+                                    <p>Puede cambiar sus datos personales, asegurese de ingresar su contraseña correctamente<span class="bread-ntd"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@using (Html.BeginForm("EditarAdminAdmin", "Administrador", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <!-- Form Examples area start-->
+<div class="form-example-area" style="margin-top:-50px;">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.idAdministrador)
+    @Html.HiddenFor(model => model.idUsuario)
+    @Html.HiddenFor(model => model.Usuario.idUsuario)
+    @Html.HiddenFor(model => model.Usuario.idTipoUsuario)
+    @Html.HiddenFor(model => model.Usuario.idToken)
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-example-wrap mg-t-30">
+                    <div class="cmp-tb-hd cmp-int-hd">
+                        <h2>DATOS PERSONALES</h2>
+                    </div>
+                    <div class="form-example-int form-horizental">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm" for="FotoPerfil">Foto de Perfil</label>
+
+                                </div>
+                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12" style="margin-top:-10px;">
+                                    <div class=" wizard-card" style="min-height:0px; box-shadow: none;">
+                                       
+                                        <div class="picture-container">
+                                    
+                                               
+                                         
+                                            <div class="picture">
+                                                @{
+                                                    Byte[] bytes = (Byte[])Session["profile"];
+                                                    var imgSrc = "";
+                                                    if (bytes != null)
+                                                    {
+                                                        var base64 = Convert.ToBase64String(bytes);
+                                                        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                                    }
+                                                    else
+                                                    {
+                                                        imgSrc = "/img/perfiles/noregister.png";
+                                                    }
+                                                }
+                                                <img src="@imgSrc" class="picture-src " id="wizardPicturePreview" />
+                                                <input type="file" name="imageload" id="wizard-picture" />
+                                                @Html.ValidationMessage("imageload", "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental mg-t-15">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                    @Html.LabelFor(model => model.Usuario.Nombre, htmlAttributes: new { @class = "hrzn-fm" })
+                                </div>
+                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12" style="margin-top:-10px;">
+
+                                    <div class="nk-int-st">
+                                        @Html.EditorFor(model => model.Usuario.Nombre, new { htmlAttributes = new { @class = "form-control input-sm", @style = "background-color: white;" } })
+                                        @Html.ValidationMessageFor(model => model.Usuario.Nombre, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental mg-t-15">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                    @Html.LabelFor(model => model.Usuario.ApellidoPaterno, htmlAttributes: new { @class = "hrzn-fm" })
+                                </div>
+                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12" style="margin-top:-10px;">
+
+                                    <div class="nk-int-st">
+                                        @Html.EditorFor(model => model.Usuario.ApellidoPaterno, new { htmlAttributes = new { @class = "form-control input-sm", @style = "background-color: white;" } })
+                                        @Html.ValidationMessageFor(model => model.Usuario.ApellidoPaterno, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental mg-t-15">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                    @Html.LabelFor(model => model.Usuario.ApellidoMaterno, htmlAttributes: new { @class = "hrzn-fm" })
+                                </div>
+                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12" style="margin-top:-10px;">
+
+                                    <div class="nk-int-st">
+                                        @Html.EditorFor(model => model.Usuario.ApellidoMaterno, new { htmlAttributes = new { @class = "form-control input-sm", @style = "background-color: white;" } })
+                                        @Html.ValidationMessageFor(model => model.Usuario.ApellidoMaterno, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-example-int form-horizental mg-t-15">
+                        <div class="form-group nk-datapk-ctm form-elet-mg" id="data_1">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                    @Html.LabelFor(model => model.Usuario.FechaDeNacimiento, htmlAttributes: new { @class = "hrzn-fm" })
+                                </div>
+                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12" style="margin-top:-10px;">
+                                    <div class="input-group date nk-int-st">
+                                        @Html.EditorFor(model => model.Usuario.FechaDeNacimiento, new { htmlAttributes = new { @class = "form-control input-sm", @style = "background-color: white; "} })
+
+                                        @Html.ValidationMessageFor(model => model.Usuario.FechaDeNacimiento, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental mg-t-15">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                    @Html.LabelFor(model => model.Usuario.Genero, htmlAttributes: new { @class = "hrzn-fm" })
+                                </div>
+                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12" style="margin-top:-10px;">
+
+                                    <div class="nk-int-st">
+                                        @Html.DropDownListFor(model => model.Usuario.Genero, Model.Usuario.UserGenList, htmlAttributes: new { @class = "form-control input-sm", @style = "background-color: white; height: 35px;" })
+
+                                        @Html.ValidationMessageFor(model => model.Usuario.Genero, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-example-wrap mg-t-30">
+                    <div class="cmp-tb-hd cmp-int-hd">
+                        <h2>DATOS DE ADMINISTRADOR</h2>
+                    </div>
+
+                    <div class="form-example-int form-horizental mg-t-15">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                    @Html.LabelFor(model => model.Tipo, htmlAttributes: new { @class = "hrzn-fm" })
+                                </div>
+                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12" style="margin-top:-10px;">
+
+                                    <div class="nk-int-st">
+                                        @Html.EditorFor(model => model.Tipo, new { htmlAttributes = new { @class = "form-control input-sm", @style = "background-color: white;" } })
+                                        @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-example-wrap mg-t-30">
+                    <div class="cmp-tb-hd cmp-int-hd">
+                        <h2>DATOS DE CONTACTO</h2>
+                    </div>
+                    <div class="form-example-int form-horizental mg-t-15">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                    @Html.LabelFor(model => model.Usuario.Dirección, htmlAttributes: new { @class = "hrzn-fm" })
+                                </div>
+                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12" style="margin-top:-10px;">
+
+                                    <div class="nk-int-st">
+                                        @Html.EditorFor(model => model.Usuario.Dirección, new { htmlAttributes = new { @class = "form-control input-sm", @style = "background-color: white;" } })
+                                        @Html.ValidationMessageFor(model => model.Usuario.Dirección, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental mg-t-15">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                    @Html.LabelFor(model => model.Usuario.Telefono, htmlAttributes: new { @class = "hrzn-fm" })
+                                </div>
+                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12" style="margin-top:-10px;">
+
+                                    <div class="nk-int-st">
+                                        @Html.EditorFor(model => model.Usuario.Telefono, new { htmlAttributes = new { @class = "form-control input-sm", @style = "background-color: white;" } })
+                                        @Html.ValidationMessageFor(model => model.Usuario.Telefono, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental mg-t-15">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                    @Html.LabelFor(model => model.Usuario.Correo, htmlAttributes: new { @class = "hrzn-fm" })
+                                </div>
+                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12" style="margin-top:-10px;">
+                                    <div class="nk-int-st">
+                                        @Html.EditorFor(model => model.Usuario.Correo, new { htmlAttributes = new { @class = "form-control input-sm", @style = "background-color: white;", @type = "text" } })
+                                        @Html.ValidationMessageFor(model => model.Usuario.Correo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental mg-t-15">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                    @Html.LabelFor(model => model.Usuario.Contrasena, htmlAttributes: new { @class = "hrzn-fm" })
+                                </div>
+                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12" style="margin-top:-10px;">
+
+                                    <div class="nk-int-st">
+                                        @Html.EditorFor(model => model.Usuario.Contrasena, new { htmlAttributes = new { @class = "form-control input-sm", @style = "background-color: white;" } })
+                                        @Html.ValidationMessageFor(model => model.Usuario.Contrasena, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-example-wrap mg-t-30">
+                    <div class="form-example-int mg-t-15">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                            </div>
+                            <center>
+                                <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                    <button class="btn btn-success notika-btn-success">GUARDAR CAMBIOS</button>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Form Examples area End-->
+}
