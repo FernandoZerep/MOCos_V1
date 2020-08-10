@@ -256,7 +256,6 @@
     <Content Include="Content\css\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\css\fonts\notika-icon.svg" />
-    <Content Include="Content\dropzone.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fonts\notika-icon.svg" />
@@ -597,7 +596,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Mapa.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Maestro\Perfil.cshtml" />
     <Content Include="Views\Maestro\Modulos.cshtml" />
@@ -632,14 +631,12 @@
     <Content Include="Views\Administrador\Insertar_Alumno_Administrador.cshtml" />
     <Content Include="Views\Home\Insertar_Alumno.cshtml" />
     <Content Include="Views\Administrador\PerfilAdmin.cshtml" />
-    <Content Include="Views\Maestro\MostrarDocumentos.cshtml" />
-    <Content Include="Views\Maestro\Inicio.cshtml" />
-    <Content Include="Views\Maestro\About.cshtml" />
-    <Content Include="Views\Maestro\Contact.cshtml" />
     <Content Include="Views\Maestro\Imagenes.cshtml" />
     <Content Include="Views\Administrador\ConsultaDocente.cshtml" />
     <Content Include="Views\Administrador\ConsultaMaterias.cshtml" />
     <Content Include="Views\Administrador\Insertar_Profesor_Administrador.cshtml" />
+    <Content Include="Views\Alumno\Mapa.cshtml" />
+    <Content Include="Views\Alumno\Contacto.cshtml" />
     <Content Include="Views\Administrador\EditarAdminAdmin.cshtml" />
     <Content Include="Views\Administrador\EditarOnlyUser.cshtml" />
     <Content Include="Views\Maestro\MostrarDocumentos.cshtml" />

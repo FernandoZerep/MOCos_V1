@@ -28,16 +28,14 @@ namespace MOCos_V1.Controllers
             return RedirectToAction("Index", "Home");
         }
         [AuthorizeUser(idNivel: 3)]
-        public ActionResult About()
+        public ActionResult Mapa()
         {
-            ViewBag.Message = "Your application description page.";
-
+            
             return View();
         }
         [AuthorizeUser(idNivel: 3)]
-        public ActionResult Contact()
+        public ActionResult Contacto()
         {
-            ViewBag.Message = "Your Contact page";
             return View();
         }
         [AuthorizeUser(idNivel: 3)]
@@ -45,12 +43,49 @@ namespace MOCos_V1.Controllers
         {
             return View();
         }
-        [AuthorizeUser(idNivel: 3)]
-        public ActionResult pruebaregis()
-        {
-            return View();
-        }
-        [AuthorizeUser(idNivel: 3)]
+        //[AuthorizeUser(idNivel: 3)]
+        //public ActionResult Mostrar_Materias()
+        //{
+        //    try
+        //    { 
+        //            Usuario obj = new Usuario();
+        //            obj = (Usuario)Session["User"];
+        //        var mat = (from d in bd.Materia
+        //                   select d);
+        //            Session["UserMateria"] = mat;
+        //            ViewBag.Materia = mat;
+        //            List<Unidad> Uni = bd.Unidad.Where(x => x.idMateria == mat.idMateria).ToList();
+        //            //Obteniendo los temas
+        //            List<Temas> MostrarTemas = new List<Temas>();
+        //            foreach (var c in Uni)
+        //            {
+        //                List<Temas> Encontrados = bd.Temas.Where(x => x.idUnidad == c.idUnidad).ToList();
+        //                foreach (var i in Encontrados)
+        //                {
+        //                    MostrarTemas.Add(i);
+        //                }
+        //            }
+        //            ViewBag.Temas = MostrarTemas;
+        //            return View(Uni);
+        //    }
+        //    catch (Exception mensaje)
+        //    {
+        //        ModelState.AddModelError("Error al mostrar las Unidades", mensaje);
+        //        return View();
+        //    }
+        //}
+        //public List<string> regresamaterias()
+        //{
+
+        //     List<Materia> ListaMate = bd.Materia.Include(x=> x.NombreMateria).ToList();
+        //    return ListaMate;
+        //}
+        ////[AuthorizeUser(idNivel: 3)]
+        //public ActionResult pruebaregis()
+        //{
+        //    return View();
+        //}
+        //[AuthorizeUser(idNivel: 3)]
         public ActionResult ConsultaProfesores()
         {
             try
@@ -82,24 +117,24 @@ namespace MOCos_V1.Controllers
         //        return View();
         //    }
         //}
-        [AuthorizeUser(idNivel: 3)]
-        [HttpGet]
-        public ActionResult EditarProfesor(int id)
-        {
-            try
-            {
+        //[AuthorizeUser(idNivel: 3)]
+        //[HttpGet]
+        //public ActionResult EditarProfesor(int id)
+        //{
+        //    try
+        //    {
 
-                Profesor obj = bd.Profesor.Include(u=> u.Usuario).Where(i => i.idProfesor == id).FirstOrDefault();
-                ViewBag.idUsuario = new SelectList(bd.Usuario, "idUsuario", "Nombre");
-                ViewBag.selectusuario = obj.idUsuario;
-                return View(obj);
-            }
-            catch (Exception msg)
-            {
-                ModelState.AddModelError("Error al editar al profesor", msg);
-                return View();
-            }
-        }
+        //        Profesor obj = bd.Profesor.Include(u=> u.Usuario).Where(i => i.idProfesor == id).FirstOrDefault();
+        //        ViewBag.idUsuario = new SelectList(bd.Usuario, "idUsuario", "Nombre");
+        //        ViewBag.selectusuario = obj.idUsuario;
+        //        return View(obj);
+        //    }
+        //    catch (Exception msg)
+        //    {
+        //        ModelState.AddModelError("Error al editar al profesor", msg);
+        //        return View();
+        //    }
+        //}
 
         [AuthorizeUser(idNivel: 3)]
         [HttpPost]
@@ -253,6 +288,7 @@ namespace MOCos_V1.Controllers
             bd.SaveChanges();
         }
         //fin edit profile
+
 
     }
 }
