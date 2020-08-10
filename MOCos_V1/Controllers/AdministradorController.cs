@@ -121,7 +121,7 @@ namespace MOCos_V1.Controllers
                     WebImage iagen;
                     HttpPostedFileBase FileBase = Request.Files[0];
 
-
+                    Usuario LaSesion = (Usuario)Session["User"];
                     existe.Usuario.Nombre = obj.Usuario.Nombre;
                     //if (obj.Usuario.Contrasena == "")
                     //    return View(obj);
@@ -135,7 +135,7 @@ namespace MOCos_V1.Controllers
                     existe.Usuario.FechaDeNacimiento = obj.Usuario.FechaDeNacimiento;
                     existe.Usuario.Correo = obj.Usuario.Correo;
                     existe.Tipo = obj.Tipo;
-
+                    
                     bd.SaveChanges();
                     if (FileBase.InputStream.Length != 0)
                     {
@@ -143,7 +143,19 @@ namespace MOCos_V1.Controllers
                         iagen = new WebImage(FileBase.InputStream);
                         insertar_imagen_admin(iagen.GetBytes(), existe);
                     }
-                    return RedirectToAction("InicioAdmin");
+
+                    if (LaSesion.Correo != obj.Usuario.Correo)
+                    {
+                        Session["User"] = null;
+                        Session["name"] = null;
+                        Session["profile"] = null;
+                        return RedirectToAction("Index", "Login");
+                    }
+                    else
+                    {
+                        return RedirectToAction("InicioAdmin");
+                    }
+                    
                 }
             }
             catch (Exception msg)
