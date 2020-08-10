@@ -116,7 +116,7 @@ namespace MOCos_V1.Controllers
                         Session["Activo"] = db.Profesor.Include(u => u.Usuario).Include(t => t.Usuario.TiposUsuarios).Include(m=>m.Materia1).Where(x => x.idUsuario == oUser.idUsuario).FirstOrDefault();
 
                         controlador = "Maestro";
-                        action = "Perfil";
+                        action = "Inicio";
                     }
                 }
                 ViewBag.Sesion = Session["User"];
