@@ -13,6 +13,26 @@ namespace MOCos_V1.Controllers
     public class MaestroController : Controller
     {
         mocOS_BDEntities bd = new mocOS_BDEntities();
+
+        [AuthorizeUser(idNivel: 4)]
+        public ActionResult Inicio()
+        {
+            return View();
+        }
+        [AuthorizeUser(idNivel: 4)]
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+        [AuthorizeUser(idNivel: 4)]
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your Contact page";
+            return View();
+        }
+
         [AuthorizeUser(idNivel: 4)]
         public ActionResult Perfil()
         {
