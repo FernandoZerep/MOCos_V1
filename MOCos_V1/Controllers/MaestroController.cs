@@ -7,6 +7,7 @@ using MOCos_V1;
 using System.Data.Entity;
 using MOCos_V1.Filters;
 using System.IO;
+using System.Web.Helpers;
 
 namespace MOCos_V1.Controllers
 {
@@ -490,6 +491,121 @@ namespace MOCos_V1.Controllers
             }
 
         }
+        //EDITPROFILE
+        [AuthorizeUser(idNivel: 4)]
+        [HttpGet]
+        public ActionResult EditarDocentePerfil(int id)
+        {
+            try
+            {
+
+                Profesor obj = bd.Profesor.Include(u => u.Usuario).Include(t => t.Usuario.TiposUsuarios).Include(m => m.Materia1).Where(x => x.idUsuario == id).FirstOrDefault();
+                //el primer userlist no es necesario pero que se quede mientras
+                obj.UserEnseña = new SelectList(bd.Materia, "idMateria", "NombreMateria");
+                obj.Usuario.UserTipoList = new SelectList(bd.TiposUsuarios, "idTipo", "Nombre");
+                var gene = new[] {
+                                  new Person { Id = "F", Name = "Femenino" },
+                                  new Person { Id = "M", Name = "Masculino" }
+                                  };
+                obj.Usuario.UserGenList = new SelectList(gene, "Id", "Name");
+                //ViewBag.idUsuario = new SelectList(bd.Usuario, "idUsuario", "Nombre");
+                //ViewBag.selectusuario = obj.idUsuario;
+                //ViewBag.idCuatrimestre = new SelectList(bd.Cuatrimestre, "idCuatrimestre", "Grado");
+                //ViewBag.selectcuatrimestre = obj.idCuatrimestre;
+                //ViewBag.idGrupo = new SelectList(bd.Grupo, "idGrupo", "Grupo1");
+                //ViewBag.selectgrupo = obj.idGrupo;
+                return View(obj);
+
+            }
+            catch (Exception msg)
+            {
+                ModelState.AddModelError("Error al editar al docente", msg);
+                return View();
+            }
+        }
+
+        public class Person
+        {
+            public string Id { get; set; }
+            public string Name { get; set; }
+        }
+        [AuthorizeUser(idNivel: 4)]
+        [HttpPost]
+        public ActionResult EditarDocentePerfil(Profesor obj)
+        {
+            try
+            {
+                using (mocOS_BDEntities bd = new mocOS_BDEntities())
+                {
+                    Profesor existe = bd.Profesor.Include(u => u.Usuario).Include(t => t.Usuario.TiposUsuarios).Include(m => m.Materia1).Where(x => x.idUsuario == obj.idUsuario).FirstOrDefault();
+                    WebImage iagen;
+                    HttpPostedFileBase FileBase = Request.Files[0];
+
+                    Usuario LaSesion = (Usuario)Session["User"];
+                    existe.Usuario.Nombre = obj.Usuario.Nombre;
+                    //if (obj.Usuario.Contrasena == "")
+                    //    return View(obj);
+                    //else
+                    existe.Usuario.Contrasena = obj.Usuario.Contrasena;
+                    existe.Usuario.ApellidoMaterno = obj.Usuario.ApellidoMaterno;
+                    existe.Usuario.ApellidoPaterno = obj.Usuario.ApellidoPaterno;
+                    existe.Usuario.Dirección = obj.Usuario.Dirección;
+                    existe.Usuario.Telefono = obj.Usuario.Telefono;
+                    existe.Usuario.Genero = obj.Usuario.Genero;
+                    existe.Usuario.FechaDeNacimiento = obj.Usuario.FechaDeNacimiento;
+                    existe.Usuario.Correo = obj.Usuario.Correo;
+                    existe.Cubo = obj.Cubo;
+
+                    bd.SaveChanges();
+                    if (FileBase.InputStream.Length != 0)
+                    {
+
+                        iagen = new WebImage(FileBase.InputStream);
+                        insertar_imagen_perfil(iagen.GetBytes(), existe);
+                    }
+
+                    if (LaSesion.Correo != obj.Usuario.Correo)
+                    {
+                        Session["User"] = null;
+                        Session["name"] = null;
+                        Session["profile"] = null;
+                        return RedirectToAction("Index", "Login");
+                    }
+                    else
+                    {
+                        Profesor nuevo = bd.Profesor.Include(u => u.Usuario).Include(t => t.Usuario.TiposUsuarios).Include(m => m.Materia1).Where(x => x.idUsuario == obj.idUsuario).FirstOrDefault();
+                        Session["User"] = nuevo.Usuario;
+                        Session["name"] = nuevo.Usuario.Nombre + " " + nuevo.Usuario.ApellidoPaterno + " " + nuevo.Usuario.ApellidoMaterno;
+                        Session["profile"] = nuevo.Usuario.FotoPerfil;
+                        Session["Activo"] = nuevo;
+                        return RedirectToAction("Inicio");
+                    }
+
+                }
+            }
+            catch (Exception msg)
+            {
+                ModelState.AddModelError("Error al insertar a la Alumno", msg);
+                //el primer userlist no es necesario pero que se quede mientras
+                obj.UserEnseña = new SelectList(bd.Materia, "idMateria", "NombreMateria");
+                obj.Usuario.UserTipoList = new SelectList(bd.TiposUsuarios, "idTipo", "Nombre");
+                var gene = new[] {
+                                  new Person { Id = "F", Name = "Femenino" },
+                                  new Person { Id = "M", Name = "Masculino" }
+                                  };
+                obj.Usuario.UserGenList = new SelectList(gene, "Id", "Name");
+                return View(obj);
+            }
+        }
+        [AuthorizeUser(idNivel: 3)]
+        public void insertar_imagen_perfil(byte[] imagen, Profesor admi)
+        {
+
+            Usuario user = bd.Usuario.Where(x => x.idUsuario == admi.idUsuario).FirstOrDefault();
+            user.FotoPerfil = imagen;
+            bd.SaveChanges();
+        }
+        //fin edit profile
 
     }
 }
