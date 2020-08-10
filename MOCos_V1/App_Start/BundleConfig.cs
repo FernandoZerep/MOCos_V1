@@ -46,6 +46,8 @@ namespace MOCos_V1
                             "~/Content/js/wave/wave-active.js",
                             "~/Content/js/todo/jquery.todo.js",
                             "~/Content/js/plugins.js",
+                            "~/Content/js/data-table/jquery.dataTables.min.js",
+                            "~/Content/js/data-table/data-table-act.js",
                             "~/Content/js/chat/moment.min.js",
                             "~/Content/js/chat/jquery.chat.js",
                             "~/Content/js/main.js"));
@@ -65,6 +67,7 @@ namespace MOCos_V1
                               "~/Content/css/scrollbar/jquery.mCustomScrollbar.min.css",
                                 "~/Content/css/jvectormap/jquery-jvectormap-2.0.3.css",
                                   "~/Content/css/notika-custom-icon.css",
+                                  "~/Content/css/jquery.dataTables.min.css",
                                     "~/Content/css/wave/waves.min.css",
                                      "~/Content/css/main.css",
                                       "~/Content/css/style.css",

@@ -1,7 +1,7 @@
-﻿@model IEnumerable<MOCos_V1.Alumnos>
+﻿@model IEnumerable<MOCos_V1.Profesor>
 
 @{
-    ViewBag.Title = "ConsultaAlumno";
+    ViewBag.Title = "ConsultaDocente";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -18,14 +18,14 @@
                                     <i class="notika-icon notika-windows"></i>
                                 </div>
                                 <div class="breadcomb-ctn">
-                                    <h2>Alumnos</h2>
-                                    <p>Alumnos dados de alta en la plataforma <span class="bread-ntd"></span></p>
+                                    <h2>Docentes</h2>
+                                    <p>Docentes dados de alta en la plataforma <span class="bread-ntd"></span></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
                             <div class="breadcomb-report">
-                                <button data-toggle="tooltip" data-placement="left" title="Agregar alumno" class="btn" onclick="location.href='@Url.Action("Insertar_Alumno_Administrador", "Administrador")'"><i class="glyphicon glyphicon-plus"></i></button>
+                                <button data-toggle="tooltip" data-placement="left" title="Agregar docente" class="btn" onclick="location.href='@Url.Action("Insertar_Alumno_Administrador", "Administrador")'"><i class="glyphicon glyphicon-plus"></i></button>
                             </div>
                         </div>
                     </div>
@@ -47,62 +47,55 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Matricula)
+                                        @Html.DisplayNameFor(model => model.Usuario.Correo)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.Usuario.Nombre)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Usuario.ApellidoPaterno)
+                                        Apellidos
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Usuario.ApellidoMaterno)
+                                        @Html.DisplayNameFor(model => model.Cubo)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Cuatrimestre.Grado)
+                                        @Html.DisplayNameFor(model => model.Materia1.NombreMateria)
                                     </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Grupo.Grupo1)
-                                    </th>
-
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Matricula)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Usuario.Nombre)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Usuario.ApellidoPaterno)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Usuario.ApellidoMaterno)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Cuatrimestre.Grado)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Grupo.Grupo1)
-                                        </td>
-
-                                        <td>
-                                            @Html.ActionLink(" ", "Edit", new { id = item.idAlumno }, new { @class = "btn btn-info glyphicon glyphicon-edit", @style = "padding: 6px 10px;", data_toggle = "tooltip", data_placement = "top", title = "Editar" })
-                                            @Html.ActionLink(" ", "Details", new { id = item.idAlumno }, new { @class = "btn btn-warning glyphicon glyphicon-share", @style = "padding: 6px 10px;", data_toggle = "tooltip", data_placement = "top", title = "Detalles" })
-                                            @Html.ActionLink(" ", "Delete", new { id = item.idAlumno }, new { @class = "btn btn-danger glyphicon glyphicon-trash", @style = "padding: 6px 10px;", data_toggle = "tooltip", data_placement = "top", title = "Eliminar" })
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Usuario.Correo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Usuario.ApellidoPaterno) &nbsp;
+                                        @Html.DisplayFor(modelItem => item.Usuario.ApellidoMaterno)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Cubo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Materia1.NombreMateria)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink(" ", "Edit", new { id = item.idProfesor }, new { @class = "btn btn-info glyphicon glyphicon-edit", @style = "padding: 6px 10px;", data_toggle = "tooltip", data_placement = "top", title = "Editar" })
+                                        @Html.ActionLink(" ", "Details", new { id = item.idProfesor }, new { @class = "btn btn-warning glyphicon glyphicon-share", @style = "padding: 6px 10px;", data_toggle = "tooltip", data_placement = "top", title = "Detalles" })
+                                        @Html.ActionLink(" ", "Delete", new { id = item.idProfesor }, new { @class = "btn btn-danger glyphicon glyphicon-trash", @style = "padding: 6px 10px;", data_toggle = "tooltip", data_placement = "top", title = "Eliminar" })
+                                    </td>
+                                </tr>
                                 }
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Matricula)
+                                        @Html.DisplayNameFor(model => model.Usuario.Correo)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.Usuario.Nombre)
@@ -114,12 +107,11 @@
                                         @Html.DisplayNameFor(model => model.Usuario.ApellidoMaterno)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Cuatrimestre.Grado)
+                                        @Html.DisplayNameFor(model => model.Cubo)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Grupo.Grupo1)
+                                        @Html.DisplayNameFor(model => model.Materia1.NombreMateria)
                                     </th>
-
                                     <th></th>
                                 </tr>
                             </tfoot>
@@ -131,8 +123,6 @@
     </div>
 </div>
 <!-- Data Table area End-->
-
-
 
 
 

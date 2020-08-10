@@ -148,7 +148,7 @@ namespace MOCos_V1.Controllers
         [AuthorizeUser(idNivel: 1)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Insertar_Alumno_Administrador(Alumnos Alu, string Nombre, string ApellidoP, string ApellidoM, string Correo, string Contrasena, string Direccion, string celular, string genero, string Fecha)
+        public ActionResult Insertar_Alumno_Administrador(Alumnos Alu, string Nombre, string ApellidoP, string ApellidoM, string Correo, string Contrasena, string Direccion, string celular, string genero, string Fecha, string Matricula)
         {
             WebImage iagen;
             HttpPostedFileBase FileBase = Request.Files[0];
@@ -180,19 +180,83 @@ namespace MOCos_V1.Controllers
             bd.Usuario.Add(user);
             bd.Alumnos.Add(Alu);
             bd.SaveChanges();
-            insertar(iagen.GetBytes(), Alu);
+            insertar_imagen_alumno(iagen.GetBytes(), Alu, Matricula);
 
-            return RedirectToAction("Login");
+            return RedirectToAction("ConsultaAlumno");
 
 
         }
+
         [AuthorizeUser(idNivel: 1)]
-        public void insertar(byte[] imagen, Alumnos alu)
+        public void insertar_imagen_alumno(byte[] imagen, Alumnos alu,string Matricula)
         {
 
             Usuario user = bd.Usuario.OrderByDescending(x => x.idUsuario).First();
             user.FotoPerfil = imagen;
             alu.idUsuario = user.idUsuario;
+            alu.Matricula = Matricula.ToUpper();
+            bd.SaveChanges();
+        }
+        [AuthorizeUser(idNivel: 1)]
+        [HttpGet]
+        public ActionResult Insertar_Profesor_Administrador()
+        {
+            var genero = new SelectList(new[] { "Masculino", "Femenino" });
+            ViewBag.genero = genero;
+            ViewBag.idMateriaEnseña = new SelectList(bd.Materia, "idMateria", "NombreMateria");
+            return View();
+
+        }
+
+        [AuthorizeUser(idNivel: 1)]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Insertar_Profesor_Administrador(Profesor pro, string Nombre, string ApellidoP, string ApellidoM, string Correo, string Contrasena, string Direccion, string celular, string genero, string Fecha,string Cubo)
+        {
+            WebImage iagen;
+            HttpPostedFileBase FileBase = Request.Files[0];
+            if (FileBase.InputStream.Length != 0)
+            {
+
+                iagen = new WebImage(FileBase.InputStream);
+            }
+            else
+            {
+                iagen = new WebImage("~/img/perfiles/noregister.png");
+            }
+            Usuario user = bd.Usuario.Create();
+
+            if (genero == "Masculino")
+                user.Genero = "M";
+            else
+                user.Genero = "F";
+
+            user.Nombre = Nombre;
+            user.ApellidoPaterno = ApellidoP;
+            user.ApellidoMaterno = ApellidoM;
+            user.Contrasena = Contrasena;
+            user.Correo = Correo;
+            user.Dirección = Direccion;
+            user.Telefono = celular;
+            user.FechaDeNacimiento = Convert.ToDateTime(Fecha); ;
+            user.idTipoUsuario = 2;
+            bd.Usuario.Add(user);
+            bd.Profesor.Add(pro);
+            bd.SaveChanges();
+            insertar_imagen_profesor(iagen.GetBytes(),pro,Cubo);
+
+            return RedirectToAction("ConsultaDocente");
+
+
+        }
+        [AuthorizeUser(idNivel: 1)]
+        public void insertar_imagen_profesor(byte[] imagen, Profesor pro,string Cubo)
+        {
+
+            Usuario user = bd.Usuario.OrderByDescending(x => x.idUsuario).First();
+            user.FotoPerfil = imagen;
+            pro.idUsuario = user.idUsuario;
+            pro.Cubo = Cubo;
             bd.SaveChanges();
 
         }
@@ -205,6 +269,41 @@ namespace MOCos_V1.Controllers
             }
             base.Dispose(disposing);
         }
-
+        //CRUD PARA PROFESORES
+        [AuthorizeUser(idNivel: 1)]
+        public ActionResult ConsultaDocente()
+        {
+            try
+            {
+                using (mocOS_BDEntities bd = new mocOS_BDEntities())
+                {
+                    List<Profesor> lista = bd.Profesor.Include(u => u.Usuario).Include(m => m.Materia1).ToList();
+                    return View(lista);
+                }
+            }
+            catch (Exception msg)
+            {
+                ModelState.AddModelError("Error al consultar a los alumnos", msg);
+                return View();
+            }
+        }
+        //CRUD PARA MATERIAS
+        [AuthorizeUser(idNivel: 1)]
+        public ActionResult ConsultaMaterias ()
+        {
+            try
+            {
+                using (mocOS_BDEntities bd = new mocOS_BDEntities())
+                {
+                    List<Materia> lista = bd.Materia.Include(c => c.Cuatrimestre).Include(o => o.Profesor).Include(u=>u.Profesor.Usuario).ToList();
+                    return View(lista);
+                }
+            }
+            catch (Exception msg)
+            {
+                ModelState.AddModelError("Error al consultar a los alumnos", msg);
+                return View();
+            }
+        }
     }
 }

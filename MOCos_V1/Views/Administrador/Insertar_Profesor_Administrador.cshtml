@@ -1,10 +1,9 @@
-﻿@model MOCos_V1.Alumnos
+﻿@model MOCos_V1.Profesor
 
 @{
-    ViewBag.Title = "Registrar Alumno";
+    ViewBag.Title = "Registrar Profesor";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!--   Big container   -->
 
 <div class="container">
     <div class="row">
@@ -20,7 +19,7 @@
 
 
 
-                    @using (Html.BeginForm("Insertar_Alumno_Administrador", "Administrador", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("Insertar_Profesor_Administrador", "Administrador", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
 
@@ -32,7 +31,7 @@
                             <div class="wizard-header text-center">
 
                                 <h3 class="wizard-title">Crea tu usuario</h3>
-                                <p class="category">Esta informacion es necesaria para tomar asesorías en el sitio</p>
+                                <p class="category">Esta informacion es necesaria para impartir asesorías en el sitio</p>
                             </div>
 
                             <div class="wizard-navigation">
@@ -129,25 +128,17 @@
                                         <div class="col-sm-2"></div>
                                         <div class="col-sm-8" style="text-align:center">
                                             <div class="form-group">
-                                                @Html.LabelFor(model => model.idCuatrimestre, htmlAttributes: new { @class = "control-label" })<br />
+                                                @Html.LabelFor(model => model.idMateriaEnseña, htmlAttributes: new { @class = "control-label" })<br />
                                                 <div class="col-md-12">
-                                                    @Html.DropDownList("idCuatrimestre", null, "Seleccione su cuatrimestre", htmlAttributes: new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(model => model.idCuatrimestre, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.idGrupo, htmlAttributes: new { @class = "control-label" })<br />
-                                                <div class="col-md-12">
-                                                    @Html.DropDownList("idGrupo", null, "Seleccione su grupo", htmlAttributes: new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(model => model.idGrupo, "", new { @class = "text-danger" })
+                                                    @Html.DropDownList("idMateriaEnseña", null, "Seleccione la materia", htmlAttributes: new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.idMateriaEnseña, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                @Html.LabelFor(model => model.Matricula, htmlAttributes: new { @class = "control-label" })<br />
+                                                @Html.LabelFor(model => model.Cubo, htmlAttributes: new { @class = "control-label" })<br />
                                                 <div class="col-md-12">
-                                                    @Html.Editor("Matricula", new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.Matricula, "", new { @class = "text-danger" })
+                                                    @Html.Editor("Cubo", new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Cubo, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                         </div>
@@ -221,3 +212,4 @@
         </div>
     </div><!-- end row -->
 </div> <!--  big container -->
+

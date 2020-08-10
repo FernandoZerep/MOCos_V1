@@ -144,7 +144,7 @@ namespace MOCos_V1.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Insertar_Alumno(Alumnos Alu, string Nombre,string ApellidoP ,string ApellidoM,string Correo,string Contrasena,string Direccion,string celular,string genero,string Fecha )
+        public ActionResult Insertar_Alumno(Alumnos Alu, string Nombre,string ApellidoP ,string ApellidoM,string Correo,string Contrasena,string Direccion,string celular,string genero,string Fecha,string Matricula)
         {
             WebImage iagen;
             HttpPostedFileBase FileBase = Request.Files[0];
@@ -176,19 +176,20 @@ namespace MOCos_V1.Controllers
                 bd.Usuario.Add(user);
                 bd.Alumnos.Add(Alu);
                 bd.SaveChanges();
-                insertar(iagen.GetBytes(),Alu);
+                insertar(iagen.GetBytes(),Alu, Matricula);
 
                 return RedirectToAction("Login");
            
                 
         }
 
-        public void insertar(byte[] imagen, Alumnos alu)
+        public void insertar(byte[] imagen, Alumnos alu,string Matricula)
         {
 
             Usuario user = bd.Usuario.OrderByDescending(x => x.idUsuario).First();
             user.FotoPerfil = imagen;
             alu.idUsuario = user.idUsuario;
+            alu.Matricula=Matricula;
             bd.SaveChanges();
 
         }
