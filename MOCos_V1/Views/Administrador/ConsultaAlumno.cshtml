@@ -92,9 +92,30 @@
                                         </td>
 
                                         <td>
-                                            @Html.ActionLink(" ", "Edit", new { id = item.idAlumno }, new { @class = "btn btn-info glyphicon glyphicon-edit", @style = "padding: 6px 10px;", data_toggle = "tooltip", data_placement = "top", title = "Editar" })
+                                            @Html.ActionLink(" ", "EditarAlumnoPerfil", new { id = item.idUsuario }, new { @class = "btn btn-info glyphicon glyphicon-edit", @style = "padding: 6px 10px;", data_toggle = "tooltip", data_placement = "top", title = "Editar" })
                                             @Html.ActionLink(" ", "Details", new { id = item.idAlumno }, new { @class = "btn btn-warning glyphicon glyphicon-share", @style = "padding: 6px 10px;", data_toggle = "tooltip", data_placement = "top", title = "Detalles" })
-                                            @Html.ActionLink(" ", "Delete", new { id = item.idAlumno }, new { @class = "btn btn-danger glyphicon glyphicon-trash", @style = "padding: 6px 10px;", data_toggle = "tooltip", data_placement = "top", title = "Eliminar" })
+                                            <span data-toggle = "tooltip", data-placement = "top", title = "Eliminar">
+                                                <button type="button" class="btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#alert-@item.idUsuario" style="padding: 6px 10px;"></button>
+                                            </span>
+                                            <div class="modal fade" id="alert-@item.idUsuario" role="dialog">
+                                                <div class="modal-dialog modals-default">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        </div>
+                                                        <div class="modal-body" style="text-align:left;">
+                                                            <h2>Eliminar</h2>
+                                                            <p>¿Seguro que desea eliminar <b>@item.Usuario.Nombre</b>?</p>
+                                                            <p>Esta accion eliminara permanentemente el registro de asesorias de alumno, datos personales y cualquier otro registro que exista del alumno en el sistema.</p>
+                                                            <p>Esta accion no se puede restablecer</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            @Html.ActionLink("Eliminar", "EliminarAlumno", new { id = item.idUsuario }, new { @class = "btn btn-danger" })
+                                                            <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 }

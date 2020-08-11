@@ -137,6 +137,7 @@ namespace MOCos_V1.Controllers
         //}
 
         [AuthorizeUser(idNivel: 3)]
+
         [HttpPost]
         public ActionResult EditarProfesor(Profesor obj)
         {

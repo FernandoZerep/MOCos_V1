@@ -648,6 +648,8 @@
     <Content Include="Views\Maestro\About.cshtml" />
     <Content Include="Views\Maestro\Contact.cshtml" />
     <Content Include="Views\Maestro\Inicio.cshtml" />
+    <Content Include="Views\Administrador\EditarAlumnoPerfil.cshtml" />
+    <Content Include="Views\Administrador\EditarDocentePerfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
