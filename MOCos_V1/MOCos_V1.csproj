@@ -646,6 +646,12 @@
     <Content Include="Views\Maestro\EditarDocentePerfil.cshtml" />
     <Content Include="Views\Maestro\MostrarDocumentos.cshtml" />
     <Content Include="Views\Maestro\Inicio.cshtml" />
+    <Content Include="Views\Administrador\ContactoAdmin.cshtml" />
+    <Content Include="Views\Administrador\EditarAdminAdmin.cshtml" />
+    <Content Include="Views\Administrador\EditarAlumnoPerfil.cshtml" />
+    <Content Include="Views\Administrador\EditarDocentePerfil.cshtml" />
+    <Content Include="Views\Administrador\EditarOnlyUser.cshtml" />
+    <Content Include="Views\Administrador\MapaAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
