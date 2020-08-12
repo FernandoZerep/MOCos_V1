@@ -14,6 +14,8 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
 using System.Web.WebPages;
+using System.Net;
+using System.Net.Mail;
 
 namespace MOCos_V1.Controllers
 {
@@ -40,7 +42,52 @@ namespace MOCos_V1.Controllers
         {
             return View();
         }
+        [AuthorizeUser(idNivel: 1)]
+        [HttpGet]
+        public ActionResult Contacto()
+        {
+            return View();
+        }
+        [AuthorizeUser(idNivel: 1)]
+        [HttpPost]
+        public ActionResult Contacto(string Nombre, string Asunto, string Correo, string Mensaje)
+        {
+            try
+            {
+                string co = "pruebaplicacion5@gmail.com", rec = "utp0000288@alumno.utpuebla.edu.mx", ms = "";
 
+                MailMessage correo = new MailMessage();
+                ms += "Nombre: " + Nombre;
+                ms += "\n Correo: " + Correo; ;
+                ms += "\n Mensaje: " + Mensaje;
+                correo.From = new MailAddress(co);
+                correo.To.Add(rec);
+                correo.Subject = Asunto;
+                correo.Body = ms;
+                correo.IsBodyHtml = true;
+                correo.Priority = MailPriority.Normal;
+                //configuracion del servidor stmp
+
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                smtp.EnableSsl = true;
+                string sCuentaCorreo = co;
+                string SPasswordCorreo = "Prueba1412";
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new System.Net.NetworkCredential(sCuentaCorreo, SPasswordCorreo);
+                //smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Send(correo);
+                ViewBag.Mensaje = "Mensaje enviado correctamente";
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+            }
+            return View();
+        }
         //EDITPROFILE
         [AuthorizeUser(idNivel: 1)]
         [HttpGet]
