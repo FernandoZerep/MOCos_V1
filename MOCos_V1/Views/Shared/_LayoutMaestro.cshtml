@@ -14,6 +14,19 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <!-- CSS Files -->
+    @*@Styles.Render("~/Content/Registrar/assets/css/bootstrap.min.css")*@
+    @Styles.Render("~/Content/Registrar/assets/css/paper-bootstrap-wizard.css")
+
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    @Styles.Render("~/Content/Registrar/assets/css/demo.css")
+
+
+    <!-- Fonts and Icons -->
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet" type="text/css">
+    @Styles.Render("~/Content/Registrar/assets/css/themify-icons.css")
     <style>
         body {
             padding-top: 0 !important;
@@ -210,7 +223,7 @@
                 <div class="modal-footer">
                     <center>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-info">Editar</button>
+                        @Html.ActionLink("Editar", "EditarDocentePerfil", new { id = Usuario.idUsuario }, new { @class = "btn btn-info" })
                     </center>
                 </div>
             </div>
@@ -266,7 +279,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
                         <li>
-                            <a data-toggle="tab" href="#Home"><i class="notika-icon notika-house"></i> Inicio</a>
+                            <a href="Inicio"><i class="notika-icon notika-house"></i> Inicio</a>
                         </li>
                         <li>
                             <a href="Perfil"><i class="glyphicon glyphicon-inbox"></i>Perfil</a>
@@ -285,13 +298,6 @@
                         </li>
                     </ul>
                     <div class="tab-content custom-menu-content">
-                        <div id="Home" class="tab-pane notika-tab-menu-bg animated flipInX">
-                            <ul class="notika-main-menu-dropdown">
-                                <li>
-                                    <a href="index.html">Introducción</a>
-                                </li>
-                            </ul>
-                        </div>
                         <div id="Charts" class="tab-pane notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li><a href="animations.html">Revisar</a></li>
@@ -331,5 +337,16 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    @*Core JS Files*@
+    @Scripts.Render("~/Content/Registrar/assets/js/jquery.bootstrap.wizard.js")
+
+    @*Plugin for the Wizard*@
+    @Scripts.Render("~/Content/Registrar/assets/js/demo.js")
+    @Scripts.Render("~/Content/Registrar/assets/js/paper-bootstrap-wizard.js")
+
+
+    @Scripts.Render("~/Content/Registrar/assets/js/jquery.validate.min.js")
+
+    @Scripts.Render("~/Content/Registrar/assets/js/paper-bootstrap-wizard.js")
 </body>
 </html>

@@ -11,7 +11,8 @@ namespace MOCos_V1
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc;
+
     public partial class Profesor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,7 +26,8 @@ namespace MOCos_V1
         public Nullable<int> idUsuario { get; set; }
         public string Cubo { get; set; }
         public Nullable<int> idMateriaEnseña { get; set; }
-    
+        public IEnumerable<SelectListItem> UserEnseña { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistorialAsesoria> HistorialAsesoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
