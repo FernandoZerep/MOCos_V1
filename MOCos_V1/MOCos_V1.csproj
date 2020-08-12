@@ -639,6 +639,13 @@
     <Content Include="Views\Home\Contacto.cshtml" />
     <Content Include="Views\Administrador\Contacto.cshtml" />
     <Content Include="Views\Maestro\Contacto.cshtml" />
+    <Content Include="Views\Alumno\EditarAlumnoPerfil.cshtml" />
+    <Content Include="Views\Maestro\About.cshtml" />
+    <Content Include="Views\Maestro\Contact.cshtml" />
+    <Content Include="Views\Maestro\EditarTema.cshtml" />
+    <Content Include="Views\Maestro\EditarDocentePerfil.cshtml" />
+    <Content Include="Views\Maestro\MostrarDocumentos.cshtml" />
+    <Content Include="Views\Maestro\Inicio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
