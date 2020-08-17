@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Contacto";
-    Layout = "~/Views/Shared/_LayoutAlumno.cshtml";
+    Layout = "~/Views/Shared/_LayoutMaestro.cshtml";
 }
 
 
@@ -59,7 +59,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="well well-sm">
-                @using (Html.BeginForm("Contacto", "Alumno", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("Contacto", "Maestro", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
 
