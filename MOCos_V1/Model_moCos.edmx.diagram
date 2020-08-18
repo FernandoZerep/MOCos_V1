@@ -7,7 +7,6 @@
       <Diagram DiagramId="ea501ae69e8349db9546c9cd42ca11c9" Name="Diagram1" ZoomLevel="88">
         <EntityTypeShape EntityType="mocOS_BDModel.Administrador" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="mocOS_BDModel.Alumnos" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="mocOS_BDModel.Clase" Width="1.5" PointX="15" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="mocOS_BDModel.Cuatrimestre" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="mocOS_BDModel.Grupo" Width="1.5" PointX="6" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="mocOS_BDModel.HistorialAsesoria" Width="1.5" PointX="11.875" PointY="4.875" IsExpanded="true" />
@@ -18,14 +17,11 @@
         <EntityTypeShape EntityType="mocOS_BDModel.Temas" Width="1.5" PointX="12.75" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="mocOS_BDModel.TiposUsuarios" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="mocOS_BDModel.Usuario" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="mocOS_BDModel.Documentos" Width="1.5" PointX="17.375" PointY="9.625" IsExpanded="true" />
         <AssociationConnector Association="mocOS_BDModel.FK_Administrador_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="mocOS_BDModel.FK_Alumnos_Cuatrimestre" ManuallyRouted="false" />
         <AssociationConnector Association="mocOS_BDModel.FK_Alumnos_Grupo" ManuallyRouted="false" />
         <AssociationConnector Association="mocOS_BDModel.FK_Alumnos_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="mocOS_BDModel.FK_HistorialAsesoria_Alumnos" ManuallyRouted="false" />
-        <AssociationConnector Association="mocOS_BDModel.FK_Clase_Temas" ManuallyRouted="false" />
-        <AssociationConnector Association="mocOS_BDModel.FK_Documentos_Clase" ManuallyRouted="false" />
         <AssociationConnector Association="mocOS_BDModel.FK_HistorialAsesoria_Profesor" ManuallyRouted="false" />
         <AssociationConnector Association="mocOS_BDModel.FK_HistorialAsesoria_Temas" ManuallyRouted="false" />
         <AssociationConnector Association="mocOS_BDModel.FK_Portafolio_HistorialAsesoria" ManuallyRouted="false" />
@@ -37,6 +33,8 @@
         <AssociationConnector Association="mocOS_BDModel.FK_Temas_Unidad" />
         <AssociationConnector Association="mocOS_BDModel.FK_Profesor_Materia" />
         <AssociationConnector Association="mocOS_BDModel.FK_Materia_Cuatrimestre" />
+        <EntityTypeShape EntityType="mocOS_BDModel.Documentos" Width="1.5" PointX="15" PointY="9.75" />
+        <AssociationConnector Association="mocOS_BDModel.FK_Documentos_Temas" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

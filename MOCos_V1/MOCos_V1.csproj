@@ -144,9 +144,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Clase.cs">
-      <DependentUpon>Model_moCos.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\AlumnoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
