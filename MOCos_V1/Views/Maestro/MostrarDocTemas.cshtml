@@ -36,10 +36,18 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
                         <div class="breadcomb-report">
-                            @if (Model.Count() < 3)
-                             {
-                            <button onclick="location.href='@Url.Action("InsertarDoc","Maestro",new { id = Actual.idTema })'" data-toggle="tooltip" data-placement="left" title="Agregar Documento" class="btn"><i class="glyphicon glyphicon-plus"></i></button>
-                             }
+                            @if (Model != null)
+                            {
+                                if (Model.Count() < 3)
+                                {
+                                    <button onclick="location.href='@Url.Action("InsertarDoc","Maestro",new { id = Actual.idTema })'" data-toggle="tooltip" data-placement="left" title="Agregar Documento" class="btn"><i class="glyphicon glyphicon-plus"></i></button>
+                                }
+                            }
+                            else
+                            {
+                                <button onclick="location.href='@Url.Action("InsertarDoc","Maestro",new { id = Actual.idTema })'" data-toggle="tooltip" data-placement="left" title="Agregar Documento" class="btn"><i class="glyphicon glyphicon-plus"></i></button>
+                            }
+
                         </div>
                     </div>
                 </div>
@@ -80,15 +88,15 @@
                                          {
                                             <tr>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => c.idClase)
+                                                    @Html.DisplayFor(modelItem => c.idDocumento)
                                                 </td>
                                                 <td>
-                                                    <a href="@c.Link" target="_blank">@c.realName</a>
+                                                    <a href="@c.Link" target="_blank">@c.Nombre</a>
                                                 </td>
                                                 <td>
-                                                    @Html.ActionLink(" ", "EditarDoc", new { id = c.Link }, new { @class = "btn btn-info glyphicon glyphicon-edit", title ="Editar" }) &nbsp;
-                                                    <button type="button" class="btn btn-danger glyphicon glyphicon-trash" title="Eliminar" data-toggle="modal" data-target="#otroalert-@c.realName"></button>
-                                                    <div class="modal fade" id="otroalert-@c.realName" role="dialog">
+                                                    @Html.ActionLink(" ", "EditarDoc", new { id = c.idDocumento }, new { @class = "btn btn-info glyphicon glyphicon-edit", title ="Editar" }) &nbsp;
+                                                    <button type="button" class="btn btn-danger glyphicon glyphicon-trash" title="Eliminar" data-toggle="modal" data-target="#otroalert-@c.idDocumento"></button>
+                                                    <div class="modal fade" id="otroalert-@c.idDocumento" role="dialog">
                                                         <div class="modal-dialog modals-default">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -96,7 +104,7 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <h2>Eliminar</h2>
-                                                                    <p>¿Seguro que desea eliminar <b>@c.realName</b>  de la Unidad?</p>
+                                                                    <p>¿Seguro que desea eliminar <b>@c.Nombre</b>  de la Unidad?</p>
                                                                     <p>Esta accion eliminara permanentemente el tema seleccionado</p>
                                                                 </div>
                                                                 <div class="modal-footer">

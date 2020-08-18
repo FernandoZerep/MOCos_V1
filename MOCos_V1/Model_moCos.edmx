@@ -23,13 +23,6 @@
           <Property Name="idGrupo" Type="int" />
           <Property Name="Matricula" Type="varchar" MaxLength="20" />
         </EntityType>
-        <EntityType Name="Clase">
-          <Key>
-            <PropertyRef Name="idClase" />
-          </Key>
-          <Property Name="idClase" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idTemas" Type="int" />
-        </EntityType>
         <EntityType Name="Cuatrimestre">
           <Key>
             <PropertyRef Name="idCuatrimestre" />
@@ -39,16 +32,14 @@
           <Property Name="Carrera" Type="varchar(max)" />
           <Property Name="Especialidad" Type="varchar(max)" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Documentos">
           <Key>
-            <PropertyRef Name="idClase" />
+            <PropertyRef Name="idDocumento" />
           </Key>
-          <Property Name="idClase" Type="int" Nullable="false" />
-          <Property Name="Documento" Type="varbinary(max)" />
-          <Property Name="Link" Type="varchar(max)" />
-          <Property Name="realName" Type="varchar(max)" />
+          <Property Name="idDocumento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTema" Type="int" />
+          <Property Name="Nombre" Type="nvarchar(max)" />
+          <Property Name="Link" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Grupo">
           <Key>
@@ -193,27 +184,15 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Clase_Temas">
+        <Association Name="FK_Documentos_Temas">
           <End Role="Temas" Type="Self.Temas" Multiplicity="0..1" />
-          <End Role="Clase" Type="Self.Clase" Multiplicity="*" />
+          <End Role="Documentos" Type="Self.Documentos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Temas">
               <PropertyRef Name="idTema" />
             </Principal>
-            <Dependent Role="Clase">
-              <PropertyRef Name="idTemas" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Documentos_Clase">
-          <End Role="Clase" Type="Self.Clase" Multiplicity="1" />
-          <End Role="Documentos" Type="Self.Documentos" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Clase">
-              <PropertyRef Name="idClase" />
-            </Principal>
             <Dependent Role="Documentos">
-              <PropertyRef Name="idClase" />
+              <PropertyRef Name="idTema" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -352,8 +331,8 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
         <EntityContainer Name="mocOS_BDModelStoreContainer">
           <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Alumnos" EntityType="Self.Alumnos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Clase" EntityType="Self.Clase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cuatrimestre" EntityType="Self.Cuatrimestre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Documentos" EntityType="Self.Documentos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Grupo" EntityType="Self.Grupo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistorialAsesoria" EntityType="Self.HistorialAsesoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Materia" EntityType="Self.Materia" Schema="dbo" store:Type="Tables" />
@@ -364,14 +343,6 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
           <EntitySet Name="TiposUsuarios" EntityType="Self.TiposUsuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Unidad" EntityType="Self.Unidad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Documentos" EntityType="Self.Documentos" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Documentos].[idClase] AS [idClase], 
-    [Documentos].[Documento] AS [Documento], 
-    [Documentos].[Link] AS [Link], 
-    [Documentos].[realName] AS [realName]
-    FROM [dbo].[Documentos] AS [Documentos]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Administrador_Usuario" Association="Self.FK_Administrador_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Administrador" EntitySet="Administrador" />
@@ -388,12 +359,8 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Alumnos" EntitySet="Alumnos" />
           </AssociationSet>
-          <AssociationSet Name="FK_Clase_Temas" Association="Self.FK_Clase_Temas">
+          <AssociationSet Name="FK_Documentos_Temas" Association="Self.FK_Documentos_Temas">
             <End Role="Temas" EntitySet="Temas" />
-            <End Role="Clase" EntitySet="Clase" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Documentos_Clase" Association="Self.FK_Documentos_Clase">
-            <End Role="Clase" EntitySet="Clase" />
             <End Role="Documentos" EntitySet="Documentos" />
           </AssociationSet>
           <AssociationSet Name="FK_HistorialAsesoria_Alumnos" Association="Self.FK_HistorialAsesoria_Alumnos">
@@ -467,15 +434,6 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Alumnos_Usuario" FromRole="Alumnos" ToRole="Usuario" />
           <NavigationProperty Name="HistorialAsesoria" Relationship="Self.FK_HistorialAsesoria_Alumnos" FromRole="Alumnos" ToRole="HistorialAsesoria" />
           <Property Name="Matricula" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Clase">
-          <Key>
-            <PropertyRef Name="idClase" />
-          </Key>
-          <Property Name="idClase" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idTemas" Type="Int32" />
-          <NavigationProperty Name="Temas" Relationship="Self.FK_Clase_Temas" FromRole="Clase" ToRole="Temas" />
-          <NavigationProperty Name="Documentos" Relationship="Self.FK_Documentos_Clase" FromRole="Clase" ToRole="Documentos" />
         </EntityType>
         <EntityType Name="Cuatrimestre">
           <Key>
@@ -562,10 +520,10 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
           </Key>
           <Property Name="idTema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Clase" Relationship="Self.FK_Clase_Temas" FromRole="Temas" ToRole="Clase" />
           <NavigationProperty Name="HistorialAsesoria" Relationship="Self.FK_HistorialAsesoria_Temas" FromRole="Temas" ToRole="HistorialAsesoria" />
           <Property Name="idUnidad" Type="Int32" />
           <NavigationProperty Name="Unidad" Relationship="mocOS_BDModel.FK_Temas_Unidad" FromRole="Temas" ToRole="Unidad" />
+          <NavigationProperty Name="Documentos" Relationship="mocOS_BDModel.FK_Documentos_Temas" FromRole="Temas" ToRole="Documentos" />
         </EntityType>
         <EntityType Name="TiposUsuarios">
           <Key>
@@ -596,16 +554,6 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
           <NavigationProperty Name="Profesor" Relationship="Self.FK_Profesor_Usuario" FromRole="Usuario" ToRole="Profesor" />
           <NavigationProperty Name="TiposUsuarios" Relationship="Self.FK_Usuario_TiposUsuarios" FromRole="Usuario" ToRole="TiposUsuarios" />
           <Property Name="idToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Documentos">
-          <Key>
-            <PropertyRef Name="idClase" />
-          </Key>
-          <Property Name="idClase" Type="Int32" Nullable="false" />
-          <Property Name="Documento" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Clase" Relationship="Self.FK_Documentos_Clase" FromRole="Documentos" ToRole="Clase" />
-          <Property Name="realName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Administrador_Usuario">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
@@ -664,30 +612,6 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
             </Principal>
             <Dependent Role="HistorialAsesoria">
               <PropertyRef Name="idAlumno" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clase_Temas">
-          <End Role="Temas" Type="Self.Temas" Multiplicity="0..1" />
-          <End Role="Clase" Type="Self.Clase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Temas">
-              <PropertyRef Name="idTema" />
-            </Principal>
-            <Dependent Role="Clase">
-              <PropertyRef Name="idTemas" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Documentos_Clase">
-          <End Role="Clase" Type="Self.Clase" Multiplicity="1" />
-          <End Role="Documentos" Type="Self.Documentos" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Clase">
-              <PropertyRef Name="idClase" />
-            </Principal>
-            <Dependent Role="Documentos">
-              <PropertyRef Name="idClase" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -766,7 +690,6 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
         <EntityContainer Name="mocOS_BDEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Administrador" EntityType="Self.Administrador" />
           <EntitySet Name="Alumnos" EntityType="Self.Alumnos" />
-          <EntitySet Name="Clase" EntityType="Self.Clase" />
           <EntitySet Name="Cuatrimestre" EntityType="Self.Cuatrimestre" />
           <EntitySet Name="Grupo" EntityType="Self.Grupo" />
           <EntitySet Name="HistorialAsesoria" EntityType="Self.HistorialAsesoria" />
@@ -777,7 +700,6 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
           <EntitySet Name="Temas" EntityType="Self.Temas" />
           <EntitySet Name="TiposUsuarios" EntityType="Self.TiposUsuarios" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
-          <EntitySet Name="Documentos" EntityType="Self.Documentos" />
           <AssociationSet Name="FK_Administrador_Usuario" Association="Self.FK_Administrador_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Administrador" EntitySet="Administrador" />
@@ -797,14 +719,6 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
           <AssociationSet Name="FK_HistorialAsesoria_Alumnos" Association="Self.FK_HistorialAsesoria_Alumnos">
             <End Role="Alumnos" EntitySet="Alumnos" />
             <End Role="HistorialAsesoria" EntitySet="HistorialAsesoria" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clase_Temas" Association="Self.FK_Clase_Temas">
-            <End Role="Temas" EntitySet="Temas" />
-            <End Role="Clase" EntitySet="Clase" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Documentos_Clase" Association="Self.FK_Documentos_Clase">
-            <End Role="Clase" EntitySet="Clase" />
-            <End Role="Documentos" EntitySet="Documentos" />
           </AssociationSet>
           <AssociationSet Name="FK_HistorialAsesoria_Profesor" Association="Self.FK_HistorialAsesoria_Profesor">
             <End Role="Profesor" EntitySet="Profesor" />
@@ -846,6 +760,11 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
           <AssociationSet Name="FK_Materia_Cuatrimestre" Association="mocOS_BDModel.FK_Materia_Cuatrimestre">
             <End Role="Cuatrimestre" EntitySet="Cuatrimestre" />
             <End Role="Materia" EntitySet="Materia" />
+          </AssociationSet>
+          <EntitySet Name="Documentos" EntityType="mocOS_BDModel.Documentos" />
+          <AssociationSet Name="FK_Documentos_Temas" Association="mocOS_BDModel.FK_Documentos_Temas">
+            <End Role="Temas" EntitySet="Temas" />
+            <End Role="Documentos" EntitySet="Documentos" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Unidad">
@@ -906,6 +825,28 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Documentos">
+          <Key>
+            <PropertyRef Name="idDocumento" />
+          </Key>
+          <Property Name="idDocumento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTema" Type="Int32" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Temas" Relationship="mocOS_BDModel.FK_Documentos_Temas" FromRole="Documentos" ToRole="Temas" />
+        </EntityType>
+        <Association Name="FK_Documentos_Temas">
+          <End Type="mocOS_BDModel.Temas" Role="Temas" Multiplicity="0..1" />
+          <End Type="mocOS_BDModel.Documentos" Role="Documentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Temas">
+              <PropertyRef Name="idTema" />
+            </Principal>
+            <Dependent Role="Documentos">
+              <PropertyRef Name="idTema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -929,14 +870,6 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
                 <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
                 <ScalarProperty Name="idCuatrimestre" ColumnName="idCuatrimestre" />
                 <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Clase">
-            <EntityTypeMapping TypeName="mocOS_BDModel.Clase">
-              <MappingFragment StoreEntitySet="Clase">
-                <ScalarProperty Name="idClase" ColumnName="idClase" />
-                <ScalarProperty Name="idTemas" ColumnName="idTemas" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1046,22 +979,22 @@ advertencia 6002: La tabla o vista 'mocOS_BD.dbo.Documentos' no tiene definida n
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Documentos">
-            <EntityTypeMapping TypeName="mocOS_BDModel.Documentos">
-              <MappingFragment StoreEntitySet="Documentos">
-                <ScalarProperty Name="realName" ColumnName="realName" />
-                <ScalarProperty Name="idClase" ColumnName="idClase" />
-                <ScalarProperty Name="Documento" ColumnName="Documento" />
-                <ScalarProperty Name="Link" ColumnName="Link" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Unidad">
             <EntityTypeMapping TypeName="mocOS_BDModel.Unidad">
               <MappingFragment StoreEntitySet="Unidad">
                 <ScalarProperty Name="idMateria" ColumnName="idMateria" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="idUnidad" ColumnName="idUnidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documentos">
+            <EntityTypeMapping TypeName="mocOS_BDModel.Documentos">
+              <MappingFragment StoreEntitySet="Documentos">
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="idTema" ColumnName="idTema" />
+                <ScalarProperty Name="idDocumento" ColumnName="idDocumento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

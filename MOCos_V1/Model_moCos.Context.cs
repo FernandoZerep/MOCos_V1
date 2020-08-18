@@ -27,7 +27,6 @@ namespace MOCos_V1
     
         public virtual DbSet<Administrador> Administrador { get; set; }
         public virtual DbSet<Alumnos> Alumnos { get; set; }
-        public virtual DbSet<Clase> Clase { get; set; }
         public virtual DbSet<Cuatrimestre> Cuatrimestre { get; set; }
         public virtual DbSet<Grupo> Grupo { get; set; }
         public virtual DbSet<HistorialAsesoria> HistorialAsesoria { get; set; }
@@ -38,7 +37,7 @@ namespace MOCos_V1
         public virtual DbSet<Temas> Temas { get; set; }
         public virtual DbSet<TiposUsuarios> TiposUsuarios { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
-        public virtual DbSet<Documentos> Documentos { get; set; }
         public virtual DbSet<Unidad> Unidad { get; set; }
+        public virtual DbSet<Documentos> Documentos { get; set; }
     }
 }

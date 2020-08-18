@@ -144,9 +144,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Clase.cs">
-      <DependentUpon>Model_moCos.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\AlumnoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -657,6 +654,7 @@
     <Content Include="Views\Alumno\Consulta_Profesores_Asesores.cshtml" />
     <Content Include="Views\Alumno\ConsultaPro.cshtml" />
     <Content Include="Views\Alumno\ConsultaPro1.cshtml" />
+    <Content Include="Views\Maestro\EditarDoc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

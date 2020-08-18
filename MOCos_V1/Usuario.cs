@@ -11,10 +11,7 @@ namespace MOCos_V1
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
-
+    
     public partial class Usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,56 +23,16 @@ namespace MOCos_V1
         }
     
         public int idUsuario { get; set; }
-
-        [Required(ErrorMessage = "{0} es requerido")]
-        [MinLength(4, ErrorMessage = "{0} Debe terner una logitud mayor o igual a 4 caracteres")]
-        [DisplayName("Nombre(s)")]
         public string Nombre { get; set; }
-
-        [Required(ErrorMessage = "{0} es requerido")]
-        [DataType(DataType.Password)]
-        [MinLength(6, ErrorMessage = "{0} Debe terner una logitud mayor o igual a 6 caracteres")]
-        [DisplayName("Contraseña")]
         public string Contrasena { get; set; }
-
-        [Required(ErrorMessage = "{0} es requerido")]
-        [MinLength(4, ErrorMessage = "{0} Debe terner una logitud mayor o igual a 4 caracteres")]
-        [DisplayName("Apellidos Materno")]
         public string ApellidoMaterno { get; set; }
-
-        [Required(ErrorMessage = "{0} es requerido")]
-        [MinLength(4, ErrorMessage = "{0} Debe terner una logitud mayor o igual a 4 caracteres")]
-        [DisplayName("Apellido Paterno")]
         public string ApellidoPaterno { get; set; }
-
-        [Required(ErrorMessage = "{0} es requerido")]
-        [MinLength(6, ErrorMessage = "{0} Debe terner una logitud mayor o igual a 6 caracteres")]
-        [DisplayName("Dirección")]
         public string Dirección { get; set; }
-
-        [Required(ErrorMessage = "{0} es requerido")]
-        [StringLength(10)]
-        [DisplayName("Celular")]
         public string Telefono { get; set; }
-
-        [Required(ErrorMessage = "{0} es requerido")]
-        [DisplayName("Género")]
-
         public string Genero { get; set; }
-        public IEnumerable<SelectListItem> UserGenList { get; set; }
-        [Required(ErrorMessage = "{0} es requerido")]
-        [DataType(DataType.Date)]
-        [DisplayName("Fecha de nacimiento")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-
         public Nullable<System.DateTime> FechaDeNacimiento { get; set; }
         public byte[] FotoPerfil { get; set; }
         public Nullable<int> idTipoUsuario { get; set; }
-        public IEnumerable<SelectListItem> UserTipoList { get; set; }
-
-        [Required(ErrorMessage = "{0} es requerido")]
-        [DataType(DataType.EmailAddress)]
-        [DisplayName("Email")]
         public string Correo { get; set; }
         public string idToken { get; set; }
     

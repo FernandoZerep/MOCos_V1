@@ -17,8 +17,8 @@ namespace MOCos_V1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Temas()
         {
-            this.Clase = new HashSet<Clase>();
             this.HistorialAsesoria = new HashSet<HistorialAsesoria>();
+            this.Documentos = new HashSet<Documentos>();
         }
     
         public int idTema { get; set; }
@@ -26,9 +26,9 @@ namespace MOCos_V1
         public Nullable<int> idUnidad { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Clase> Clase { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistorialAsesoria> HistorialAsesoria { get; set; }
         public virtual Unidad Unidad { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Documentos> Documentos { get; set; }
     }
 }
