@@ -11,11 +11,12 @@ namespace MOCos_V1
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc;
     public partial class Administrador
     {
         public int idAdministrador { get; set; }
         public Nullable<int> idUsuario { get; set; }
+        public IEnumerable<SelectListItem> UserList { get; set; }
         public string Tipo { get; set; }
     
         public virtual Usuario Usuario { get; set; }
