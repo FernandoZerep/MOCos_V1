@@ -239,33 +239,22 @@
                         <nav id="dropdown">
                             <ul class="mobile-menu-nav">
                                 <li>
-                                    <a data-toggle="collapse" data-target="#Charts" href="#">Inicio</a>
+                                    <a data-toggle="tab" href="" onclick="location.href='@Url.Action("Inicio", "Maestro")'"> Inicio</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#demoevent" href="#">Perfil</a>
+                                    <a data-toggle="tab" href="" onclick="location.href='@Url.Action("Perfil", "Maestro")'">Perfil</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#democrou" href="#">Modulos</a>
+                                    <a data-toggle="tab" href="" onclick="location.href='@Url.Action("MostrarModulos", "Maestro")'"> Modulos</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#demolibra" href="#">Sala de comunicacion</a>
+                                    <a data-toggle="tab" href="" onclick="location.href='@Url.Action("Consulta_Alumnos_Asesorados", "Maestro")'">Alumnos </a>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#demodepart" href="#">Especialidad</a>
-                                    <ul id="demodepart" class="collapse dropdown-header-top">
-                                        <li><a href="flot-charts.html">TSU</a></li>
-                                        <li><a href="bar-charts.html">Ingenieria</a></li>
-                                    </ul>
+                                    <a data-toggle="tab" href="#Charts"> Salas de Discusion</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#demo" href="#">Calificaciones</a>
-                                    <ul id="demo" class="collapse dropdown-header-top">
-                                        <li><a href="form-elements.html">Editar</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a data-toggle="collapse" data-target="#" href="#" onclick="location.href='@Url.Action("Consulta_Alumnos_Asesorados", "Maestro")'">Alumnos</a>
-                                    
+                                    <a data-toggle="tab" href="#"> Calificaciones</a>
                                 </li>
 
                             </ul>
