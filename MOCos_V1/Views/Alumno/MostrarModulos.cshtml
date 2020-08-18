@@ -93,7 +93,8 @@
                                                                 @Html.DisplayFor(modelItem => item.Nombre)
                                                             </td>
                                                             <td>
-                                                                <button type="button" class="btn btn-info glyphicon glyphicon-user" data-toggle="modal" data-target="#otroalert-@item.idTema" title="Tutores"></button>
+                                                                <button type="button" class="btn btn-info glyphicon glyphicon-user" data-toggle="modal" data-target="#otroalert-@item.idTema" title="Tutores"></button>&nbsp;
+                                                                @Html.ActionLink(" ", "MostrarDocTemas", new { id = item.idTema }, new { @class = "btn btn-warning glyphicon glyphicon-share", title = "Materiales" }) &nbsp;
                                                                 <div class="modal fade" id="otroalert-@item.idTema" role="dialog">
                                                                     <div class="modal-dialog modals-default">
                                                                         <div class="modal-content">
