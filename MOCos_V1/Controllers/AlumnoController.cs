@@ -386,10 +386,10 @@ namespace MOCos_V1.Controllers
             ha.idTema = id;
             ha.idProfesor = idPro;
             bd.HistorialAsesoria.Add(ha);
-            //bd.SaveChanges();
+            bd.SaveChanges();
             Correo_Aviso(obj, id, idPro);
 
-            return RedirectToAction("Inicio");
+            return RedirectToAction("Consulta_Profesores_Asesores");
         }
         [AuthorizeUser(idNivel: 3)]
         [HttpPost]
@@ -430,6 +430,71 @@ namespace MOCos_V1.Controllers
             }
             return View();
         }
-       
+        [AuthorizeUser(idNivel: 3)]
+        public ActionResult Consulta_Profesores_Asesores()
+        {
+   
+
+            try
+            {
+                bool bandera = false;
+                Usuario obj = new Usuario();
+                obj = (Usuario)Session["User"];
+                var alu= (from a in bd.Alumnos where a.idUsuario ==obj.idUsuario select a).FirstOrDefault();
+                var his = (from h in bd.HistorialAsesoria where h.idAlumno == alu.idAlumno select h );
+
+                List<int> idProfe = new List<int>();
+                idProfe.Add(0);
+                List<Profesor> MostrarProfes = new List<Profesor>();
+                foreach (var c in his)
+                {
+                   
+                    foreach(var d in idProfe)
+                    {
+                        if (d != (int)c.idProfesor)
+                        
+                            bandera = true;
+                        
+                        else
+                            bandera = false;
+                     }
+
+                    if (bandera)
+                        {
+
+                            var pro = (from p in bd.Profesor join m in bd.Materia on p.idMateriaEnseña equals m.idMateria where p.idProfesor == c.idProfesor select p);
+                            List<Profesor> Encontrados = pro.ToList();
+                            foreach (var i in Encontrados)
+                            {
+                                MostrarProfes.Add(i);
+                            }
+                           
+
+                        }
+                       
+                    
+                    idProfe.Add((int)c.idProfesor);
+                }
+                List<Usuario> MostrarUsuario = new List<Usuario>();
+                foreach (var d in MostrarProfes)
+                {
+                    List<Usuario> Encontrados_user = bd.Usuario.Where(p => p.idUsuario ==d.idUsuario).ToList();
+                    foreach (var i in Encontrados_user)
+                    {
+                        MostrarUsuario.Add(i);
+                    }
+                }
+                ViewBag.Profe= MostrarProfes;
+                ViewBag.Usuario = MostrarUsuario;
+               
+                return View();
+            }
+            catch (Exception mensaje)
+            {
+                ModelState.AddModelError("Error al mostrar los asesores", mensaje);
+                return View();
+            }
+        }
+
     }
 }

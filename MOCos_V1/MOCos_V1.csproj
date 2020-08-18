@@ -654,6 +654,9 @@
     <Content Include="Views\Maestro\InsertarDoc.cshtml" />
     <Content Include="Views\Alumno\ConsultaMaterias.cshtml" />
     <Content Include="Views\Alumno\MostrarModulos.cshtml" />
+    <Content Include="Views\Alumno\Consulta_Profesores_Asesores.cshtml" />
+    <Content Include="Views\Alumno\ConsultaPro.cshtml" />
+    <Content Include="Views\Alumno\ConsultaPro1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

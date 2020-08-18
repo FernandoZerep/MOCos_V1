@@ -1,0 +1,100 @@
+﻿@model IEnumerable<MOCos_V1.HistorialAsesoria>
+
+@{
+    ViewBag.Title = "ConsultaPro";
+    Layout = "~/Views/Shared/_LayoutAlumno.cshtml";
+}
+
+<!-- Inbox area Start-->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="inbox-text-list sm-res-mg-t-30">
+                <div class="accordion-stn">
+                    <div class="panel-group" data-collapse-color="nk-green" id="accordionGreen" role="tablist" aria-multiselectable="false">
+
+                        <!--Foreach para mostrar unidad y temas juntos-->
+                        @foreach (var c in Model)
+                        {
+
+                            <div class="panel panel-collapse notika-accrodion-cus">
+                                <div class="panel-heading" role="tab" style="width:100%;">
+                                    <table class="table table-condensed" style="width:100%; padding-top:0px;">
+                                        <tr>
+                                            <th style="text-align:left;">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordionGreen" href="#@c.idProfesor" aria-expanded="false">
+                                                       
+                                                        @Html.DisplayFor(modelItem => c.Profesor.Usuario.Nombre)
+                                                        @Html.DisplayFor(modelItem => c.Profesor.Usuario.ApellidoPaterno)
+                                                        @Html.DisplayFor(modelItem => c.Profesor.Usuario.ApellidoMaterno)
+
+                                                    </a>
+                                                </h4>
+                                            </th>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div id="@c.idProfesor" class="collapse" role="tabpanel">
+                                    <div class="panel-body">
+                                        <div class="bsc-tbl">
+                                            <div class="row">
+                                                <div class="breadcomb-report">
+                                                </div>
+                                            </div>
+                                            <table class="table table-sc-ex">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            Correo
+                                                        </th>
+                                                        <th>
+                                                            Dirección
+                                                        </th>
+                                                        <th>
+                                                            telefono
+                                                        </th>
+
+                                                        <th>
+                                                            cubo
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                  
+                                                    <tr>
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => c.Profesor.Usuario.Correo)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => c.Profesor.Usuario.Dirección)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => c.Profesor.Usuario.Telefono)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => c.Profesor.Cubo)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => c.Profesor.Materia1.NombreMateria)
+                                                        </td>
+
+                                                    </tr>
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

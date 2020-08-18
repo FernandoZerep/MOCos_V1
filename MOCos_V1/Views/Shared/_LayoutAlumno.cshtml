@@ -251,44 +251,23 @@
                         <nav id="dropdown">
                             <ul class="mobile-menu-nav">
                                 <li>
-                                    <a data-toggle="collapse" data-target="#Charts" href="#">Inicio</a>
+                                    <a data-toggle="collapse" data-target="#" href="#" onclick="location.href='@Url.Action("Inicio", "Alumno")'">Inicio</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#demoevent" href="#">Perfil</a>
+                                    <a data-toggle="collapse" data-target="#demoevent" href="#" onclick="location.href='@Url.Action("ConsultaMaterias", "Alumno")'">Materias</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#democrou" href="#">Alumnos</a>
-                                    <ul id="democrou" class="collapse dropdown-header-top">
-                                        <li><a href="AgregarAlumno">Agregar</a></li>
-                                        <li><a href="google-map.html">Eliminar</a></li>
-                                        <li><a href="data-map.html">Modificar</a></li>
-                                        <li><a href="code-editor.html">Consultar</a></li>
-                                    </ul>
+                                    <a data-toggle="collapse" data-target="#democrou" href="#" onclick="location.href='@Url.Action("Consulta_Profesores_Asesores", "Alumno")'">Asesores</a>
+
+                                </li>
+
+                                <li>
+                                    <a data-toggle="collapse" data-target="#demo" href="#"  onclick="location.href='@Url.Action("Contacto", "Alumno")'">Contacto</a>
+
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#demolibra" href="#">Maestros</a>
-                                    <ul id="demolibra" class="collapse dropdown-header-top">
-                                        <li><a href="flot-charts.html">Agregar</a></li>
-                                        <li><a href="bar-charts.html">Eliminar</a></li>
-                                        <li><a href="line-charts.html">Modificar</a></li>
-                                        <li><a href="area-charts.html">Consultar</a></li>
-                                        <li><a href="area-charts.html">Asignar con materias</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a data-toggle="collapse" data-target="#demodepart" href="#">Materias</a>
-                                    <ul id="demodepart" class="collapse dropdown-header-top">
-                                        <li><a href="flot-charts.html">Agregar</a></li>
-                                        <li><a href="bar-charts.html">Eliminar</a></li>
-                                        <li><a href="line-charts.html">Modificar</a></li>
-                                        <li><a href="area-charts.html">Consultar</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a data-toggle="collapse" data-target="#demo" href="#">Contacto</a>
-                                    <ul id="demo" class="collapse dropdown-header-top">
-                                        <li><a href="form-elements.html">Editar</a></li>
-                                    </ul>
+                                    <a data-toggle="collapse" data-target="#demo" href="#" onclick="location.href='@Url.Action("Mapa", "Alumno")'">Mapa</a>
+
                                 </li>
 
                             </ul>
@@ -311,23 +290,23 @@
                         <li>
                             <a data-toggle="tab" href="#MATERIAS" onclick="location.href='@Url.Action("ConsultaMaterias", "Alumno")'"><i class="glyphicon glyphicon-inbox"></i> MATERIAS </a>
                         </li>
-                        <li>
+                        @*<li>
                             <a data-toggle="tab" href="#PORTAFOLIO"><i class="glyphicon glyphicon-education"></i>PORTAFOLIO</a>
                         </li>
                         <li>
                             <a data-toggle="tab" href="#COMUNICACIÓN"><i class="glyphicon glyphicon-briefcase"></i> COMUNICACIÓN</a>
-                        </li>
+                        </li>*@
                         <li>
-                            <a data-toggle="tab" href="#ASESORES"><i class="notika-icon notika-edit"></i> ASESOSRES </a>
+                            <a data-toggle="tab" href="#ASESORES" onclick="location.href='@Url.Action("Consulta_Profesores_Asesores", "Alumno")'"><i class="notika-icon notika-edit"></i> ASESORES </a>
                         </li>
-                        <li>
+                        @*<li>
                             <a data-toggle="tab" href="#CALIFICACIÓN"><i class="glyphicon glyphicon-book"></i> CALIFICACIÓN</a>
-                        </li>
+                        </li>*@
                         <li>
                             <a data-toggle="tab" href="#CONTACTO" onclick="location.href='@Url.Action("Contacto", "Alumno")'"><i class="glyphicon glyphicon-book"></i> CONTACTO</a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#MAPA" onclick="location.href='@Url.Action("Mapa", "Alumno")'"><i class="glyphicon glyphicon-book"></i> MAPA</a>
+                            <a data-toggle="tab" href="#MAPA" onclick="location.href='@Url.Action("Mapa", "Alumno")'"><i class="glyphicon glyphicon-map-marker"></i> MAPA</a>
                         </li>
                     </ul>
                     <div class="tab-content custom-menu-content">
