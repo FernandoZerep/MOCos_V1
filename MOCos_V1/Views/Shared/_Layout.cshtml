@@ -236,13 +236,13 @@
                         <nav id="dropdown">
                             <ul class="mobile-menu-nav">
                                 <li>
-                                    <a data-toggle="collapse" data-target="#Charts" href="#">Inicio</a>
+                                    <a data-toggle="collapse" data-target="" href="#" onclick="location.href='@Url.Action("InicioAdmin", "Administrador")'">Inicio</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#demoevent" href="#">Sala de discusión</a>
+                                    <a data-toggle="collapse" data-target="" href="#">Sala de discusión</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#democrou" href="#">Alumnos</a>
+                                    <a data-toggle="collapse" data-target="" href="#" onclick="location.href='@Url.Action("ConsultaAlumno", "Administrador")'">Alumnos</a>
                                     <ul id="democrou" class="collapse dropdown-header-top">
                                         <li><a href="AgregarAlumno">Agregar</a></li>
                                         <li><a href="google-map.html">Eliminar</a></li>
@@ -251,7 +251,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#demolibra" href="#">Maestros</a>
+                                    <a data-toggle="collapse" data-target="" href="#" onclick="location.href='@Url.Action("ConsultaDocente", "Administrador")'">Maestros</a>
                                     <ul id="demolibra" class="collapse dropdown-header-top">
                                         <li><a href="flot-charts.html">Agregar</a></li>
                                         <li><a href="bar-charts.html">Eliminar</a></li>
@@ -261,7 +261,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#demodepart" href="#">Materias</a>
+                                    <a data-toggle="collapse" data-target="#demodepart" href="#" onclick="location.href='@Url.Action("ConsultaMaterias", "Administrador")'">Materias</a>
                                     <ul id="demodepart" class="collapse dropdown-header-top">
                                         <li><a href="flot-charts.html">Agregar</a></li>
                                         <li><a href="bar-charts.html">Eliminar</a></li>
@@ -270,7 +270,13 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#demo" href="#">Contacto</a>
+                                    <a data-toggle="collapse" data-target="" href="#" onclick="location.href='@Url.Action("Contacto", "Administrador")'">Contacto</a>
+                                    <ul id="demo" class="collapse dropdown-header-top">
+                                        <li><a href="form-elements.html">Editar</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="" href="#" onclick="location.href='@Url.Action("MapaAdmin", "Administrador")'">Mapa</a>
                                     <ul id="demo" class="collapse dropdown-header-top">
                                         <li><a href="form-elements.html">Editar</a></li>
                                     </ul>
