@@ -1,14 +1,13 @@
-﻿@model IEnumerable<MOCos_V1.Profesor>
+﻿@model IEnumerable<MOCos_V1.Alumnos>
 
 @{
-    List<Profesor> Pro = ViewBag.Profe;
+    List<Alumnos> alu = ViewBag.Alu;
     List<Usuario> user = ViewBag.Usuario;
 
-    ViewBag.Title = "Consulta_Profesores_Asesores";
-    Layout = "~/Views/Shared/_LayoutAlumno.cshtml";
+    ViewBag.Title = "Consulta_Alumnos_Asesorados";
+    Layout = "~/Views/Shared/_LayoutMaestro.cshtml";
 }
 
-<!-- Inbox area Start-->
 <div class="container">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -16,8 +15,7 @@
                 <div class="accordion-stn">
                     <div class="panel-group" data-collapse-color="nk-green" id="accordionGreen" role="tablist" aria-multiselectable="false">
 
-                        <!--Foreach para mostrar unidad y temas juntos-->
-                        @foreach (var c in Pro)
+                        @foreach (var c in alu)
                         {
                             <div class="panel panel-collapse notika-accrodion-cus">
                                 <div class="panel-heading" role="tab" style="width:100%;">
@@ -25,7 +23,7 @@
                                         <tr>
                                             <th style="text-align:left;">
                                                 <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordionGreen" href="#@c.idProfesor" aria-expanded="false">
+                                                    <a data-toggle="collapse" data-parent="#accordionGreen" href="#@c.idAlumno" aria-expanded="false">
 
                                                         @Html.DisplayFor(modelItem => c.Usuario.Nombre)
                                                         @Html.DisplayFor(modelItem => c.Usuario.ApellidoPaterno)
@@ -36,7 +34,7 @@
                                         </tr>
                                     </table>
                                 </div>
-                                <div id="@c.idProfesor" class="collapse" role="tabpanel">
+                                <div id="@c.idAlumno" class="collapse" role="tabpanel">
                                     <div class="panel-body">
                                         <div class="bsc-tbl">
                                             <div class="row">
@@ -53,11 +51,11 @@
                                                             Dirección
                                                         </th>
                                                         <th>
-                                                            telefono
+                                                            Teléfono
                                                         </th>
 
                                                         <th>
-                                                            cubo
+                                                            Matricula
                                                         </th>
                                                     </tr>
                                                 </thead>
@@ -65,25 +63,25 @@
 
                                                     @foreach (var item in user.Where(x => x.idUsuario == c.idUsuario))
                                                     {
-                                                    <tr>
+                                                        <tr>
 
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.Correo)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.Dirección)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.Telefono)
-                                                        </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Correo)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Dirección)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Telefono)
+                                                            </td>
 
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => c.Cubo)
-                                                        </td>
-                                                       
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => c.Matricula)
+                                                            </td>
 
 
-                                                    </tr>
+
+                                                        </tr>
                                                     }
                                                 </tbody>
                                             </table>

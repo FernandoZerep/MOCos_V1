@@ -780,6 +780,71 @@ namespace MOCos_V1.Controllers
                 return View();
             }
         }
+        [AuthorizeUser(idNivel: 4)]
+        public ActionResult Consulta_Alumnos_Asesorados()
+        {
+
+
+            try
+            {
+                bool bandera = false;
+                Usuario obj = new Usuario();
+                obj = (Usuario)Session["User"];
+                var pro = (from a in bd.Profesor where a.idUsuario == obj.idUsuario select a).FirstOrDefault();
+                var his = (from h in bd.HistorialAsesoria where h.idProfesor == pro.idProfesor select h);
+
+                List<int> idAlu = new List<int>();
+                idAlu.Add(0);
+                List<Alumnos> MostrarAlumno = new List<Alumnos>();
+                foreach (var c in his)
+                {
+
+                    foreach (var d in idAlu)
+                    {
+                        if (d != (int)c.idAlumno)
+
+                            bandera = true;
+
+                        else
+                            bandera = false;
+                    }
+
+                    if (bandera)
+                    {
+
+                        var alu = (from a in bd.Alumnos where a.idAlumno == c.idAlumno select a);
+                        List<Alumnos> Encontrados = alu.ToList();
+                        foreach (var i in Encontrados)
+                        {
+                            MostrarAlumno.Add(i);
+                        }
+
+
+                    }
+
+
+                    idAlu.Add((int)c.idAlumno);
+                }
+                List<Usuario> MostrarUsuario = new List<Usuario>();
+                foreach (var d in MostrarAlumno)
+                {
+                    List<Usuario> Encontrados_user = bd.Usuario.Where(p => p.idUsuario == d.idUsuario).ToList();
+                    foreach (var i in Encontrados_user)
+                    {
+                        MostrarUsuario.Add(i);
+                    }
+                }
+                ViewBag.Alu = MostrarAlumno;
+                ViewBag.Usuario = MostrarUsuario;
+
+                return View();
+            }
+            catch (Exception mensaje)
+            {
+                ModelState.AddModelError("Error al mostrar los alumnos", mensaje);
+                return View();
+            }
+        }
 
     }
 }
