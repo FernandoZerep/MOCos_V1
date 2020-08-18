@@ -335,6 +335,118 @@ namespace MOCos_V1.Controllers
         }
         //fin edit profile
 
+        [AuthorizeUser(idNivel: 3)]
+        public ActionResult ConsultaMaterias()
+        {
+            try
+            {
+                using (mocOS_BDEntities bd = new mocOS_BDEntities())
+                {
+                    List<Materia> lista = bd.Materia.Include(c => c.Cuatrimestre).Include(o => o.Profesor).Include(u => u.Profesor.Usuario).ToList();
+                    return View(lista);
+                }
+            }
+            catch (Exception msg)
+            {
+                ModelState.AddModelError("Error al consultar a los alumnos", msg);
+                return View();
+            }
+        }
+
+        [AuthorizeUser(idNivel: 3)]
+        public ActionResult MostrarModulos(int id)
+        {
+            try
+            {
+                var mat = (from d in bd.Materia
+                           where d.idMateria == id
+                           select d).FirstOrDefault();
+                ViewBag.Materia = mat.NombreMateria;
+                List<Unidad> Uni = bd.Unidad.Where(x => x.idMateria == mat.idMateria).ToList();
+                //Obteniendo los temas
+                List<Temas> MostrarTemas = new List<Temas>();
+                foreach (var c in Uni)
+                {
+                    List<Temas> Encontrados = bd.Temas.Where(x => x.idUnidad == c.idUnidad).ToList();
+                    foreach (var i in Encontrados)
+                    {
+                        MostrarTemas.Add(i);
+                    }
+                }
+                List<Profesor> pro = bd.Profesor.Include(u => u.Usuario).Where(x => x.idMateriaEnseña == id).ToList();
+                ViewBag.Profesores = pro;
+                ViewBag.Temas = MostrarTemas;
+                return View(Uni);
+            }
+            catch (Exception mensaje)
+            {
+                ModelState.AddModelError("Error al mostrar las Unidades", mensaje);
+                return View();
+            }
+        }
+        [AuthorizeUser(idNivel: 3)]
+        public ActionResult Registrar_asesoria(int id, int idPro)
+        {
+            HistorialAsesoria ha = new HistorialAsesoria();
+            Usuario obj = new Usuario();
+            obj = (Usuario)Session["User"];
+
+            var alu = (from d in bd.Alumnos
+                       where d.idUsuario == obj.idUsuario
+                       select d).FirstOrDefault();
+            ha.FechaRegistro = DateTime.Today;
+            ha.idAlumno = alu.idAlumno;
+            ha.idTema = id;
+            ha.idProfesor = idPro;
+            bd.HistorialAsesoria.Add(ha);
+            //bd.SaveChanges();
+            Correo_Aviso(obj, id, idPro);
+
+            return RedirectToAction("Inicio");
+        }
+        [AuthorizeUser(idNivel: 3)]
+        [HttpPost]
+        public ActionResult Correo_Aviso(Usuario user, int id, int idPro)
+        {
+            try
+            {
+                var tema = (from d in bd.Temas where d.idTema == id select d).FirstOrDefault();
+                var uni = (from u in bd.Unidad where u.idUnidad == tema.idUnidad select u).FirstOrDefault();
+                var mat = (from m in bd.Materia where m.idMateria == uni.idMateria select m).FirstOrDefault();
+                var pro = (from p in bd.Profesor where p.idProfesor == idPro select p).FirstOrDefault();
+                var usu = (from us in bd.Usuario where us.idUsuario == pro.idUsuario select us).FirstOrDefault();
+                string co = "pruebaplicacion5@gmail.com", rec = "oscar.c.t.03@gmail.com";
+                MailMessage correo = new MailMessage();
+                correo.From = new MailAddress(co);
+                correo.To.Add(rec);
+                correo.Subject = "Aviso de Asesoria";
+                correo.Body = "El usuario " + user.Nombre + " " + user.ApellidoPaterno + " " + user.ApellidoMaterno + " con correo: " + user.Correo + " " +
+                    "se a registrado a una asesoría en el tema de: " + tema.Nombre + " en la materia de: " + mat.NombreMateria + ". " +
+                    "Con el profesor(a) " + usu.Nombre + " " + usu.ApellidoPaterno + " " + usu.ApellidoMaterno;
+                correo.IsBodyHtml = true;
+                correo.Priority = MailPriority.Normal;
+                //configuracion del servidor stmp
+
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                smtp.EnableSsl = true;
+                string sCuentaCorreo = co;
+                string SPasswordCorreo = "Prueba1412";
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new System.Net.NetworkCredential(sCuentaCorreo, SPasswordCorreo);
+                //smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Send(correo);
+                ViewBag.Mensaje = "Mensaje enviado correctamente";
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+            }
+            return View();
+        }
 
     }
 }
