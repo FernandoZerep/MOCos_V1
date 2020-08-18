@@ -11,12 +11,20 @@ namespace MOCos_V1
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Documentos
     {
         public int idClase { get; set; }
         public byte[] Documento { get; set; }
+
+        [Required(ErrorMessage = "{0} es requerido")]
+        [DisplayName("Link")]
         public string Link { get; set; }
+
+        [Required(ErrorMessage = "{0} es requerido")]
+        [DisplayName("Nombre")]
         public string realName { get; set; }
     
         public virtual Clase Clase { get; set; }

@@ -11,7 +11,6 @@ using System.Net;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
-using System.Net;
 using System.Net.Mail;
 
 namespace MOCos_V1.Controllers

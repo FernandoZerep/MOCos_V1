@@ -12,7 +12,6 @@ using Microsoft.Ajax.Utilities;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Net;
 using System.Web.WebPages;
 using System.Net;
 using System.Net.Mail;

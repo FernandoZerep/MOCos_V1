@@ -130,9 +130,9 @@
                                                                 @Html.DisplayFor(modelItem => item.Nombre)
                                                             </td>
                                                             <td>
-                                                                @Html.ActionLink(" ", "EditarTema", new { id = item.idTema }, new { @class = "btn btn-info glyphicon glyphicon-edit" }) &nbsp;
-                                                                @Html.ActionLink(" ", "", new { id = item.idTema }, new { @class = "btn btn-warning glyphicon glyphicon-share" }) &nbsp;
-                                                                <button type="button" class="btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#otroalert-@item.idTema"></button>
+                                                                @Html.ActionLink(" ", "EditarTema", new { id = item.idTema }, new { @class = "btn btn-info glyphicon glyphicon-edit", title = "Modificar" }) &nbsp;
+                                                                @Html.ActionLink(" ", "MostrarDocTemas", new { id = item.idTema }, new { @class = "btn btn-warning glyphicon glyphicon-share", title = "Detalles" }) &nbsp;
+                                                                <button type="button" class="btn btn-danger glyphicon glyphicon-trash" title="Eliminar" data-toggle="modal" data-target="#otroalert-@item.idTema"></button>
                                                                 <div class="modal fade" id="otroalert-@item.idTema" role="dialog">
                                                                     <div class="modal-dialog modals-default">
                                                                         <div class="modal-content">
