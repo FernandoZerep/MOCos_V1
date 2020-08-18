@@ -496,6 +496,24 @@ namespace MOCos_V1.Controllers
                 return View();
             }
         }
+        [AuthorizeUser(idNivel: 3)]
+        public ActionResult MostrarDocTemas(int id)
+        {
+            try
+            {
 
+                
+                    Temas ElTema = bd.Temas.Find(id);
+                    Session["ElTema"] = ElTema;
+                    ViewBag.Tema = ElTema.Nombre;
+                    List<Documentos> Docs = bd.Documentos.Where(x => x.idTema == ElTema.idTema).ToList();
+                    return View(Docs);
+            }
+            catch (Exception mensaje)
+            {
+                ModelState.AddModelError("Error al mostrar los Documentos", mensaje);
+                return View();
+            }
+        }
     }
 }
