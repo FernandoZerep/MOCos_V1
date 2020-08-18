@@ -76,20 +76,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
-                                        @foreach (var item in Model)
+                                        @foreach (var c in Model)
                                          {
                                             <tr>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.idClase)
+                                                    @Html.DisplayFor(modelItem => c.idClase)
                                                 </td>
                                                 <td>
-                                                    <a href="@item.Link" target="_blank">@item.realName</a>
+                                                    <a href="@c.Link" target="_blank">@c.realName</a>
                                                 </td>
                                                 <td>
-                                                    @Html.ActionLink(" ", "EditarDoc", new { id = item.Link }, new { @class = "btn btn-info glyphicon glyphicon-edit", title ="Editar" }) &nbsp;
-                                                    <button type="button" class="btn btn-danger glyphicon glyphicon-trash" title="Eliminar" data-toggle="modal" data-target="#otroalert-@item.Link"></button>
-                                                    <div class="modal fade" id="otroalert-@item.Link" role="dialog">
+                                                    @Html.ActionLink(" ", "EditarDoc", new { id = c.Link }, new { @class = "btn btn-info glyphicon glyphicon-edit", title ="Editar" }) &nbsp;
+                                                    <button type="button" class="btn btn-danger glyphicon glyphicon-trash" title="Eliminar" data-toggle="modal" data-target="#otroalert-@c.realName"></button>
+                                                    <div class="modal fade" id="otroalert-@c.realName" role="dialog">
                                                         <div class="modal-dialog modals-default">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -97,11 +96,11 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <h2>Eliminar</h2>
-                                                                    <p>¿Seguro que desea eliminar <b>@item.realName</b>  de la Unidad?</p>
+                                                                    <p>¿Seguro que desea eliminar <b>@c.realName</b>  de la Unidad?</p>
                                                                     <p>Esta accion eliminara permanentemente el tema seleccionado</p>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    @Html.ActionLink(" ", "EliminarDoc", new { id = item.Link }, new { @class = "btn btn-danger" })
+                                                                    @Html.ActionLink(" ", "EliminarDoc", new { id = c.Link }, new { @class = "btn btn-danger" })
                                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                                                 </div>
                                                             </div>
