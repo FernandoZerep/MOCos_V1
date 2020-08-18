@@ -1,0 +1,150 @@
+﻿@model IEnumerable<MOCos_V1.Unidad>
+
+@{
+    List<Profesor> Pro = ViewBag.Profesores;
+    List<Temas> LosTemas = ViewBag.Temas;
+    ViewBag.Title = "MostrarModulos";
+    Layout = "~/Views/Shared/_LayoutAlumno.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="breadcomb-list">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="breadcomb-wp">
+                            <div class="breadcomb-icon">
+                                <i class="notika-icon notika-support"></i>
+                            </div>
+                            <div class="breadcomb-ctn">
+                                <h2>Materia</h2>
+                                <p>@Html.ViewBag.Materia</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
+                        <div class="breadcomb-report">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<!-- Inbox area Start-->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="inbox-text-list sm-res-mg-t-30">
+                <div class="accordion-stn">
+                    <div class="panel-group" data-collapse-color="nk-green" id="accordionGreen" role="tablist" aria-multiselectable="false">
+
+                        <!--Foreach para mostrar unidad y temas juntos-->
+                        @foreach (var c in Model)
+                        {
+                            <div class="panel panel-collapse notika-accrodion-cus">
+                                <div class="panel-heading" role="tab" style="width:100%;">
+                                    <table class="table table-condensed" style="width:100%; padding-top:0px;">
+                                        <tr>
+                                            <th style="text-align:left;">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordionGreen" href="#@c.idUnidad" aria-expanded="false">
+                                                        @Html.DisplayFor(modelItem => c.nombre)
+                                                    </a>
+                                                </h4>
+                                            </th>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div id="@c.idUnidad" class="collapse" role="tabpanel">
+                                    <div class="panel-body">
+                                        <div class="bsc-tbl">
+                                            <div class="row">
+                                                <div class="breadcomb-report">
+                                                </div>
+                                            </div>
+                                            <table class="table table-sc-ex">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            ID
+                                                        </th>
+                                                        <th>
+                                                            Tema
+                                                        </th>
+                                                        <th>
+                                                            Operaciones
+                                                        </th>
+
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    @foreach (var item in LosTemas.Where(x => x.idUnidad == c.idUnidad))
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.idTema)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.Nombre)
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" class="btn btn-info glyphicon glyphicon-user" data-toggle="modal" data-target="#otroalert-@item.idTema" title="Tutores"></button>
+                                                                <div class="modal fade" id="otroalert-@item.idTema" role="dialog">
+                                                                    <div class="modal-dialog modals-default">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                @foreach (var p in Pro)
+                                                                                {
+
+
+                                                                                    <table class="table table-condensed" style="width:100%; padding-top:0px;">
+                                                                                        <tr>
+
+                                                                                            <td>
+                                                                                                @Html.DisplayFor(modelItem => p.Usuario.Nombre) &nbsp;
+                                                                                                @Html.DisplayFor(modelItem => p.Usuario.ApellidoPaterno) &nbsp;
+                                                                                                @Html.DisplayFor(modelItem => p.Usuario.ApellidoMaterno)
+                                                                                            </td>
+
+                                                                                            <td>
+                                                                                                @Html.DisplayFor(modelItem => p.Cubo)
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                @Html.ActionLink(" ", "Registrar_asesoria", new { id = item.idTema, idPro = p.idProfesor }, new { @class = "btn btn-info glyphicon glyphicon-saved", @style = "padding: 6px 10px;", data_toggle = "tooltip", data_placement = "top", title = "Elegir tutor" })
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                }
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                @*@Html.ActionLink(" ", "EliminarTema", new { id = item.idTema }, new { @class = "btn btn-danger" })*@
+                                                                                <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
