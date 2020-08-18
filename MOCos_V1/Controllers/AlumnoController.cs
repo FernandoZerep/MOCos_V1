@@ -403,7 +403,7 @@ namespace MOCos_V1.Controllers
                 var mat = (from m in bd.Materia where m.idMateria == uni.idMateria select m).FirstOrDefault();
                 var pro = (from p in bd.Profesor where p.idProfesor == idPro select p).FirstOrDefault();
                 var usu = (from us in bd.Usuario where us.idUsuario == pro.idUsuario select us).FirstOrDefault();
-                string co = "pruebaplicacion5@gmail.com", rec = "oscar.c.t.03@gmail.com";
+                string co = "pruebaplicacion5@gmail.com", rec = "rosalba.bolanos@utpuebla.edu.mx";
                 MailMessage correo = new MailMessage();
                 correo.From = new MailAddress(co);
                 correo.To.Add(rec);
