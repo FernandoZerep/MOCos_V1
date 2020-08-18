@@ -129,19 +129,7 @@ namespace MOCos_V1.Controllers
         //    return View();
         //}
         //[AuthorizeUser(idNivel: 3)]
-        public ActionResult ConsultaProfesores()
-        {
-            try
-            {
-                List<Profesor> lista = bd.Profesor.Include(u => u.Usuario).ToList();
-                return View(lista);
-            }
-            catch (Exception mensaje)
-            {
-                ModelState.AddModelError("Error al consultar a los profesores", mensaje);
-                return View();
-            }
-        }
+        
 
         //public ActionResult DetallesProfesor(int id)
         //{
@@ -340,11 +328,10 @@ namespace MOCos_V1.Controllers
         {
             try
             {
-                using (mocOS_BDEntities bd = new mocOS_BDEntities())
-                {
+               
                     List<Materia> lista = bd.Materia.Include(c => c.Cuatrimestre).Include(o => o.Profesor).Include(u => u.Profesor.Usuario).ToList();
                     return View(lista);
-                }
+               
             }
             catch (Exception msg)
             {
@@ -436,10 +423,6 @@ namespace MOCos_V1.Controllers
                 //smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.Send(correo);
                 ViewBag.Mensaje = "Mensaje enviado correctamente";
-
-
-
-
             }
             catch (Exception ex)
             {
@@ -447,6 +430,6 @@ namespace MOCos_V1.Controllers
             }
             return View();
         }
-
+       
     }
 }
