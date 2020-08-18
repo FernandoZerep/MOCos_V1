@@ -252,12 +252,12 @@ namespace MOCos_V1.Controllers
                     //Obteniendo los temas
                     List<Temas> DeleteTemas = bd.Temas.Where(x => x.idUnidad == id).ToList();
 
-                    //Obteniendo las clases
-                    List<Clase> LasClases = new List<Clase>();
+                    //Obteniendo los Documentos
+                    List<Documentos> LosDocumentos = new List<Documentos>();
                     foreach (var c in DeleteTemas)
                     {
-                        Clase Laclase = bd.Clase.Where(x => x.idTemas == c.idTema).FirstOrDefault();
-                        LasClases.Add(Laclase);
+                        Documentos ElDocumento = bd.Documentos.Where(x => x.idTema == c.idTema).FirstOrDefault();
+                        LosDocumentos.Add(ElDocumento);
                     }
 
                     //Obteniendo los historiales
@@ -279,20 +279,11 @@ namespace MOCos_V1.Controllers
                     //Eliminando todo
 
                     //Eliminando Documentos con id de clases
-                    foreach (var i in LasClases)
+                    foreach (var i in LosDocumentos)
                     {
-                        if (bd.Documentos.Find(i.idClase) != null)
+                        if (bd.Documentos.Find(i.idDocumento) != null)
                         {
-                            bd.Documentos.Remove(bd.Documentos.Find(i.idClase));
-                            bd.SaveChanges();
-                        }
-                    }
-                    //Eliminando Clases 
-                    foreach (var i in LasClases)
-                    {
-                        if (bd.Clase.Find(i.idClase) != null)
-                        {
-                            bd.Clase.Remove(bd.Clase.Find(i.idClase));
+                            bd.Documentos.Remove(bd.Documentos.Find(i.idDocumento));
                             bd.SaveChanges();
                         }
                     }
@@ -380,13 +371,10 @@ namespace MOCos_V1.Controllers
                 {
                     using (mocOS_BDEntities bd = new mocOS_BDEntities())
                     {
-                        Clase Nuevo = new Clase();
                         Unidad Obtenido = (Unidad)Session["LaUnidad"];
                         ViewBag.LaUnidad = Obtenido.nombre;
                         obj.idUnidad = Obtenido.idUnidad;
-                        Nuevo.idTemas = obj.idTema;
                         bd.Temas.Add(obj);
-                        bd.Clase.Add(Nuevo);
                         bd.SaveChanges();
                         return RedirectToAction("MostrarModulos");
                     }
@@ -473,8 +461,8 @@ namespace MOCos_V1.Controllers
                 using (mocOS_BDEntities bd = new mocOS_BDEntities())
                 {
 
-                    //Obteniendo las clases
-                    List<Clase> LasClases = bd.Clase.Where(x => x.idTemas == id).ToList();
+                    //Obteniendo los documentos
+                    List<Documentos> LosDocumentos = bd.Documentos.Where(x => x.idTema == id).ToList();
 
                     //Obteniendo los historiales
                     List<HistorialAsesoria> LosHistoriales = bd.HistorialAsesoria.Where(x => x.idTema == id).ToList();
@@ -489,21 +477,12 @@ namespace MOCos_V1.Controllers
 
                     //Eliminando todo
 
-                    //Eliminando Documentos con id de clases
-                    foreach (var i in LasClases)
+                    //Eliminando Documentos 
+                    foreach (var i in LosDocumentos)
                     {
-                        if (bd.Documentos.Find(i.idClase) != null)
+                        if (bd.Documentos.Find(i.idDocumento) != null)
                         {
-                            bd.Documentos.Remove(bd.Documentos.Find(i.idClase));
-                            bd.SaveChanges();
-                        }
-                    }
-                    //Eliminando Clases 
-                    foreach (var i in LasClases)
-                    {
-                        if (bd.Clase.Find(i.idClase) != null)
-                        {
-                            bd.Clase.Remove(bd.Clase.Find(i.idClase));
+                            bd.Documentos.Remove(bd.Documentos.Find(i.idDocumento));
                             bd.SaveChanges();
                         }
                     }
@@ -693,19 +672,18 @@ namespace MOCos_V1.Controllers
 
         [AuthorizeUser(idNivel: 4)]
         [HttpPost]
-        public ActionResult InsertarDoc(Documentos obj)
+        public ActionResult InsertarDoc(Documentos ElDoc)
         {
             try
             {
-                if (obj.realName != null && obj.Link != null)
+                if (ElDoc.Nombre != null && ElDoc.Link != null)
                 {
                     using (mocOS_BDEntities bd = new mocOS_BDEntities())
                     {
                         Temas Obtenido = (Temas)Session["ElTema"];
-                        Clase Nuevo = bd.Clase.Where(x => x.idTemas == Obtenido.idTema).FirstOrDefault();
                         ViewBag.Tema = Obtenido.Nombre;
-                        obj.idClase = Nuevo.idClase;
-                        bd.Documentos.Add(obj);
+                        ElDoc.idTema = Obtenido.idTema;
+                        bd.Documentos.Add(ElDoc);
                         bd.SaveChanges();
                         return RedirectToAction("MostrarModulos");
                     }
@@ -726,21 +704,15 @@ namespace MOCos_V1.Controllers
 
         [AuthorizeUser(idNivel: 4)]
         [HttpGet]
-        public ActionResult EditarDoc(string link)
+        public ActionResult EditarDoc(int id)
         {
             try
             {
-                Documentos Obtenido = bd.Documentos.Where(x => x.Link == link).FirstOrDefault();
-                var ElTema = (from d in bd.Clase
-                             where d.idClase == Obtenido.idClase
-                             select d.idTemas).FirstOrDefault();
-                var Modificar = (from d in bd.Temas
-                              where d.idTema == ElTema
-                              select d.Nombre).FirstOrDefault();
-                Session["ElTema"] = bd.Unidad.Find(ElTema);
-                Session["ElDocumento"] = Obtenido;
-                ViewBag.LaUnidad = Modificar;
-                return View(Obtenido);
+                Documentos Modificar = bd.Documentos.Find(id);
+                Session["ElTema"] = bd.Temas.Find(Modificar.idTema);
+                Temas Obtenido = (Temas)Session["ElTema"];
+                ViewBag.Tema =Obtenido.Nombre;
+                return View(Modificar);
             }
             catch (Exception msg)
             {
@@ -752,21 +724,20 @@ namespace MOCos_V1.Controllers
 
         [AuthorizeUser(idNivel: 4)]
         [HttpPost]
-        public ActionResult EditarDoc(Documentos obj)
+        public ActionResult EditarDoc(Documentos ElDoc)
         {
             try
             {
-                if (obj.realName != null && obj.Link != null)
+                if (ElDoc.Nombre != null && ElDoc.Link != null)
                 {
                     using (mocOS_BDEntities bd = new mocOS_BDEntities())
                     {
-                        Documentos Editando = (Documentos)Session["ElDocumento"];
                         Temas Obtenido = (Temas)Session["ElTema"];
                         ViewBag.Tema = Obtenido.Nombre;
-                        obj.idClase = bd.Clase.Where(x => x.idTemas == Obtenido.idTema).FirstOrDefault().idClase;
-                        Documentos existe = bd.Documentos.Find(Editando);
-                        existe.Link = obj.Link;
-                        existe.realName = obj.realName;
+                        ElDoc.idTema = Obtenido.idTema;
+                        Documentos existe = bd.Documentos.Find(ElDoc.idDocumento);
+                        existe.Link = ElDoc.Link;
+                        existe.Nombre = ElDoc.Nombre;
                         bd.SaveChanges();
                         return RedirectToAction("MostrarModulos");
                     }
@@ -796,15 +767,10 @@ namespace MOCos_V1.Controllers
 
                 using (mocOS_BDEntities bd = new mocOS_BDEntities())
                 {
-                    var clase = (from d in bd.Clase
-                                where d.idTemas == id
-                                select d).FirstOrDefault();
-                    var tema = (from d in bd.Temas
-                               where d.idTema == id
-                               select d).FirstOrDefault();
-                    Session["ElTema"] = tema;
-                    ViewBag.Tema = tema.Nombre;
-                    List<Documentos> Docs = bd.Documentos.Where(x => x.idClase == clase.idClase).ToList();
+                    Temas ElTema = bd.Temas.Find(id);
+                    Session["ElTema"] = ElTema;
+                    ViewBag.Tema = ElTema.Nombre;
+                    List<Documentos> Docs = bd.Documentos.Where(x => x.idTema == ElTema.idTema).ToList();
                     return View(Docs);
                 }
             }

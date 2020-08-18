@@ -99,6 +99,8 @@ namespace MOCos_V1.Controllers
             }
             return View();
         }
+
+
         //EDITPROFILE
         [AuthorizeUser(idNivel: 1)]
         [HttpGet]
@@ -107,7 +109,7 @@ namespace MOCos_V1.Controllers
             try
             {
 
-                Administrador obj = bd.Administrador.Include(u=>u.Usuario).Include(t=>t.Usuario.TiposUsuarios).Where(i => i.idUsuario == id).FirstOrDefault();
+                Administrador obj = bd.Administrador.Include(u => u.Usuario).Include(t => t.Usuario.TiposUsuarios).Where(i => i.idUsuario == id).FirstOrDefault();
                 //el primer userlist no es necesario pero que se quede mientras
                 obj.UserList = new SelectList(bd.Usuario, "idUsuario", "Nombre");
                 obj.Usuario.UserTipoList = new SelectList(bd.TiposUsuarios, "idTipo", "Nombre");
@@ -137,6 +139,7 @@ namespace MOCos_V1.Controllers
             public string Id { get; set; }
             public string Name { get; set; }
         }
+
         //EDITPROFILE
         [AuthorizeUser(idNivel: 1)]
         [HttpGet]
@@ -184,7 +187,7 @@ namespace MOCos_V1.Controllers
                     //if (obj.Usuario.Contrasena == "")
                     //    return View(obj);
                     //else
-                        existe.Usuario.Contrasena = obj.Usuario.Contrasena;
+                    existe.Usuario.Contrasena = obj.Usuario.Contrasena;
                     existe.Usuario.ApellidoMaterno = obj.Usuario.ApellidoMaterno;
                     existe.Usuario.ApellidoPaterno = obj.Usuario.ApellidoPaterno;
                     existe.Usuario.Dirección = obj.Usuario.Dirección;
@@ -193,7 +196,7 @@ namespace MOCos_V1.Controllers
                     existe.Usuario.FechaDeNacimiento = obj.Usuario.FechaDeNacimiento;
                     existe.Usuario.Correo = obj.Usuario.Correo;
                     existe.Tipo = obj.Tipo;
-                    
+
                     bd.SaveChanges();
                     if (FileBase.InputStream.Length != 0)
                     {
@@ -218,7 +221,7 @@ namespace MOCos_V1.Controllers
                         Session["Activo"] = nuevo;
                         return RedirectToAction("InicioAdmin");
                     }
-                    
+
                 }
             }
             catch (Exception msg)
@@ -238,11 +241,13 @@ namespace MOCos_V1.Controllers
         public void insertar_imagen_admin(byte[] imagen, Administrador admi)
         {
 
-            Usuario user = bd.Usuario.Where(x=>x.idUsuario == admi.idUsuario).FirstOrDefault();
+            Usuario user = bd.Usuario.Where(x => x.idUsuario == admi.idUsuario).FirstOrDefault();
             user.FotoPerfil = imagen;
             bd.SaveChanges();
         }
         //fin edit profile
+
+
         [AuthorizeUser(idNivel: 1)]
         public ActionResult ConsultaAlumno()
         {
@@ -509,6 +514,8 @@ namespace MOCos_V1.Controllers
                 return View();
             }
         }
+
+
         //EDITPROFILE
         [AuthorizeUser(idNivel: 1)]
         [HttpGet]
@@ -586,7 +593,7 @@ namespace MOCos_V1.Controllers
                         insertar_imagen_perfil(iagen.GetBytes(), existe);
                     }
 
-                        return RedirectToAction("ConsultaAlumno");
+                    return RedirectToAction("ConsultaAlumno");
 
                 }
             }
@@ -690,8 +697,8 @@ namespace MOCos_V1.Controllers
                         insertar_imagen_perfil(iagen.GetBytes(), existe);
                     }
 
-   
-                        return RedirectToAction("ConsultaDocente");
+
+                    return RedirectToAction("ConsultaDocente");
 
                 }
             }
@@ -718,6 +725,9 @@ namespace MOCos_V1.Controllers
             bd.SaveChanges();
         }
         //fin edit profile
+
+
+
         //Eliminar perfil alumno
         [AuthorizeUser(idNivel: 1)]
         public ActionResult EliminarAlumno(int id)

@@ -129,7 +129,7 @@ namespace MOCos_V1.Controllers
         //    return View();
         //}
         //[AuthorizeUser(idNivel: 3)]
-        
+
 
         //public ActionResult DetallesProfesor(int id)
         //{
@@ -322,6 +322,7 @@ namespace MOCos_V1.Controllers
             bd.SaveChanges();
         }
         //fin edit profile
+
 
         [AuthorizeUser(idNivel: 3)]
         public ActionResult ConsultaMaterias()
