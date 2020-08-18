@@ -680,6 +680,7 @@ namespace MOCos_V1.Controllers
                     existe.Usuario.Genero = obj.Usuario.Genero;
                     existe.Usuario.FechaDeNacimiento = obj.Usuario.FechaDeNacimiento;
                     existe.Usuario.Correo = obj.Usuario.Correo;
+                    existe.idMateriaEnseña = obj.idMateriaEnseña;
                     existe.Cubo = obj.Cubo;
 
                     bd.SaveChanges();

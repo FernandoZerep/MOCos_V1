@@ -67,7 +67,7 @@
 
                                                 <div class="picture">
                                                     @{
-                                                        Byte[] bytes = (Byte[])Session["profile"];
+                                                        Byte[] bytes = Model.Usuario.FotoPerfil;
                                                         var imgSrc = "";
                                                         if (bytes != null)
                                                         {
